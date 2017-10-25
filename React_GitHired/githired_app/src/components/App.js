@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import '../App.css';
 import axios from 'axios';
 import Cookies from '../helpers/Cookies';
 import UserAuth from './UserAuth';
