@@ -9,7 +9,8 @@ class SignUp extends Component {
     // set up initial state
     this.state = { // track inputs for form
       inputs: {
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         password_confirmation: ''
@@ -43,10 +44,16 @@ class SignUp extends Component {
         <h2>Sign Up</h2>
         <form onSubmit={this.signUp.bind(this)}>
 
-          <label htmlFor='email'>Name</label>
-          <input value={this.state.inputs.name}
-            id='name' name='name' type='text'
-            onChange={e => this.changeInput(e, 'name')}
+          <label htmlFor='email'>First Name</label>
+          <input value={this.state.inputs.first_name}
+            id='first_name' name='first_name' type='text'
+            onChange={e => this.changeInput(e, 'first_name')}
+          />
+
+          <label htmlFor='email'>Last Name</label>
+          <input value={this.state.inputs.last_name}
+            id='last_name' name='last_name' type='text'
+            onChange={e => this.changeInput(e, 'last_name')}
           />
 
           <label htmlFor='email'>Email</label>
