@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
+  first_name VARCHAR NOT NULL,
+  last_name VARCHAR NOT NULL,
   email VARCHAR NOT NULL UNIQUE,
   password_digest VARCHAR NOT NULL,
   token VARCHAR NOT NULL
