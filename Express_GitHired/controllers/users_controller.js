@@ -8,7 +8,8 @@ const User = require('../models/user'),
 // We use the Auth.restrict to restrict it to only calls using the auth_token
 router.get('/validate', Auth.restrict, (req, res)=>{
   res.json({
-    name: req.user.name,
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
     email: req.user.email,
     token: req.user.token,
     id: req.user.id
@@ -22,14 +23,15 @@ router.post('/', (req, res) => {
   // const name = req.body.name,
   //       password = req.body.password,
   //       password_confirmation = req.body.password_confirmation;
-  const {name, password, password_confirmation} = req.body;
+  const {first_name, last_name, password, password_confirmation} = req.body;
 
 
   //////////////////////////////////////////////////////
   // We are going to validate our inputs!
   // creating an object to hold any errors we may find
   const errors = {
-    name: [],
+    first_name: [],
+    last_name: [],
     email: [],
     password: [],
     password_confirmation: []
@@ -70,7 +72,7 @@ router.post('/', (req, res) => {
   // if there are no errors, create the user!
   if(!error){
     User
-      .generateToken(User.create, name, email, password)
+      .generateToken(User.create, first_name, last_name, email, password)
       .then(data => { // once we create the user
         res.json(data)
       })
