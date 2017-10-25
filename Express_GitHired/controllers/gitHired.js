@@ -11,5 +11,14 @@ router.post('/search',
 		res.json( jobResults ); 
 	});
 
+ router.post('/search/save', 
+	Jobs.search, 
+	Jobs.save,
+	(req, res) => {
+		// const { savedJobResults } = res.locals;
+		// console.log('saved results are ', savedJobResults);
+		res.send('results saved to db'); 
+	});
+
 
 module.exports = router;      
