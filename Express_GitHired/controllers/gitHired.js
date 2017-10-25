@@ -7,4 +7,39 @@ const User = require('../models/user'),
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.post('/create', Jobs.create, (req, res) => {
+	const {job} = res.locals;
+	res.json(job);
+});
+
 module.exports = router;      
