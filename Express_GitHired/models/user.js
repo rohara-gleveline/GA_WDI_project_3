@@ -24,21 +24,21 @@ const User = {
   // this will be called each time the user logs in
   updateToken: (id, token) => {
     return db.one(`UPDATE users SET token = $1
-      WHERE id = $2 RETURNING name, email, token, id`, [token, id]);
+      WHERE id = $2 RETURNING first_name, last_name, email, token, id`, [token, id]);
   },
   //returns promise that is being created with db.one
   // 'then' clause in sessions controller
 
   // model method to create a user
-  create: (name, email, password, token) => {
+  create: (first_name, last_name, email, password, token) => {
     // encrypt the password using bcrypt
     const password_digest = bcrypt.hashSync(password, 10);
     // insert the user into the database
     return db.one(`INSERT INTO users
-      (name, email, password_digest, token)
-      VALUES ($1, $2, $3, $4)
-      RETURNING name, email, token, id`, // the information we want to send back
-      [name, email, password_digest, token])
+      (first_name, last_name, email, password_digest, token)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING first_name, last_name, email, token, id`, // the information we want to send back
+      [first_name, last_name, email, password_digest, token])
   },
 
   // method to find a user given a email
