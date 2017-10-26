@@ -3,7 +3,13 @@ const User = require('../models/user'),
       bcrypt = require('bcryptjs'),
       Jobs = require('../models/gitHired.js')
 
-// routes go here
+  // routes go here
+  router.get('/:id',
+    Jobs.findById,
+    (req, res) => {
+        const {oneJobData} = res.locals
+        res.json({oneJobData: oneJobData});
+    });
 
 
 
@@ -13,3 +19,4 @@ router.post('/create', Jobs.create, (req, res) => {
 });
 
 module.exports = router;      
+

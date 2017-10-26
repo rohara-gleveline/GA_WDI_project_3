@@ -5,6 +5,16 @@ const Jobs = {}
 	// models go here
 
 
+	// models go here
+  Jobs.findById = (req,res,next) => {
+    const {id} = req.params;
+    db.one(`SELECT * FROM jobs_data WHERE id = $1`, [id])
+      .then(oneJobData => {
+          res.locals.oneJobData = oneJobData;
+          next();
+      })
+  }
+
 
 
 
@@ -21,4 +31,5 @@ Jobs.create = (req, res, next) => {
       .catch(err=>console.log(err));
   }
 
-module.exports = Jobs;      
+
+module.exports = Jobs;

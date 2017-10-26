@@ -1,7 +1,5 @@
 import React from 'react';
 
-// component that renders content
-// this will render when there is a valid user
 const Content = (props) => {
   return(
     <div className="content">

@@ -33,7 +33,5 @@ CREATE TABLE jobs_data (
 -- contact name
 -- contact email
 -- contact phone number
--- date of last communication 
+-- date of last communication
 -- notes
-
-
