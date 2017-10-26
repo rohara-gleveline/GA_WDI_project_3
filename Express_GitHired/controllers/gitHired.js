@@ -17,8 +17,8 @@ router.post('/search',
 	(req, res) => {
 		 // adzunaJobResults 
 		 // adzunaJobs: adzunaJobResults
-		const { authJobResults, gitJobResults } = res.locals;
-		res.json({ "GitHub Jobs": gitJobResults, "Authentic Jobs": authJobResults }); 
+		const { jobsData } = res.locals;
+		res.json({ "JobsData": jobsData }); 
 	});
 
 //save job to database 
