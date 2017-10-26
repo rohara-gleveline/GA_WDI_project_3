@@ -4,8 +4,11 @@ import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import '../App.css';
 import axios from 'axios';
 import Cookies from '../helpers/Cookies';
+
 import UserAuth from './UserAuth';
 import Content from './Content';
+import Header from './Header';
+import ViewOne from './ViewOne';
 
 class App extends Component {
   constructor(){
@@ -69,24 +72,24 @@ class App extends Component {
       )
     } else if(this.state.mode === 'content') {
       return (
-        <Content logout={this.logout.bind(this)} user={this.state.user} />
+        <Content />
       )
     }
-  }
-
-  renderViewOne(){
-    return(
-      <Content logout={this.logout.bind(this)} user={this.state.user} />
-    )
   }
 
   render() {
     return (
       <BrowserRouter>
         <div className="App">
+        {this.state.mode === 'content' &&
+          <Header user={this.state.user}
+                logout={this.logout}/>}
         <Route exact path="/"
                render= {this.renderView} />
-        </div>
+        <Route exact path="/ViewOne/:id"
+               component= {ViewOne} />
+
+       </div>
       </BrowserRouter>
     );
   }
