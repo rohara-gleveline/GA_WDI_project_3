@@ -7,8 +7,10 @@ const User = require('../models/user'),
 router.post('/search', 
 	Jobs.search, 
 	(req, res) => {
-		const { jobResults } = res.locals;
-		res.json( jobResults ); 
+		 // adzunaJobResults 
+		 // adzunaJobs: adzunaJobResults
+		const { authJobResults, gitJobResults } = res.locals;
+		res.json({ "GitHub Jobs": gitJobResults, "Authentic Jobs": authJobResults }); 
 	});
 
  router.post('/search/save', 

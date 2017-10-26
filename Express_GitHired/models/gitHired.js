@@ -6,15 +6,56 @@ const Jobs = {}
 // models go here
 
 Jobs.search = (req,res,next) => {
+
 	// desc/loc can be any string
 	// full_time has to be a boolean
-	const { description, location, full_time } = req.body
+	// gitHub jobs search
+	const { description, location, full_time } = req.body;
+
+	let type = ''
+
+	if(full_time === true) {
+		type = 1;
+	}
+	else if(full_time === false){
+		type = 2;
+	}
+
+	console.log('type is ', type);
+	
+	// const jobsData = {
+	// 		gitHub: [],
+	// 		authentic: []
+	// }
+
 	axios.get(`https://jobs.github.com/positions.json?description=${description}&location=${location}&full_time=${full_time}`)
-	.then(jobData => {
-		console.log('jobData is ', jobData.data);
-		res.locals.jobResults = jobData.data;
-		next();
-	}).catch(err => console.log('error in Jobs.search ', err));
+	.then(gitHubjobData => {
+		console.log('jobData is ', gitHubjobData.data);
+		// gitHubjobData.forEach(function(job) => {
+
+		// })
+		res.locals.gitJobResults = { gitJobs: gitHubjobData.data};
+	}).catch(err => console.log('error in gitJobs.search ', err));
+
+	// type is full-time (1) or freelance (2)
+	// authenticJobs search
+
+	axios.get(`https://authenticjobs.com/api/?api_key=8c6530e3c696987f1717c9859d830942&method=aj.jobs.search&keywords=${description}&location=${location}&type=${type}&format=json`)
+		.then(authenticJobData => {
+			console.log('authenticJobData is ', authenticJobData.data);
+			res.locals.authJobResults = authenticJobData.data;
+			next();
+		}).catch(err => console.log('error in authJobs.search ', err));
+
+	// adZuna jobs search
+	// need to figure out how to do country code
+	// axios.get(`https://api.adzuna.com:443/v1/api/jobs/us/search/1?app_id=71f61f30&app_key=d350e2c3df1c3b913be9363df31b23a2&results_per_page=20&what=${description}&where=${location}`)
+	// 	.then(adzunaJobData => {
+	// 		console.log('adzunaJobData is ', adzunaJobData.data);
+	// 		res.locals.adzunaJobResults = adzunaJobData.data;
+	// 		next();
+	// 	}).catch(err => console.log('error in adzunaJobs.search ', err));
+
 }
 
 Jobs.save = (req,res,next) => {
