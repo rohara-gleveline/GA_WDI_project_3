@@ -62,8 +62,11 @@ class CreateJob extends Component {
 	}
 
 	render() {
+			if(this.state.submitted){
+			return <Redirect to={`/gitHired`}/>
+		}
 		return (
-			<div className="make"> 
+			<div className="makejob"> 
 			<form onSubmit={this.onSubmit}>
 				<label>
 					Company:
