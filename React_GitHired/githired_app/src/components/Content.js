@@ -1,14 +1,21 @@
 import React from 'react';
+// import SearchForm from './SearchForm';
+import Header from './Header';
+// import View from './View';
+// import CreateButton from './CreateButton';
+
 
 const Content = (props) => {
   return(
     <div className="content">
-      <h2>Welcome, {props.user.first_name} {props.user.last_name} </h2>
-      <p>Your email address is: {props.user.email}</p>
-      <p>You have a cookie set to: {props.user.token}</p>
-      <button onClick={props.logout}>Click here to log out!</button>
+      
+      
+
+			<Header first_name={props.user.first_name} last_name={props.user.last_name} logout={props.logout}   />
+
+			
+
     </div>
   )
 }
-
 export default Content;
