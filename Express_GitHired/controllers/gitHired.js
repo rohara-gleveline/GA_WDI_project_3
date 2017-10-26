@@ -17,9 +17,11 @@ router.get('/:id',
       res.json({oneJobData: oneJobData});
   });
 
-router.post('/create', Jobs.create, (req, res) => {
-	const {job} = res.locals;
-	res.json(job);
+router.post('/create',
+  Jobs.create,
+  (req, res) => {
+	   const {job} = res.locals;
+	    res.json(job);
 });
 
 module.exports = router;

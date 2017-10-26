@@ -11,7 +11,7 @@ const Content = (props) => {
       <div className="content">
         {/*}<SearchForm />*/}
         <ViewSavedData />
-        {/*}<CreateButton />*/}
+        <Link to="/create">Create New Job</Link>
 
       </div>
   )

@@ -9,6 +9,7 @@ import UserAuth from './UserAuth';
 import Content from './Content';
 import Header from './Header';
 import ViewOne from './ViewOne';
+import CreateJob from './CreateJob';
 
 class App extends Component {
   constructor(){
@@ -80,16 +81,24 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+
         <div className="App">
-        {this.state.mode === 'content' &&
-          <Header user={this.state.user}
-                logout={this.logout}/>}
-        <Route exact path="/"
-               render= {this.renderView} />
-        <Route exact path="/ViewOne/:id"
-               component= {ViewOne} />
+
+          {this.state.mode === 'content' &&
+            <Header user={this.state.user}
+                  logout={this.logout}/>}
+
+          <Route exact path="/"
+                 render= {this.renderView} />
+
+          <Route exact path="/ViewOne/:id"
+                  component= {ViewOne} />
+
+          <Route exact path="/create"
+                 component= {CreateJob} />
 
        </div>
+
       </BrowserRouter>
     );
   }

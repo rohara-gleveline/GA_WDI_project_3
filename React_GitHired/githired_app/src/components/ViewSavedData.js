@@ -31,7 +31,7 @@ class ViewSavedData extends Component {
           <th>Title</th>
           <th>Location</th>
           <th>Type</th>
-          <th>Link to GitHub Jobs</th>
+          <th>Link</th>
           <th>View More</th>
           <th>Delete</th>
         </tr>
@@ -48,8 +48,8 @@ class ViewSavedData extends Component {
       		<td>{e.title}</td>
       		<td>{e.location}</td>
       		<td>{e.type}</td>
-      		<td><a src={e.github_jobs_url}>See the Job Page</a></td>
-      		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}>See More</Link></td>
+      		<td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
+      		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton">Delete</td>
         </tr>
       )
