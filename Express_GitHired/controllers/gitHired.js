@@ -12,4 +12,11 @@ const User = require('../models/user'),
     });
 
 
-module.exports = router;
+
+router.post('/create', Jobs.create, (req, res) => {
+	const {job} = res.locals;
+	res.json(job);
+});
+
+module.exports = router;      
+
