@@ -1,9 +1,17 @@
 const User = require('../models/user'),
       router = require('express').Router(),
       bcrypt = require('bcryptjs'),
-      Jobs = require('../models/gitHired.js')
+      Jobs = require('../models/gitHired.js');
 
-// routes go here
+// get all job data saved in db
+router.get('/',
+	Jobs.findAll, 
+	(req, res) => {
+		const {jobs} = res.locals
+		res.json({ jobs });
+	});
+
+// search gitHub jobs & authentic jobs
 router.post('/search', 
 	Jobs.search, 
 	(req, res) => {
@@ -13,7 +21,8 @@ router.post('/search',
 		res.json({ "GitHub Jobs": gitJobResults, "Authentic Jobs": authJobResults }); 
 	});
 
- router.post('/search/save', 
+//save job to database 
+ router.post('/save', 
 	Jobs.search, 
 	Jobs.save,
 	(req, res) => {
@@ -21,6 +30,18 @@ router.post('/search',
 		// console.log('saved results are ', savedJobResults);
 		res.send('results saved to db'); 
 	});
+ 
+ router.get('/:id',
+    Jobs.findById,
+    (req, res) => {
+        const {oneJobData} = res.locals
+        res.json({oneJobData: oneJobData});
+    });
 
+router.post('/create', Jobs.create, (req, res) => {
+	const {job} = res.locals;
+	res.json(job);
+});
 
 module.exports = router;      
+
