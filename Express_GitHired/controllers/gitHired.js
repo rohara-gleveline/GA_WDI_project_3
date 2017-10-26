@@ -5,10 +5,7 @@ const User = require('../models/user'),
 
 // routes go here
 
-router.get('/', Jobs.findAll, (req, res) => {
-		const {jobs} = res.locals
-    res.json(jobs);
-});
+
 
 router.post('/create', Jobs.create, (req, res) => {
 	const {job} = res.locals;
