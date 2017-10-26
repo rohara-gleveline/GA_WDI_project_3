@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+
 import '../App.css';
 import axios from 'axios';
 import Cookies from '../helpers/Cookies';
@@ -13,6 +15,9 @@ class App extends Component {
       mode: 'loading',
       url: 'http://localhost:8080'
     }
+    this.setUser = this.setUser.bind(this);
+    this.logout = this.logout.bind(this);
+    this.renderView = this.renderView.bind(this);
   }
 
   componentDidMount(){
@@ -69,11 +74,20 @@ class App extends Component {
     }
   }
 
+  renderViewOne(){
+    return(
+      <Content logout={this.logout.bind(this)} user={this.state.user} />
+    )
+  }
+
   render() {
     return (
-      <div className="App">
-        { this.renderView() }
-      </div>
+      <BrowserRouter>
+        <div className="App">
+        <Route exact path="/"
+               render= {this.renderView} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

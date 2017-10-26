@@ -25,9 +25,6 @@ app.use(Auth.authenticate);
 app.use('/users', require('./controllers/users_controller'));
 app.use('/login', require('./controllers/sessions_controller'));
 app.use('/gitHired', require('./controllers/gitHired'));
-<<<<<<< HEAD
-=======
 
->>>>>>> ae171c465dea3535e558653ef264491bcb718eb0
 // listen on port and run server
 app.listen(port, () => console.log('server listening on ' + port));
