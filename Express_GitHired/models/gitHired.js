@@ -1,11 +1,26 @@
 const bcrypt = require('bcryptjs'),
-      db = require('../db/config')
+      db = require('../db/config');
 
-const Jobs = {}
+
+const Jobs = {};
 	// models go here
 
 
-	// models go here
+Jobs.findAll = (req, res, next) => {
+	const user_id = req.user.id;
+	db.manyOrNone('SELECT * FROM jobs_data')
+	.then((jobs) => {
+		res.locals.jobs = jobs;
+		console.log('jobs from findAll: ', jobs)
+		next();
+	})
+	.catch(err => {
+		console.log(`Error returning all: ${err}`)
+	})
+};
+
+
+
   Jobs.findById = (req,res,next) => {
     const {id} = req.params;
     db.one(`SELECT * FROM jobs_data WHERE id = $1`, [id])
@@ -14,6 +29,8 @@ const Jobs = {}
           next();
       })
   }
+
+
 
 
 
@@ -30,6 +47,7 @@ Jobs.create = (req, res, next) => {
       })
       .catch(err=>console.log(err));
   }
+
 
 
 module.exports = Jobs;
