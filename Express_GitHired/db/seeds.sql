@@ -26,7 +26,9 @@ CREATE TABLE jobs_data (
   github_jobs_url VARCHAR(255)
 );
 
--- inputs to be added?
+
+
+-- inputs to be added? 
 -- using moment to save last time user changed job info
 -- contact name
 -- contact email

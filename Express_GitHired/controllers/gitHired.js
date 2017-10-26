@@ -1,9 +1,20 @@
 const User = require('../models/user'),
       router = require('express').Router(),
       bcrypt = require('bcryptjs'),
-      Jobs = require('../models/gitHired.js')
+      Jobs = require('../models/gitHired.js');
+
+
 
   // routes go here
+
+router.get('/',
+	Jobs.findAll, 
+	(req, res) => {
+		const {jobs} = res.locals
+		res.json({ jobs });
+	});
+
+  
   router.get('/:id',
     Jobs.findById,
     (req, res) => {
@@ -12,4 +23,17 @@ const User = require('../models/user'),
     });
 
 
-module.exports = router;
+
+
+
+
+
+
+
+router.post('/create', Jobs.create, (req, res) => {
+	const {job} = res.locals;
+	res.json(job);
+});
+
+module.exports = router;      
+
