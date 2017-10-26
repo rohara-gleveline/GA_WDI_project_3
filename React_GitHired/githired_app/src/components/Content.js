@@ -4,6 +4,7 @@ import Header from './Header';
 // import View from './View';
 // import CreateButton from './CreateButton';
 
+
 const Content = (props) => {
   return(
     <div className="content">
@@ -14,9 +15,7 @@ const Content = (props) => {
 
 			
 
-
     </div>
   )
 }
-
 export default Content;
