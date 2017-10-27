@@ -87,9 +87,9 @@ class CreateJob extends Component {
 
 				{this.state.isSubmitted === false &&
 
-					<form onSubmit={this.onSubmit}>
-
-						<h2>Job Information</h2>
+					<form className="createForm" onSubmit={this.onSubmit}>
+					<div className="jobInformation">
+						<h3>Job Information</h3>
 
 						<div className="jobinfo">
 							<label htmlFor="companynew">Company:</label>
@@ -166,7 +166,9 @@ class CreateJob extends Component {
 								<option value='1'>Yes</option>
 							</select>
 						</div>
-						<h2>Contact Information</h2>
+						</div>
+						<div className="contactInformation">
+						<h3>Contact Information</h3>
 
 						<div className = "contact">
 							<label htmlFor="namenew">Contact Name:</label>
@@ -207,9 +209,9 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-							<input type="submit" value="Submit"/>
+							<input className="form-button" type="submit" value="Submit"/>
 						</div>
-
+						</div>
 					</form>
 				}
 

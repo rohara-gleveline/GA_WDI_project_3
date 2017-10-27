@@ -29,13 +29,13 @@ class ViewSavedData extends Component {
     return (
       <thead>
         <tr>
-      		<th>Company</th>
-          <th>Title</th>
-          <th>Location</th>
-          <th>Type</th>
-          <th>Link</th>
-          <th>View More</th>
-          <th>Delete</th>
+      		<th aria-sort='ascending' role='columnheader'>Company</th>
+          <th aria-sort='ascending' role='columnheader'>Title</th>
+          <th aria-sort='ascending' role='columnheader'>Location</th>
+          <th aria-sort='ascending' role='columnheader'>Type</th>
+          <th aria-sort='ascending' role='columnheader'>Link</th>
+          <th aria-sort='ascending' role='columnheader'>View More</th>
+          <th aria-sort='ascending' role='columnheader'>Delete</th>
         </tr>
       </thead>
     )
@@ -51,7 +51,7 @@ class ViewSavedData extends Component {
       		<td>{e.location}</td>
       		<td>{e.type}</td>
       		<td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
-      		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
+          <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton">Delete</td>
         </tr>
       )
