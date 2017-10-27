@@ -114,8 +114,7 @@ td {
     border-top: 1px solid transparent;
     color: #669;
     padding: 8px;
-/*    opacity: .9;
-*/}
+}
 
 tr {
 background: #f4f7f8;
@@ -129,17 +128,6 @@ tr:nth-child(even) {
   background: #e8eeef;
 }
 
-/*tr {
-    font-size: 100%;
-    vertical-align: baseline;
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    border: 0;
-
-/*    background: 0 0;
-*/
-
 th {
     color: white;
     background: #457B9D;
@@ -149,9 +137,7 @@ th {
 }
 
 
-.auth-form {
-/*    margin-top: 100px;
-*/  
+.auth-form { 
   padding-top: 3em;  
   flex-direction: column;
   display: flex;
@@ -166,7 +152,7 @@ th {
     align-items: center;
 }
 
-form{
+form {
   display: flex;
   flex-direction: row;
   justify-content: center;

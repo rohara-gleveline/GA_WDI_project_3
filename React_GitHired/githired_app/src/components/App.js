@@ -9,7 +9,7 @@ import UserAuth from './UserAuth';
 import Content from './Content';
 import Header from './Header';
 import ViewOne from './ViewOne';
-import CreateJob from './CreateJob';
+// import CreateJob from './CreateJob';
 
 class App extends Component {
   constructor(){
