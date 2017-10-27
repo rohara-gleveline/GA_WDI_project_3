@@ -15,10 +15,8 @@ class ViewSavedData extends Component {
   }
 
   componentDidMount() {
-    console.log('props in componentDidMount of viewSavedData are', this.props.user)
     axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
       .then(res => {
-        console.log('response from viewSavedData is ', res.data.allJobsData);
         this.setState({
           data: res.data.allJobsData
         })
