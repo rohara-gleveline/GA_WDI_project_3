@@ -43,8 +43,8 @@ class SearchForm extends Component {
 		return (
 			<div className='viewAll'>
 
-            <form onSubmit={this.onSubmit}>
-
+            <form className="createForm" onSubmit={this.onSubmit}>
+              <div className="searchForm">
   						<div>
   							<label htmlFor='titlesearch'>Job Title:</label>
   							<input id='titlesearch' type='text' name='title' value={this.state.title} onChange={this.onChange}/>
@@ -88,7 +88,7 @@ class SearchForm extends Component {
   						<div>
   							<input className="form-button" type='submit' value='Submit' />
   						</div>
-
+              </div>
   					</form>
 
 			</div>
