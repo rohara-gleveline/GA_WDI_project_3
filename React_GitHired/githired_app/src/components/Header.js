@@ -6,7 +6,10 @@ class Header extends Component {
     console.log(this.props.user);
     return (
       <div className = "header">
+      <div className="logo">
+        <h3>GitHired</h3>
         <div className="username">{this.props.user.first_name} {this.props.user.last_name}</div>
+        </div>
         <div className="logoutBtn"><button onClick={this.props.logout}>Click here to log out!</button></div>
       </div>
     )
