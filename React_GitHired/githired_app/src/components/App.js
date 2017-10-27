@@ -9,7 +9,7 @@ import UserAuth from './UserAuth';
 import Content from './Content';
 import Header from './Header';
 import ViewOne from './ViewOne';
-// import CreateJob from './CreateJob';
+import CreateJob from './CreateJob';
 
 class App extends Component {
   constructor(){
@@ -94,16 +94,10 @@ class App extends Component {
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne} />
 
-          {/*<Route exact path="/create"
+          <Route exact path="/create"
                 render= {() =>
-                  <CreateJob user={this.state.user} />
-<<<<<<< HEAD
-                />*/}
-=======
-                } />*/}
->>>>>>> cd8d7f9039994b886ee4c78c59c2deed3756b6be
-
-       </div>
+                  <CreateJob user={this.state.user} />} />
+          </div>
 
       </BrowserRouter>
     );
