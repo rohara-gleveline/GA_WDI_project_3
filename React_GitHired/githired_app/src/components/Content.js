@@ -1,21 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+
 // import SearchForm from './SearchForm';
 import Header from './Header';
-// import View from './View';
+import ViewSavedData from './ViewSavedData';
 // import CreateButton from './CreateButton';
-
 
 const Content = (props) => {
   return(
-    <div className="content">
-      
-      
+      <div className="content">
+        {/*}<SearchForm />*/}
+        <ViewSavedData />
+        <Link to="/create">Create New Job</Link>
 
-			<Header first_name={props.user.first_name} last_name={props.user.last_name} logout={props.logout}   />
-
-			
-
-    </div>
+      </div>
   )
 }
+
 export default Content;
