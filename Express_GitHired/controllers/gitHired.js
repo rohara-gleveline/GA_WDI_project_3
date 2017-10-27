@@ -11,7 +11,7 @@ router.get('/',
         res.json({ jobs });
     });
 
-// search gitHub jobs & authentic jobs
+// search gitHub jobs & adzuna jobs
 router.post('/search',
     Jobs.search,
     Jobs.salary,
@@ -22,23 +22,32 @@ router.post('/search',
         res.json({ "JobsData": jobsData, "salaryData": salaryData });
     });
 
-//save job to database 
-router.post('/save',
-    Jobs.search,
-    Jobs.save,
-    (req, res) => {
-        // const { savedJobResults } = res.locals;
-        // console.log('saved results are ', savedJobResults);
-        res.send('results saved to db');
-    });
-
-router.get('/:id',
+// route for show one job
+router.get('/:jobId',
     Jobs.findById,
     (req, res) => {
         const { oneJobData } = res.locals
         res.json({ oneJobData: oneJobData });
     });
 
+//route to save searched job to database 
+router.post('/save',
+    Jobs.saveResults,
+    (req, res) => {
+        // const { savedJobResults } = res.locals;
+        // console.log('saved results are ', savedJobResults);
+        res.send('results saved to db');
+    });
+
+// route to edit job based on jobId
+router.post('/:jobId/edit',
+    Jobs.update,
+    (req, res) => {
+        const { editedJobsData } = res.locals
+        res.json({ editedJobsData: editedJobsData });
+    });
+
+// route to create a new job from scratch (not saved from GitHub jobs)
 router.post('/create', 
 	Jobs.create, 
 	(req, res) => {

@@ -93,7 +93,7 @@ Jobs.search = (req, res, next) => {
 
     Jobs.create = (req, res, next) => {
 
-        const { user_id } = req.user.id
+        const user_id = req.user.id
         const {
             searched_on,
             job_id,
@@ -120,6 +120,7 @@ Jobs.search = (req, res, next) => {
         } = req.body;
 
         db.one(`INSERT INTO jobs_data (
+        	user_id,
         	searched_on, 
 				  job_id, 
 				  created_at, 
@@ -133,7 +134,7 @@ Jobs.search = (req, res, next) => {
 				  company_logo, 
 				  url,
 				  contacted,
-				  contacted_on,
+				  contacted_on,	
 				  contact_name,
 				  contact_email,
 				  contact_role,
@@ -143,7 +144,8 @@ Jobs.search = (req, res, next) => {
 				  notes,
 				  date_of_last_edit
         	) 
-    		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) returning *`, [
+    		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) returning *`, [
+    						user_id,
                 searched_on,
                 job_id,
                 created_at,
@@ -174,13 +176,13 @@ Jobs.search = (req, res, next) => {
             .catch(err => console.log(err));
     },
 
-    Jobs.save = (req, res, next) => {
+    Jobs.saveResults = (req, res, next) => {
         // data come through front end on the API 
         // save the data in state on front end 
         // send saved data back to back-end as req.body
         // jobs_data[0] will be replaced by req.body 
         const user_id = req.user.id;
-        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = res.locals.jobsData;
+        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
         db.one(
             `INSERT INTO jobs_data (user_id,
 																	  searched_on,
@@ -198,6 +200,67 @@ Jobs.search = (req, res, next) => {
 							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`, [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
         )
         next();
+
+    },
+
+    Jobs.update = (req, res, next) => {
+
+        const id = req.params.jobId;
+
+        const {
+            searched_on,
+            job_id,
+            created_at,
+            title,
+            location,
+            type,
+            description,
+            how_to_apply,
+            company,
+            company_url,
+            company_logo,
+            url,
+            contacted,
+            contacted_on,
+            contact_name,
+            contact_email,
+            contact_role,
+            contact_number,
+            applied,
+            applied_on,
+            notes,
+            date_of_last_edit
+        } = req.body;
+
+        db.one(
+            'UPDATE jobs_data SET searched_on = $1, job_id = $2, created_at = $3, title = $4, location = $5, type = $6, description = $7, how_to_apply = $8, company = $9, company_url = $10, company_logo = $11, url = $12, contacted = $13, contacted_on = $14, contact_name = $15, contact_email = $16, contact_role = $17, contact_number = $18, applied = $19, applied_on = $20, notes = $21, date_of_last_edit = $22 WHERE id = $23 returning *', [
+                searched_on,
+                job_id,
+                created_at,
+                title,
+                location,
+                type,
+                description,
+                how_to_apply,
+                company,
+                company_url,
+                company_logo,
+                url,
+                contacted,
+                contacted_on,
+                contact_name,
+                contact_email,
+                contact_role,
+                contact_number,
+                applied,
+                applied_on,
+                notes,
+                date_of_last_edit,
+                id]
+        ).then((editedJobsData) => {
+            res.locals.editedJobsData = editedJobsData;
+            next();
+        });
 
     }
 
