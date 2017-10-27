@@ -41,7 +41,7 @@ class SearchForm extends Component {
 
 	render() {
 		return (
-			<div className='findjob'>
+			<div className='viewAll'>
 
             <form onSubmit={this.onSubmit}>
 
@@ -86,7 +86,7 @@ class SearchForm extends Component {
   						</div>
 
   						<div>
-  							<input type='submit' value='Submit' />
+  							<input className="form-button" type='submit' value='Submit' />
   						</div>
 
   					</form>

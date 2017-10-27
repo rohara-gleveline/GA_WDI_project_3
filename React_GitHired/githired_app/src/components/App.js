@@ -97,7 +97,11 @@ class App extends Component {
           {/*<Route exact path="/create"
                 render= {() =>
                   <CreateJob user={this.state.user} />
+<<<<<<< HEAD
+                />*/}
+=======
                 } />*/}
+>>>>>>> cd8d7f9039994b886ee4c78c59c2deed3756b6be
 
        </div>
 
