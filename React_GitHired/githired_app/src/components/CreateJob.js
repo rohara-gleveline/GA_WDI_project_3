@@ -103,7 +103,7 @@ class CreateJob extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		const {company, title, location, type, linkToJobs} = this.state;
+		const {company, title, location, type, linkToJobs, how_to_apply, company_url, company_logo, github_jobs_url, name, phoneNumber, email, notes} = this.state;
 		axios.post("http://localhost:8080/gitHired/create", {
 			company: this.state.company,
 			title: this.state.title,
@@ -114,7 +114,7 @@ class CreateJob extends Component {
 			how_to_apply: this.state.how_to_apply,
 			company_url: this.state.company_url,
 			company_logo: this.state.company_logo,
-			url: this.state.url,
+			github_jobs_url: this.state.github_jobs_url,
 			name: this.state.name,
 			phoneNumber: this.state.phoneNumber,
 			email: this.state.email,
@@ -175,7 +175,7 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-							<label for="companyurlnew">Company URL:</label>
+							<label for="companyurlnew">Company Website:</label>
 							<input id="companyurlnew" type="text" onChange={this.onChangeCompanyURL}/>
 						</div>
 
@@ -185,7 +185,7 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-							<label for="urlnew">URL:</label>
+							<label for="urlnew">Job Description Page:</label>
 							<input id="urlnew" type="text" onChange={this.onChangeURL}/>
 						</div>
 
@@ -196,12 +196,12 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-							<label for="phonenumbernew">Contact Phone Number:</label>
+							<label for="phonenumbernew">Phone Number:</label>
 							<input id="phonenumbernew" type="text" onChange={this.onChangePhoneNumber}/>
 						</div>
 
 						<div>
-							<label for="emailnew">Contact Email:</label>
+							<label for="emailnew">Email:</label>
 							<input id="emailnew" type="text" onChange={this.onChangeEmail}/>
 						</div>
 							<br/>

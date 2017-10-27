@@ -42,17 +42,22 @@ class ViewOne extends Component {
 
 	onClickSave(e){
 		e.preventDefault();
-		const {company, title, location, type, linkToJobs} = this.state;
+		const {company, title, location, type, linkToJobs, how_to_apply, company_url, company_logo, github_jobs_url, name, phoneNumber, email, notes} = this.state;
 		axios.post("http://localhost:8080/gitHired/edit", {
 			company: this.state.company,
 			title: this.state.title,
 			location: this.state.location,
 			type: this.state.type,
 			description: this.state.description,
+			linkToJobs: this.state.linkToJobs,
 			how_to_apply: this.state.how_to_apply,
 			company_url: this.state.company_url,
 			company_logo: this.state.company_logo,
-			github_jobs_url: this.state.github_jobs_url
+			github_jobs_url: this.state.github_jobs_url,
+			name: this.state.name,
+			phoneNumber: this.state.phoneNumber,
+			email: this.state.email,
+			notes: this.state.notes
 		})
 	}
 
@@ -73,11 +78,16 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.location}</div>
 							<div>{this.state.jobData.type}</div>
 							<div>{this.state.jobData.description}</div>
+							<div>{this.state.jobData.linkToJobs}</div>
 							<div>{this.state.jobData.how_to_apply}</div>
 							<div>{this.state.jobData.company}</div>
 							<div>{this.state.jobData.company_url}</div>
 							<div>{this.state.jobData.company_logo}</div>
 							<div>{this.state.jobData.github_jobs_url}</div>
+							<div>{this.state.jobData.name}</div>
+							<div>{this.state.jobData.phoneNumber}</div>
+							<div>{this.state.jobData.email}</div>
+							<div>{this.state.jobData.notes}</div>
 
 							<Link to="/">Your Saved Jobs</Link>
 							<button onClick={this.onClickEdit}>Edit Job</button>
@@ -89,49 +99,75 @@ class ViewOne extends Component {
 						<div className="EditOne">
 
 							<div>
-								<label>Title</label>
+							<h2>Job Information</h2>
+
+							<div>
+								<label>Company:</label>
+								<input name='company' onChange={this.onChange} value={this.state.jobData.company} type='text' />
+							</div>
+
+								<label>Title: </label>
 								<input name='title' onChange={this.onChange} value={this.state.jobData.title} type='text' />
 							</div>
 
 							<div>
-								<label>Location</label>
+								<label>Location: </label>
 								<input name='location' onChange={this.onChange} value={this.state.jobData.location} type='text' />
 							</div>
 
 							<div>
-								<label>Type</label>
+								<label>Type: </label>
 								<input name='type' onChange={this.onChange} value={this.state.jobData.type} type='text' />
 							</div>
 
 							<div>
-								<label>Description</label>
+								<label>Description: </label>
 								<input name='description' onChange={this.onChange} value={this.state.jobData.description} type='text' />
 							</div>
 
+
 							<div>
-								<label>How to apply</label>
+								<label>How to Apply: </label>
 								<input name='how_to_apply' onChange={this.onChange} value={this.state.jobData.how_to_apply} type='text' />
 							</div>
+							
 
 							<div>
-								<label>Company</label>
-								<input name='company' onChange={this.onChange} value={this.state.jobData.company} type='text' />
-							</div>
-
-							<div>
-								<label>Company website</label>
+								<label>Company Website:</label>
 								<input name='company_url' onChange={this.onChange} value={this.state.jobData.company_url} type='text' />
 							</div>
 
 							<div>
-								<label>Company logo url</label>
+								<label>Company Logo:</label>
 								<input name='company_logo' onChange={this.onChange} value={this.state.jobData.company_logo} type='text' />
 							</div>
 
 							<div>
-								<label>Job Description Page</label>
-								<input name='github_jobs_url' onChange={this.onChange} value={this.state.jobData.github_jobs_url} type='text' />
+								<label>Job Description Page:</label>
+								<input name='url' onChange={this.onChange} value={this.state.jobData.github_jobs_url} type='text' />
 							</div>
+
+							<div>
+							<h2>Contact Information</h2>
+								<label>Contact Name:</label>
+								<input name='contact_name' onChange={this.onChange} value={this.state.jobData.name} type='text' />
+							</div>
+
+							<div>
+								<label>Phone Number:</label>
+								<input name='contact_number' onChange={this.onChange} value={this.state.jobData.phoneNumber} type='text' />
+							</div>
+
+							<div>
+								<label>Email:</label>
+								<input name='contact_email' onChange={this.onChange} value={this.state.jobData.email} type='text' />
+							</div>
+							<br/>
+							<div>
+								<label>Notes:</label>
+								<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes} cols="40" rows="8" /> <br/>
+							</div>
+
 
 
 							<Link to="/">Your Saved Jobs</Link>
