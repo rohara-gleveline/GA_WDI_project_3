@@ -25,15 +25,15 @@ render() {
   return(
     <div className="ViewOne">
       <p>This is the view one</p>
-      <tr>{this.state.jobsData.jobs.title}</tr>
-      <tr>{this.state.jobsData.jobs.location}</tr>
-      <tr>{this.state.jobsData.jobs.type}</tr>
-      <tr>{this.state.jobsData.jobs.description}</tr>
-      <tr>{this.state.jobsData.jobs.how_to_apply}</tr>
-      <tr>{this.state.jobsData.jobs.company}</tr>
-      <tr>{this.state.jobsData.jobs.company_url}</tr>
-      <tr>{this.state.jobsData.jobs.company_logo}</tr>
-      <tr>{this.state.jobsData.jobs.github_jobs_url}</tr>
+      <p>{this.state.jobsData.jobs.title}</p>
+      <p>{this.state.jobsData.jobs.location}</p>
+      <p>{this.state.jobsData.jobs.type}</p>
+      {this.state.jobsData.jobs.description}
+      <p>{this.state.jobsData.jobs.how_to_apply}</p>
+      <p>{this.state.jobsData.jobs.company}</p>
+      <p>{this.state.jobsData.jobs.company_url}</p>
+      <p>{this.state.jobsData.jobs.company_logo}</p>
+      <p>{this.state.jobsData.jobs.github_jobs_url}</p>
 
       <Link to="/gitHired">Your Saved Jobs</Link>
       <button onClick={this.onClickEdit}>Edit Job</button>

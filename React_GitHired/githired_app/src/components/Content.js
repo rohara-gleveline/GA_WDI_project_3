@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './Header';
 // import View from './View';
 // import CreateButton from './CreateButton';
+import CreateJob from './CreateJob';
 
 
 const Content = (props) => {
@@ -12,6 +13,8 @@ const Content = (props) => {
       
 
 			<Header first_name={props.user.first_name} last_name={props.user.last_name} logout={props.logout}   />
+
+			<CreateJob />
 
 			
 
