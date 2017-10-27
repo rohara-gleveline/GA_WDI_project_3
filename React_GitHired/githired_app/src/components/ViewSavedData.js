@@ -17,8 +17,9 @@ class ViewSavedData extends Component {
   componentDidMount() {
     axios.get("http://localhost:8080/gitHired/")
       .then(res => {
+        console.log(res);
         this.setState({
-          data: res.data.jobs
+          data: res.data.allJobsData
         })
       })
   }

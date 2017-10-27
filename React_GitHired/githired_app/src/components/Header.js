@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class Header extends Component {
 
   render() {
+    console.log(this.props.user);
     return (
       <div className = "header">
         <div className="username">{this.props.user.first_name} {this.props.user.last_name}</div>

@@ -9,7 +9,7 @@ router.get('/',
     Jobs.findAll,
     (req, res) => {
         const { jobs } = res.locals
-        res.json({ jobs });
+        res.json({ allJobsData: jobs });
     });
 
 // search gitHub jobs & adzuna jobs

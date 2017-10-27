@@ -91,11 +91,13 @@ class App extends Component {
           <Route exact path="/"
                  render= {this.renderView} />
 
-          <Route exact path="/ViewOne/:id"
-                  component= {ViewOne} />
+         <Route exact path="/ViewOne/:id"
+                component= {ViewOne} />
 
           <Route exact path="/create"
-                 component= {CreateJob} />
+                render= {() =>
+                  <CreateJob user={this.state.user} />
+                } />
 
        </div>
 
