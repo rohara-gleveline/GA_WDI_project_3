@@ -11,7 +11,9 @@ const Content = (props) => {
         <SearchForm />
 
         <Route exact path="/"
-                component= {ViewSavedData} />
+                render= { () =>
+                  <ViewSavedData user={props.user}/> }
+                  />
 
         <Route exact path="/search"
                 component= {ViewResults} />
