@@ -1,17 +1,3 @@
-import React from 'react';
-import Header from './Header';
-
-
-const SearchForm = (props) => {
-  return(
-    <div className="searchform">
-      			
-
-    </div>
-  )
-}
-export default SearchForm;
-
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 import axios from 'axios';
@@ -55,7 +41,7 @@ class SearchForm extends Component {
 
 	render() {
 		return (
-			<div className='findjob'>
+			<div className='viewAll'>
 
             <form onSubmit={this.onSubmit}>
 
@@ -100,7 +86,7 @@ class SearchForm extends Component {
   						</div>
 
   						<div>
-  							<input type='submit' value='Submit' />
+  							<input className="form-button" type='submit' value='Submit' />
   						</div>
 
   					</form>

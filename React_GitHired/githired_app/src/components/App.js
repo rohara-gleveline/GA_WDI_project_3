@@ -94,10 +94,10 @@ class App extends Component {
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne} />
 
-          <Route exact path="/create"
+          {/*<Route exact path="/create"
                 render= {() =>
                   <CreateJob user={this.state.user} />
-                } />
+                />*/}
 
        </div>
 
