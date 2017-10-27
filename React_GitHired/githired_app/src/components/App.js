@@ -11,6 +11,8 @@ import Header from './Header';
 import ViewOne from './ViewOne';
 import CreateJob from './CreateJob';
 
+import ViewResults from './ViewResults';
+
 class App extends Component {
   constructor(){
     super();
@@ -73,7 +75,10 @@ class App extends Component {
       )
     } else if(this.state.mode === 'content') {
       return (
-        <Content user={this.state.user}/>
+        <Content
+          user={this.state.user}
+          isSearch={false}
+        />
       )
     }
   }
@@ -84,12 +89,18 @@ class App extends Component {
 
         <div className="App">
 
-          {this.state.mode === 'content' &&
+         {this.state.mode === 'content' &&
             <Header user={this.state.user}
-                  logout={this.logout}/>}
+                  logout={this.logout}/>
+         }
 
-          <Route exact path="/"
+         <Route exact path="/"
                  render= {this.renderView} />
+
+         <Route exact path="/search"
+                render= {() =>
+                  <Content isSearch={true} />
+         } />
 
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne} />

@@ -50,10 +50,13 @@ Jobs.search = (req, res, next) => {
     Jobs.salary = (req, res, next) => {
 
         const { jobDescription, jobLocation, country } = req.body;
+        // console.log("jobDescription",jobDescription);
+        // console.log("jobLocation",jobLocation);
+        // console.log("country",country);
         // country being determined by drop down in search field on front-end
         axios.get(`https://api.adzuna.com:443/v1/api/jobs/${country}/history?app_id=${process.env.ADZUNA_AP_ID}&app_key=${process.env.ADZUNA_API_KEY}&what=${jobDescription}&where=${jobLocation}&months=12`)
             .then(salaryData => {
-                // console.log('salaryData is ', salaryData.data.month);
+                console.log('salaryData is ', salaryData.data.month);
                 const emptyObject = [];
                 for (let i in salaryData.data.month) {
                     emptyObject.push(i)
@@ -61,7 +64,7 @@ Jobs.search = (req, res, next) => {
                 if (emptyObject.length === 0) {
                     res.locals.salaryData = { salaryData: 'No average salary information available.' }
                 } else {
-                    res.locals.salaryData = salaryData.data.month;
+                    res.locals.salaryData = { salaryData: salaryData.data.month };
                 }
                 next();
             }).catch(err => { console.log('error in jobs.salary', err) })
