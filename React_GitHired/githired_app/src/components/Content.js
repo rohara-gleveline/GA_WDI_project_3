@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import Header from './Header';
 import ViewSavedData from './ViewSavedData';
 // import CreateButton from './CreateButton';
+import CreateJob from './CreateJob';
 
 const Content = (props) => {
   return(
@@ -13,8 +14,14 @@ const Content = (props) => {
         <ViewSavedData />
         <Link to="/create">Create New Job</Link>
 
-      </div>
+
+
+			
+
+    </div>
+
   )
+
 }
 
 export default Content;
