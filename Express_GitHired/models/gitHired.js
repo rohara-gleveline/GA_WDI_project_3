@@ -70,7 +70,7 @@ Jobs.search = (req, res, next) => {
 
 
     Jobs.findAll = (req, res, next) => {
-        const user_id = req.user.id;
+        const user_id = req.params.id;
         db.manyOrNone('SELECT * FROM jobs_data WHERE user_id = $1', [user_id])
             .then(jobs => {
                 res.locals.jobs = jobs;
