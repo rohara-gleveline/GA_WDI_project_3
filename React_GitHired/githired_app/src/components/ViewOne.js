@@ -26,6 +26,7 @@ class ViewOne extends Component {
 		})
 	}
 
+
 	onClickEdit(e) {
 		e.preventDefault();
 		this.setState({
@@ -35,6 +36,7 @@ class ViewOne extends Component {
 
 	onClickDelete(e) {
 		e.preventDefault();
+
 
 	}
 
@@ -141,8 +143,8 @@ class ViewOne extends Component {
 
 
 		  )
-	}
-
+	
+		}
 
 
 }

@@ -7,6 +7,7 @@ const express = require('express'),
       Auth = require('./services/auth'),
       cors = require('cors')
 
+require('dotenv').config();
 // use cors so we can talk to our other server
 app.use(cors());
 
