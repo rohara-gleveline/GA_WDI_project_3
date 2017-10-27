@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+
 import '../App.css';
 import axios from 'axios';
 import Cookies from '../helpers/Cookies';
+
 import UserAuth from './UserAuth';
 import Content from './Content';
+import Header from './Header';
+import ViewOne from './ViewOne';
+import CreateJob from './CreateJob';
 
 class App extends Component {
   constructor(){
@@ -13,6 +19,9 @@ class App extends Component {
       mode: 'loading',
       url: 'http://localhost:8080'
     }
+    this.setUser = this.setUser.bind(this);
+    this.logout = this.logout.bind(this);
+    this.renderView = this.renderView.bind(this);
   }
 
   componentDidMount(){
@@ -64,16 +73,33 @@ class App extends Component {
       )
     } else if(this.state.mode === 'content') {
       return (
-        <Content logout={this.logout.bind(this)} user={this.state.user} />
+        <Content />
       )
     }
   }
 
   render() {
     return (
-      <div className="App">
-        { this.renderView() }
-      </div>
+      <BrowserRouter>
+
+        <div className="App">
+
+          {this.state.mode === 'content' &&
+            <Header user={this.state.user}
+                  logout={this.logout}/>}
+
+          <Route exact path="/"
+                 render= {this.renderView} />
+
+          <Route exact path="/ViewOne/:id"
+                  component= {ViewOne} />
+
+          <Route exact path="/create"
+                 component= {CreateJob} />
+
+       </div>
+
+      </BrowserRouter>
     );
   }
 }
