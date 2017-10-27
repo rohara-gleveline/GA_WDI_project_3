@@ -12,16 +12,16 @@ const Content = (props) => {
 
         <Route exact path="/"
                 component= {ViewSavedData} />
-        }
 
         <Route exact path="/search"
                 component= {ViewResults} />
-        }
 
         <Link to="/create">Create New Job</Link>
 
-      </div>
+    </div>
+
   )
+
 }
 
 export default Content;

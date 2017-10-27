@@ -34,7 +34,8 @@ class SearchForm extends Component {
 		axios.post('http://localhost:8080/gitHired/search', {
 			jobSearch: this.state.jobSearch
 		}).then(response => {
-			<Redirect to='/search' />
+      console.log(response);
+			// <Redirect to='/search' />
 		});
 	}
 

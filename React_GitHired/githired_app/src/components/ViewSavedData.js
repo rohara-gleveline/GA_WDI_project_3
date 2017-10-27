@@ -57,14 +57,6 @@ class ViewSavedData extends Component {
     return renderTable;
   }
 
-  ViewOne() {
-    console.log(111);
-    // console.log({match});
-    // return(
-    //   <ViewOne wineId={match.params.id}/>
-    // )
-  }
-
   render() {
     return(
         <div className="ViewSavedData">
@@ -85,7 +77,7 @@ class ViewSavedData extends Component {
           }
 
           <Route exact path="/ViewOne/:id"
-                 render={this.ViewOne} />
+                 component={ViewOne} />
 
         </div>
     )
