@@ -8,10 +8,12 @@ import ViewResults from './ViewResults';
 const Content = (props) => {
   return(
       <div className="content">
-        <SearchForm seeResults={this.seeResults}/>
+        <SearchForm />
 
         <Route exact path="/"
-                component= {ViewSavedData} />
+                render= { () =>
+                  <ViewSavedData user={props.user}/> }
+                  />
 
         <Route exact path="/search"
                 component= {ViewResults} />

@@ -5,7 +5,7 @@ const User = require('../models/user'),
     Jobs = require('../models/gitHired.js');
 
 // get all job data saved in db
-router.get('/',
+router.get('/:id',
     Jobs.findAll,
     (req, res) => {
         const { jobs } = res.locals
@@ -24,7 +24,7 @@ router.post('/search',
     });
 
 // route for show one job
-router.get('/:jobId',
+router.get('/find/:jobId',
     Jobs.findById,
     (req, res) => {
         const { oneJobData } = res.locals
@@ -41,7 +41,7 @@ router.post('/save',
     });
 
 // route to edit job based on jobId
-router.post('/:jobId/edit',
+router.post('/find/:jobId/edit',
     Jobs.update,
     (req, res) => {
         const { editedJobsData } = res.locals
