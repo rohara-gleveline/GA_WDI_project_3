@@ -9,7 +9,7 @@ router.get('/',
     Jobs.findAll,
     (req, res) => {
         const { jobs } = res.locals
-        res.json({ jobs });
+        res.json({ allJobsData: jobs });
     });
 
 // search gitHub jobs & adzuna jobs
@@ -55,32 +55,6 @@ router.post('/create',
     const { newJob } = res.locals;
     res.json({ newJob: newJob });
 	});
-
-module.exports = router;
-      router = require('express').Router(),
-      bcrypt = require('bcryptjs'),
-      Jobs = require('../models/gitHired.js');
-
-router.get('/',
-	Jobs.findAll,
-	(req, res) => {
-		const {jobs} = res.locals
-		res.json({ jobs });
-	});
-
-router.get('/:id',
-  Jobs.findById,
-  (req, res) => {
-      const {oneJobData} = res.locals
-      res.json({oneJobData: oneJobData});
-  });
-
-router.post('/create',
-  Jobs.create,
-  (req, res) => {
-	   const {job} = res.locals;
-	    res.json(job);
-});
 
 module.exports = router;
 
