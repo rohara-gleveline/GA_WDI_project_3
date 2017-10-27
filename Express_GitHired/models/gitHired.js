@@ -71,8 +71,8 @@ Jobs.search = (req, res, next) => {
 
     Jobs.findAll = (req, res, next) => {
         const user_id = req.user.id;
-        db.manyOrNone('SELECT * FROM jobs_data')
-            .then((jobs) => {
+        db.manyOrNone('SELECT * FROM jobs_data WHERE user_id = $1', [user_id])
+            .then(jobs => {
                 res.locals.jobs = jobs;
                 console.log('jobs from findAll: ', jobs)
                 next();
@@ -145,7 +145,7 @@ Jobs.search = (req, res, next) => {
 				  date_of_last_edit
         	) 
     		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) returning *`, [
-    						user_id,
+    			user_id,
                 searched_on,
                 job_id,
                 created_at,

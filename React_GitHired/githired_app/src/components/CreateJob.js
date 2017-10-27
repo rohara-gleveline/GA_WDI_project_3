@@ -85,7 +85,6 @@ class CreateJob extends Component {
 		this.setState({ name: event.target.value});
 	}
 
-
 	onChangePhoneNumber(event) {
 		this.setState({ phoneNumber: event.target.value});
 	}
@@ -97,9 +96,6 @@ class CreateJob extends Component {
 	onChangeNotes(event) {
 		this.setState({ notes: event.target.value });
 	}
-
-	
-
 
 	onSubmit(event) {
 		event.preventDefault();
