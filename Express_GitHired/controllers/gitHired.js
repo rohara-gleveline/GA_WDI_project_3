@@ -17,7 +17,7 @@ router.post('/search',
     Jobs.search,
     Jobs.salary,
     (req, res) => {
-        // adzunaJobResults 
+        // adzunaJobResults
         // adzunaJobs: adzunaJobResults
         const { jobsData, salaryData } = res.locals;
         res.json({ "JobsData": jobsData, "salaryData": salaryData });
@@ -31,7 +31,7 @@ router.get('/:jobId',
         res.json({ oneJobData: oneJobData });
     });
 
-//route to save searched job to database 
+//route to save searched job to database
 router.post('/save',
     Jobs.saveResults,
     (req, res) => {
@@ -49,12 +49,11 @@ router.post('/:jobId/edit',
     });
 
 // route to create a new job from scratch (not saved from GitHub jobs)
-router.post('/create', 
-	Jobs.create, 
+router.post('/create',
+	Jobs.create,
 	(req, res) => {
     const { newJob } = res.locals;
     res.json({ newJob: newJob });
 	});
 
 module.exports = router;
-

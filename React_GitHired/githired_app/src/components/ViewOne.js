@@ -43,7 +43,7 @@ class ViewOne extends Component {
 	onClickSave(e){
 		e.preventDefault();
 		const {company, title, location, type, linkToJobs} = this.state;
-		axios.post("http://localhost:8080/gitHired/edit", {
+		axios.post(`http://localhost:8080/gitHired/${this.props.match.params.id}/edit`, {
 			company: this.state.company,
 			title: this.state.title,
 			location: this.state.location,
