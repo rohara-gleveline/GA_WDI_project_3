@@ -8,113 +8,69 @@ class CreateJob extends Component {
 		super(props);
 
 		this.state = {
-			company : '',
-			title: '',
-			location: '',
-			type: '',
-			description: '',
-			linkToJobs: '',
-			how_to_apply: '',
-			company_url: '',
-			company_logo: '',
-			url: '',
-			name: '',
-			phoneNumber: [],
-			email: '',
-			isSubmitted: false
+				searched_on: '',
+				job_id: '',
+				created_at: '',
+				title: '',
+				location: '',
+				type: '',
+				description: '',
+				how_to_apply: '',
+				company: '',
+				company_url: '',
+				company_logo: '',
+				url: '',
+				contacted: '',
+				contacted_on: '',
+				contact_name: '',
+				contact_email: '',
+				contact_role: '',
+				contact_number: '',
+				applied: '',
+				applied_on: '',
+				notes: '',
+				date_of_last_edit: '',
+
+				isSubmitted: false
 		}
 
-		this.onChangeCompany = this.onChangeCompany.bind(this);
-		this.onChangeTitle = this.onChangeTitle.bind(this);
-		this.onChangeLocation = this.onChangeLocation.bind(this);
-		this.onChangeType = this.onChangeType.bind(this);
-		this.onChangeDescription = this.onChangeDescription.bind(this);
-		this.onChangeLinkToJobs = this.onChangeLinkToJobs.bind(this);
-		this.onChangeHowToApply = this.onChangeHowToApply.bind(this);
-		this.onChangeCompanyURL = this.onChangeCompanyURL.bind(this);
-		this.onChangeCompanyLogo = this.onChangeCompanyLogo.bind(this);
-		this.onChangeURL = this.onChangeURL.bind(this);
-		this.onChangeName = this.onChangeName.bind(this);
-		this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
-		this.onChangeEmail = this.onChangeEmail.bind(this);
-		this.onChangeNotes = this.onChangeNotes.bind(this);
+		this.onChange = this.onChange.bind(this);
 		this.onSubmit= this.onSubmit.bind(this);
 	}
 
-	onChangeCompany(event) {
-		this.setState({company: event.target.value});
-	}
-
-	onChangeTitle(event) {
-		this.setState({title: event.target.value});
-	}
-
-	onChangeLocation(event) {
-		this.setState({location: event.target.value});
-	}
-
-	onChangeType(event) {
-		this.setState({type: event.target.value});
-	}
-
-	onChangeDescription(event) {
-		this.setState({description: event.target.value})
-	}
-
-	onChangeLinkToJobs(event) {
-		this.setState({ linkToJobs: event.target.value});
-	}
-
-	onChangeHowToApply(event) {
-		this.setState({ how_to_apply: event.target.value});
-	}
-
-	onChangeCompanyURL(event) {
-		this.setState({ company_url: event.target.value});
-	}
-
-	onChangeCompanyLogo(event) {
-		this.setState({ company_logo: event.target.value});
-	}
-
-	onChangeURL(event) {
-		this.setState({ url: event.target.value});
-	}
-
-	onChangeName(event) {
-		this.setState({ name: event.target.value});
-	}
-
-	onChangePhoneNumber(event) {
-		this.setState({ phoneNumber: event.target.value});
-	}
-
-	onChangeEmail(event) {
-		this.setState({ email: event.target.value});
-	}
-
-	onChangeNotes(event) {
-		this.setState({ notes: event.target.value });
+	onChange(e) {
+		this.setState({
+			newJobs: {...this.state.newJobs, [e.target.name]: e.target.value}
+		})
 	}
 
 	onSubmit(event) {
 		event.preventDefault();
-		const {company, title, location, type, linkToJobs} = this.state;
+		const {company, title, location, type, linkToJobs, how_to_apply, company_url, company_logo, url, name, phoneNumber, email, notes} = this.state;
 		axios.post("http://localhost:8080/gitHired/create", {
-			company: this.state.company,
-			title: this.state.title,
-			location: this.state.location,
-			type: this.state.type,
-			description: this.state.description,
-			linkToJobs: this.state.linkToJobs,
-			how_to_apply: this.state.how_to_apply,
-			company_url: this.state.company_url,
-			company_logo: this.state.company_logo,
-			url: this.state.url,
-			name: this.state.name,
-			phoneNumber: this.state.phoneNumber,
-			email: this.state.email,
-			notes: this.state.notes
+				user_id: this.props.user.id,
+				searched_on: ,
+				job_id: ,
+				created_at: ,
+				title: this.state.title, x
+				location: this.state.location, x
+				type: this.state.type,
+				description: this.state.description,
+				how_to_apply: this.state.how_to_apply, x
+				company: this.state.company, x
+				company_url: this.state.company_url, x
+				company_logo: this.state.company_logo, x
+				url: this.state.url, x
+				contacted: '',
+				contacted_on: '',
+				contact_name: '',
+				contact_email: '',
+				contact_role: '',
+				contact_number: '',
+				applied: '',
+				applied_on: '',
+				notes: '',
+				date_of_last_edit: ''
 		}).then(response => {
 			this.setState({
 				isSubmitted:true
@@ -136,74 +92,74 @@ class CreateJob extends Component {
 
 						<div className="jobinfo">
 						<h2>Job Information</h2>
-							<label for="companynew">Company:</label>
-							<input id="companynew" type="text" onChange={this.onChangeCompany}/>
+							<label htmlFor="companynew">Company:</label>
+							<input id="companynew" type="text" name="company" value={this.state.company} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="titlenew">Title:</label>
-							<input id="titlenew" type="text" onChange={this.onChangeTitle}/>
+							<label htmlFor="titlenew">Job Title:</label>
+							<input id="titlenew" type="text" name="title" value={this.state.title} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="locationnew">Location:</label>
-							<input id="locationnew" type="text" onChange={this.onChangeLocation}/>
+							<label htmlFor="locationnew">Location:</label>
+							<input id="locationnew" type="text" name="location" value={this.state.location} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="typenew">Type:</label>
-							<input id="typenew" type="text" onChange={this.onChangeType}/>
+							<label htmlFor="typenew">Type:</label>
+							<input id="typenew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="descriptionnew">Description:</label>
-							<input id="descriptionnew" type="text" onChange={this.onChangeDescription}/>
+							<label htmlFor="descriptionnew">Description:</label>
+							<input id="descriptionnew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="linkjobnew">Link to Jobs:</label>
-							<input id="linkjobnew" type="text" onChange={this.onChangeLinkToJobs}/>
+							<label htmlFor="linkjobnew">Link to Jobs Posting:</label>
+							<input id="linkjobnew" type="text" name="url" value={this.state.url} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="howtoapplynew">How To Apply:</label>
-							<input id="howtoapplynew" type="text" onChange={this.onChangeHowToApply}/>
+							<label htmlFor="howtoapplynew">Link to Application:</label>
+							<input id="howtoapplynew" type="text" name="how_to_apply" value={this.state.how_to_apply} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="companyurlnew">Company URL:</label>
-							<input id="companyurlnew" type="text" onChange={this.onChangeCompanyURL}/>
+							<label htmlFor="companyurlnew">Company URL:</label>
+							<input id="companyurlnew" type="text" name="company_url" value={this.state.company_url} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="companylogonew">Company Logo:</label>
-							<input id="companylogonew" type="text" onChange={this.onChangeCompanyLogo}/>
+							<label htmlFor="companylogonew">Company Logo:</label>
+							<input id="companylogonew" type="text" name="company_logo" value={this.state.company_logo} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="urlnew">URL:</label>
-							<input id="urlnew" type="text" onChange={this.onChangeURL}/>
+							<label htmlFor="urlnew">URL:</label>
+							<input id="urlnew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div className = "contact">
 							<h2>Contact Information</h2>
-							<label for="namenew">Contact Name:</label>
-							<input id="namenew" type="text" onChange={this.onChangeName}/>
+							<label htmlFor="namenew">Contact Name:</label>
+							<input id="namenew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="phonenumbernew">Contact Phone Number:</label>
-							<input id="phonenumbernew" type="text" onChange={this.onChangePhoneNumber}/>
+							<label htmlFor="phonenumbernew">Contact Phone Number:</label>
+							<input id="phonenumbernew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div>
-							<label for="emailnew">Contact Email:</label>
-							<input id="emailnew" type="text" onChange={this.onChangeEmail}/>
+							<label htmlFor="emailnew">Contact Email:</label>
+							<input id="emailnew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 							<br/>
 						<div>
-							<label for="notesnew">Notes:</label>
-							<input id="notesnew" type="text" onChange={this.onChangeNotes}/>
+							<label htmlFor="notesnew">Notes:</label>
+							<input id="notesnew" type="text" name="" value={this.state.} onChange={this.onChange}/>
 						</div>
 
 						<div>
