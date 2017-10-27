@@ -24,13 +24,15 @@ CREATE TABLE jobs_data (
   company VARCHAR(255), 
   company_url VARCHAR, 
   company_logo VARCHAR, 
-  url VARCHAR
+  url VARCHAR,
+  contacted BIT,
+  contacted_on VARCHAR,
+  contact_name VARCHAR,
+  contact_email VARCHAR,
+  contact_role VARCHAR,
+  contact_number VARCHAR(20),
+  applied BIT,
+  applied_on VARCHAR,
+  notes VARCHAR,
+  date_of_last_edit VARCHAR
 );
-
--- inputs to be added? 
--- using moment to save last time user changed job info
--- contact name
--- contact email
--- contact phone number
--- date of last communication
--- notes

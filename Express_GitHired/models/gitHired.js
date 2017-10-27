@@ -92,23 +92,95 @@ Jobs.search = (req, res, next) => {
     },
 
     Jobs.create = (req, res, next) => {
-        const { user_id, github_job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, github_jobs_url } = req.body;
-        db.one(`INSERT INTO jobs_data (user_id, github_job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, github_jobs_url) 
-    		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning *`, [user_id, github_job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, github_jobs_url])
-            .then(job => {
-                res.locals.job = job;
-                next()
+
+        const { user_id } = req.user.id
+        const {
+            searched_on,
+            job_id,
+            created_at,
+            title,
+            location,
+            type,
+            description,
+            how_to_apply,
+            company,
+            company_url,
+            company_logo,
+            url,
+            contacted,
+            contacted_on,
+            contact_name,
+            contact_email,
+            contact_role,
+            contact_number,
+            applied,
+            applied_on,
+            notes,
+            date_of_last_edit
+        } = req.body;
+
+        db.one(`INSERT INTO jobs_data (
+        	searched_on, 
+				  job_id, 
+				  created_at, 
+				  title, 
+				  location, 
+				  type,
+				  description, 
+				  how_to_apply, 
+				  company, 
+				  company_url, 
+				  company_logo, 
+				  url,
+				  contacted,
+				  contacted_on,
+				  contact_name,
+				  contact_email,
+				  contact_role,
+				  contact_number,
+				  applied,
+				  applied_on,
+				  notes,
+				  date_of_last_edit
+        	) 
+    		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) returning *`, [
+                searched_on,
+                job_id,
+                created_at,
+                title,
+                location,
+                type,
+                description,
+                how_to_apply,
+                company,
+                company_url,
+                company_logo,
+                url,
+                contacted,
+                contacted_on,
+                contact_name,
+                contact_email,
+                contact_role,
+                contact_number,
+                applied,
+                applied_on,
+                notes,
+                date_of_last_edit
+            ])
+            .then(newJob => {
+                res.locals.newJob = newJob;
+                next();
             })
             .catch(err => console.log(err));
     },
 
     Jobs.save = (req, res, next) => {
-    	// data come through front end on the API 
-    	// save the data in state on front end 
-    	// send saved data back to back-end as req.body
-    	// jobs_data[0] will be replaced by req.body 
-        const user_id = req.user.id; 
-        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = res.locals.jobsData[0];
+        // data come through front end on the API 
+        // save the data in state on front end 
+        // send saved data back to back-end as req.body
+        // jobs_data[0] will be replaced by req.body 
+        const user_id = req.user.id;
+        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = res.locals.jobsData;
         db.one(
             `INSERT INTO jobs_data (user_id,
 																	  searched_on,
