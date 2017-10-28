@@ -13,6 +13,7 @@ import CreateJob from './CreateJob';
 
 import ViewResults from './ViewResults';
 
+
 class App extends Component {
   constructor(){
     super();
@@ -97,6 +98,9 @@ class App extends Component {
                  render= {this.renderView}
                  />
 
+
+                
+
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne}
                 />
@@ -106,6 +110,7 @@ class App extends Component {
                  <CreateJob user={this.state.user} />
                 }
                />
+
 
        </div>
 

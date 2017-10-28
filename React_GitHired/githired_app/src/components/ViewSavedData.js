@@ -10,20 +10,40 @@ class ViewSavedData extends Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      mode: ''
     }
+<<<<<<< HEAD
 
     this.onClickDelete = this.onClickDelete.bind(this);
+=======
+    this.onClickDelete = this.onClickDelete.bind(this);
+    this.getSavedData = this.getSavedData.bind(this);
+>>>>>>> bf00f4b9024becf6f91adea0bef8bbe622e9b4ee
   }
 
   componentDidMount() {
+    this.getSavedData();
+  }
+
+  getSavedData() {
     axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
       .then(res => {
         this.setState({
           data: res.data.allJobsData
         }, () => {
+            if(this.state.data.length > 0) {
             tablesort(document.getElementById('myTable'));
+            }
         })
+      })
+  }
+
+  onClickDelete(id) {
+    console.log('clicked');
+    axios.delete(`http://localhost:8080/gitHired/${id}`)
+      .then(res => {
+        this.getSavedData();
       })
   }
 
@@ -35,7 +55,8 @@ class ViewSavedData extends Component {
           <th>Title</th>
           <th>Location</th>
           <th>Type</th>
-          <th>Job Link</th>
+          <th>Apply</th>
+          <th>View Job Posting</th>
           <th>View More</th>
           <th>Delete</th>
         </tr>
@@ -65,8 +86,7 @@ class ViewSavedData extends Component {
       		<td>{e.location}</td>
       		<td>{e.type}</td>
       		<td><a href={e.url} target='_blank'>Job Link</a></td>
-      		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}>See More</Link></td>
-      		<td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
+          <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
           <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>

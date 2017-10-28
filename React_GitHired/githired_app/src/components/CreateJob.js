@@ -46,6 +46,7 @@ class CreateJob extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
+
 		axios.post("http://localhost:8080/gitHired/create", {
 				user_id: this.props.user.id,
 				searched_on: this.state.searched_on,
@@ -145,8 +146,11 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
+
+
 							<label htmlFor="companylogonew">Company Logo:</label>
 							<input id="companylogonew" type="text" name="company_logo" value={this.state.company_logo} onChange={this.onChange}/>
+
 						</div>
 
 						<div>
@@ -155,8 +159,10 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
+
 							<label htmlFor="appliedonnew">Applied On:</label>
 							<input id="appliedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
+
 						</div>
 
 						<div>
@@ -176,6 +182,7 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
+
 							<label htmlFor="phonenumbernew">Contact Phone Number:</label>
 							<input id="phonenumbernew" type="text" name="contact_number" value={this.state.contact_number} onChange={this.onChange}/>
 						</div>
@@ -183,6 +190,7 @@ class CreateJob extends Component {
 						<div>
 							<label htmlFor="emailnew">Contact Email:</label>
 							<input id="emailnew" type="text" name="contact_email" value={this.state.contact_email} onChange={this.onChange}/>
+
 						</div>
 
 						<div>

@@ -8,6 +8,6 @@ INSERT INTO jobs_data
   description, how_to_apply, company, company_url, company_logo,
   github_jobs_url)
 VALUES
-('user_id', 'github_job_id', 'created_at', 'title', 'location',
+(1, 'github_job_id', 'created_at', 'title', 'location',
   'type', 'description', 'how_to_apply', 'company', 'company_url',
   'company_logo', 'github_jobs_url');

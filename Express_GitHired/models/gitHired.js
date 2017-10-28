@@ -266,7 +266,20 @@ Jobs.search = (req, res, next) => {
             next();
         });
 
-    }
+    }, 
+
+    Jobs.destroy = (req, res, next) => {
+
+    const id = req.params.jobId;
+    db.none(
+        'DELETE FROM jobs_data WHERE id = $1', [id]
+    ).then(() => {
+        next();
+    }).catch(err => {
+        console.log(`ERROR AT DESTROY MODEL: ${err}`);
+    })
+
+} // end of destroy
 
 
 module.exports = Jobs;
