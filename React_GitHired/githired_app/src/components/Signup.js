@@ -40,6 +40,7 @@ class SignUp extends Component {
 
   render(){
     return(
+      <section>
       <div className="auth-form">
         <h2>Sign Up</h2>
         <form onSubmit={this.signUp.bind(this)}>
@@ -82,6 +83,7 @@ class SignUp extends Component {
 
         </form>
       </div>
+      </section>
     )
   }
 }

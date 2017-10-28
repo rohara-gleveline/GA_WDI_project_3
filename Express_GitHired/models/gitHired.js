@@ -70,9 +70,9 @@ Jobs.search = (req, res, next) => {
 
 
     Jobs.findAll = (req, res, next) => {
-        const user_id = req.user.id;
-        db.manyOrNone('SELECT * FROM jobs_data')
-            .then((jobs) => {
+        const user_id = req.params.id;
+        db.manyOrNone('SELECT * FROM jobs_data WHERE user_id = $1', [user_id])
+            .then(jobs => {
                 res.locals.jobs = jobs;
                 console.log('jobs from findAll: ', jobs)
                 next();
@@ -92,9 +92,8 @@ Jobs.search = (req, res, next) => {
     },
 
     Jobs.create = (req, res, next) => {
-
-        const user_id = req.user.id
         const {
+            user_id,
             searched_on,
             job_id,
             created_at,
@@ -121,20 +120,20 @@ Jobs.search = (req, res, next) => {
 
         db.one(`INSERT INTO jobs_data (
         	user_id,
-        	searched_on, 
-				  job_id, 
-				  created_at, 
-				  title, 
-				  location, 
+        	searched_on,
+				  job_id,
+				  created_at,
+				  title,
+				  location,
 				  type,
-				  description, 
-				  how_to_apply, 
-				  company, 
-				  company_url, 
-				  company_logo, 
+				  description,
+				  how_to_apply,
+				  company,
+				  company_url,
+				  company_logo,
 				  url,
 				  contacted,
-				  contacted_on,	
+				  contacted_on,
 				  contact_name,
 				  contact_email,
 				  contact_role,
@@ -143,31 +142,31 @@ Jobs.search = (req, res, next) => {
 				  applied_on,
 				  notes,
 				  date_of_last_edit
-        	) 
+        	)
     		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) returning *`, [
-    						user_id,
-                searched_on,
-                job_id,
-                created_at,
-                title,
-                location,
-                type,
-                description,
-                how_to_apply,
-                company,
-                company_url,
-                company_logo,
-                url,
-                contacted,
-                contacted_on,
-                contact_name,
-                contact_email,
-                contact_role,
-                contact_number,
-                applied,
-                applied_on,
-                notes,
-                date_of_last_edit
+    			    user_id,
+              searched_on,
+              job_id,
+              created_at,
+              title,
+              location,
+              type,
+              description,
+              how_to_apply,
+              company,
+              company_url,
+              company_logo,
+              url,
+              contacted,
+              contacted_on,
+              contact_name,
+              contact_email,
+              contact_role,
+              contact_number,
+              applied,
+              applied_on,
+              notes,
+              date_of_last_edit
             ])
             .then(newJob => {
                 res.locals.newJob = newJob;
@@ -177,26 +176,26 @@ Jobs.search = (req, res, next) => {
     },
 
     Jobs.saveResults = (req, res, next) => {
-        // data come through front end on the API 
-        // save the data in state on front end 
+        // data come through front end on the API
+        // save the data in state on front end
         // send saved data back to back-end as req.body
-        // jobs_data[0] will be replaced by req.body 
+        // jobs_data[0] will be replaced by req.body
         const user_id = req.user.id;
         const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
         db.one(
             `INSERT INTO jobs_data (user_id,
 																	  searched_on,
-																	  job_id, 
+																	  job_id,
 																	  created_at,
-																	  title, 
-																	  location, 
+																	  title,
+																	  location,
 																	  type,
 																	  description,
-																	  how_to_apply, 
-																	  company, 
-																	  company_url, 
-																	  company_logo, 
-																	  url) 
+																	  how_to_apply,
+																	  company,
+																	  company_url,
+																	  company_logo,
+																	  url)
 							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`, [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
         )
         next();

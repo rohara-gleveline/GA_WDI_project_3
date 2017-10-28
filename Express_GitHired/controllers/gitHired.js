@@ -5,11 +5,11 @@ const User = require('../models/user'),
     Jobs = require('../models/gitHired.js');
 
 // get all job data saved in db
-router.get('/',
+router.get('/:id',
     Jobs.findAll,
     (req, res) => {
         const { jobs } = res.locals
-        res.json({ jobs });
+        res.json({ allJobsData: jobs });
     });
 
 // search gitHub jobs & adzuna jobs
@@ -17,21 +17,21 @@ router.post('/search',
     Jobs.search,
     Jobs.salary,
     (req, res) => {
-        // adzunaJobResults 
+        // adzunaJobResults
         // adzunaJobs: adzunaJobResults
         const { jobsData, salaryData } = res.locals;
         res.json({ "JobsData": jobsData, "salaryData": salaryData });
     });
 
 // route for show one job
-router.get('/:jobId',
+router.get('/find/:jobId',
     Jobs.findById,
     (req, res) => {
         const { oneJobData } = res.locals
         res.json({ oneJobData: oneJobData });
     });
 
-//route to save searched job to database 
+//route to save searched job to database
 router.post('/save',
     Jobs.saveResults,
     (req, res) => {
@@ -41,7 +41,7 @@ router.post('/save',
     });
 
 // route to edit job based on jobId
-router.post('/:jobId/edit',
+router.post('/find/:jobId/edit',
     Jobs.update,
     (req, res) => {
         const { editedJobsData } = res.locals
@@ -49,13 +49,12 @@ router.post('/:jobId/edit',
     });
 
 // route to create a new job from scratch (not saved from GitHub jobs)
-router.post('/create', 
-	Jobs.create, 
+router.post('/create',
+	Jobs.create,
 	(req, res) => {
     const { newJob } = res.locals;
     res.json({ newJob: newJob });
 	});
-
 
 
 module.exports = router;

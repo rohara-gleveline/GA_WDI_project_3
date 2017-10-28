@@ -9,7 +9,7 @@ import UserAuth from './UserAuth';
 import Content from './Content';
 import Header from './Header';
 import ViewOne from './ViewOne';
-// import CreateJob from './CreateJob';
+import CreateJob from './CreateJob';
 
 class App extends Component {
   constructor(){
@@ -73,7 +73,7 @@ class App extends Component {
       )
     } else if(this.state.mode === 'content') {
       return (
-        <Content />
+        <Content user={this.state.user}/>
       )
     }
   }
@@ -92,10 +92,15 @@ class App extends Component {
                  render= {this.renderView} />
 
           <Route exact path="/ViewOne/:id"
-                  component= {ViewOne} />
+                render= {() =>
+                  <ViewOne user={this.state.user} />
+               } />
 
-          // <Route exact path="/create"
-          //        component= {CreateJob} />
+          <Route exact path="/create"
+                render= {() =>
+                  <CreateJob user={this.state.user} />
+               } />
+                
 
        </div>
 

@@ -15,10 +15,12 @@ class ViewSavedData extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/gitHired/")
+    console.log('props in componentDidMount of viewSavedData are', this.props.user)
+    axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
       .then(res => {
+        console.log('response from viewSavedData is ', res.data.allJobsData);
         this.setState({
-          data: res.data.jobs
+          data: res.data.allJobsData
         })
       })
   }
@@ -57,14 +59,6 @@ class ViewSavedData extends Component {
     return renderTable;
   }
 
-  ViewOne() {
-    console.log(111);
-    // console.log({match});
-    // return(
-    //   <ViewOne wineId={match.params.id}/>
-    // )
-  }
-
   render() {
     return(
         <div className="ViewSavedData">
@@ -85,7 +79,7 @@ class ViewSavedData extends Component {
           }
 
           <Route exact path="/ViewOne/:id"
-                 render={this.ViewOne} />
+                 component={ViewOne} />
 
         </div>
     )

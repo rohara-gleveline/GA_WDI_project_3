@@ -37,8 +37,9 @@ class Login extends Component {
 
   render(){
     return(
+      <section>
       <div className="auth-form">
-        <h2>Log In</h2>
+        <h1>GitHired</h1>
         <form onSubmit={this.login.bind(this)}>
 
           <label htmlFor='email'>Email</label>
@@ -60,6 +61,7 @@ class Login extends Component {
 
         </form>
       </div>
+      </section>
     )
   }
 }
