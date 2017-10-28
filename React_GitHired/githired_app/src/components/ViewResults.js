@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
+var ReactDOMServer = require('react-dom/server');
+var HtmlToReactParser = require('html-to-react').Parser;
 
 class ViewResults extends Component {
   constructor(props) {
@@ -13,7 +15,9 @@ class ViewResults extends Component {
     }
 
     this.renderResults = this.renderResults.bind(this);
-    this.renderGraph = this.renderGraph.bind(this);
+    this.renderAverageSalary = this.renderAverageSalary.bind(this);
+    this.haveLink = this.haveLink.bind(this);
+    this.haveDescription = this.haveDescription.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +27,13 @@ class ViewResults extends Component {
   }
 
   saveJob(e) {
+    function linkHowToApply(e) {
+      var cutStartIndex = e.indexOf('"')+1;
+      var startCut = e.substring(cutStartIndex, e.length);
+      var cutEndIndex = startCut.indexOf('"');
+      var endCut = startCut.substring(0, cutEndIndex);
+      return endCut;
+    }
     axios.post('http://localhost:8080/gitHired/save', {
         user_id: this.props.user.id,
         searched_on: e.searched_on,
@@ -31,39 +42,61 @@ class ViewResults extends Component {
         title: e.title,
         location: e.location,
         type: e.type,
-        description: e.description,
-        how_to_apply: e.how_to_apply,
+        description: linkHowToApply(e.description),
+        how_to_apply: linkHowToApply(e.how_to_apply),
         company: e.company,
         company_url: e.company_url,
         company_logo: e.company_logo,
         url: e.url
       }).then(res => {
+        console.log(res);
         alert('This job has been added to your list.')
       })
   }
 
-  renderGraph() {
+  renderAverageSalary() {
     const graph = [];
     if (this.state.results.salaryData !==  undefined) {
       graph.push(
         <div>
-          This is last months average salary for this job description:
+          Last months average salary for this job description:
         </div>
       )
-      let maxSalary = 0;
+      let numberData = 0;
+      let sumData = 0;
       for (let i in this.state.results.salaryData.salaryData) {
-         if (maxSalary < parseInt(this.state.results.salaryData.salaryData[i])){
-           maxSalary = parseInt(this.state.results.salaryData.salaryData[i])
-         }
+        numberData ++;
+        sumData = sumData + this.state.results.salaryData.salaryData[i];
       }
-      for (let i in this.state.results.salaryData.salaryData) {
-        const value = parseInt(this.state.results.salaryData.salaryData[i]) / maxSalary * 100;
-        graph.push(
-          <div data-width={value}>{i}: ${this.state.results.salaryData.salaryData[i]}</div>
-        )
-      }
+      const average = (sumData / numberData).toFixed(2);
+      graph.push(
+        <div>${average}</div>
+      )
     }
     return graph;
+  }
+
+  haveLink(string) {
+      var cutStartIndex = string.indexOf('"')+1;
+      var startCut = string.substring(cutStartIndex, string.length);
+      var cutEndIndex = startCut.indexOf('"');
+      var endCut = startCut.substring(0, cutEndIndex);
+      return(
+        <div><a href={endCut} target='_blank'>Apply</a></div>
+      );
+  }
+
+  haveDescription(string) {
+    const newDesc = []
+    const htmlToReactParser = new HtmlToReactParser();
+    const reactElement = htmlToReactParser.parse(string);
+    const reactHtml = ReactDOMServer.renderToStaticMarkup(reactElement);
+    reactElement.map(e => {
+      if (e.props !== undefined) {
+        newDesc.push(e.props.children)
+      }
+    })
+    return newDesc;
   }
 
   renderResults() {
@@ -77,8 +110,9 @@ class ViewResults extends Component {
             <div>{e.company}</div>
             <div><img href={e.company_logo} alt="No Logo" /></div>
             <div><a src={e.company_url}>Website</a></div>
+            {this.haveDescription(e.description)}
             <div>Job posted on {e.created_at}</div>
-            <div>{e.how_to_apply}</div>
+            {this.haveLink(e.how_to_apply)}
             <div>Location: {e.location}</div>
             <div><a src={e.url}>See more</a></div>
             <div>Job id: {e.job_id}</div>
@@ -96,7 +130,7 @@ class ViewResults extends Component {
       <div className="ViewResults">
         <div onClick={this.props.goBack}>Go back on saved data</div>
         {this.renderResults()}
-        {this.renderGraph()}
+        {this.renderAverageSalary()}
       </div>
     )
   }

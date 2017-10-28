@@ -12,6 +12,8 @@ class ViewSavedData extends Component {
     this.state = {
       data: []
     }
+
+    this.onClickDelete = this.onClickDelete.bind(this);
   }
 
   componentDidMount() {
@@ -36,13 +38,6 @@ class ViewSavedData extends Component {
           <th>Job Link</th>
           <th>View More</th>
           <th>Delete</th>
-      		<th aria-sort='ascending' role='columnheader'>Company</th>
-          <th aria-sort='ascending' role='columnheader'>Title</th>
-          <th aria-sort='ascending' role='columnheader'>Location</th>
-          <th aria-sort='ascending' role='columnheader'>Type</th>
-          <th aria-sort='ascending' role='columnheader'>Link</th>
-          <th aria-sort='ascending' role='columnheader'>View More</th>
-          <th aria-sort='ascending' role='columnheader'>Delete</th>
         </tr>
       </thead>
     )
@@ -50,8 +45,17 @@ class ViewSavedData extends Component {
 
   // <img className='companyLogo' href={e.company_logo}/
 
+  onClickDelete(id) {
+      console.log('clicked');
+      axios.delete(`http://localhost:8080/gitHired/${id}`)
+        .then(res => {
+          this.setState({ mode: 'somethingDeleted' })
+        })
+    }
+
+
   renderData() {
-    
+
     const renderTable = [];
     this.state.data.map( e => {
       renderTable.push(
@@ -64,7 +68,7 @@ class ViewSavedData extends Component {
       		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}>See More</Link></td>
       		<td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
           <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
-      		<td className="deleteButton">Delete</td>
+      		<td className="deleteButton" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
     })
