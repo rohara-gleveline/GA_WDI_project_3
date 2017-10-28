@@ -99,8 +99,6 @@ class App extends Component {
                  />
 
 
-                
-
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne}
                 />

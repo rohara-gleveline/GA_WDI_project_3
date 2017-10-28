@@ -13,13 +13,12 @@ class ViewSavedData extends Component {
       data: [],
       mode: ''
     }
-<<<<<<< HEAD
 
-    this.onClickDelete = this.onClickDelete.bind(this);
-=======
+
+  
     this.onClickDelete = this.onClickDelete.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
->>>>>>> bf00f4b9024becf6f91adea0bef8bbe622e9b4ee
+
   }
 
   componentDidMount() {

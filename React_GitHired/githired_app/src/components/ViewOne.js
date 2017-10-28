@@ -9,12 +9,13 @@ class ViewOne extends Component {
 
 			this.state = {
 				jobData: {},
-				mode: 'view'
+				mode: 'view',
+				isSubmitted: false
 			}
 
 			this.onClickEdit = this.onClickEdit.bind(this);
 			this.onClickDelete = this.onClickDelete.bind(this);
-			this.onClickSave = this.onClickSave.bind(this);
+			this.onSubmit= this.onSubmit.bind(this);
 			this.onChange = this.onChange.bind(this);
 	}
 
@@ -38,33 +39,71 @@ class ViewOne extends Component {
 
 	}
 
-	onClickSave(e){
-		e.preventDefault();
-		axios.post(`http://localhost:8080/gitHired/${this.state.job_id}/edit`, {
-			user_id: this.props.user.id,
-			searched_on: this.state.jobData.searched_on,
-			job_id: this.state.jobData.job_id,
-			created_at: this.state.jobData.created_at,
-			title: this.state.jobData.title,
-			location: this.state.jobData.location,
-			type: this.state.jobData.type,
-			description: this.state.jobData.description,
-			how_to_apply: this.state.jobData.how_to_apply,
-			company: this.state.jobData.company,
-			company_url: this.state.jobData.company_url,
-			company_logo: this.state.jobData.company_logo,
-			url: this.state.jobData.url,
-			contacted: parseInt(this.state.jobData.contacted),
-			contacted_on: this.state.jobData.contacted_on,
-			contact_name: this.state.jobData.contact_name,
-			contact_email: this.state.jobData.contact_email,
-			contact_role: this.state.jobData.contact_role,
-			contact_number: this.state.jobData.contact_number,
-			applied: parseInt(this.state.jobData.applied),
-			applied_on: this.state.jobData.applied_on,
-			notes: this.state.jobData.notes,
-			date_of_last_edit: new Date()
-		})
+	// onClickSave(event) {
+	// 	event.preventDefault();
+	// 	axios.post(`http://localhost:8080/gitHired/find/${this.state.jobData.job_id}/edit`, {
+	// 			// user_id: this.props.user.id,
+	// 			searched_on: this.state.searched_on,
+	// 			job_id: this.state.job_id,
+	// 			created_at: this.state.created_at,
+	// 			title: this.state.title,
+	// 			location: this.state.location,
+	// 			type: this.state.type,
+	// 			description: this.state.description,
+	// 			how_to_apply: this.state.how_to_apply,
+	// 			company: this.state.company,
+	// 			company_url: this.state.company_url,
+	// 			company_logo: this.state.company_logo,
+	// 			url: this.state.url,
+	// 			contacted: parseInt(this.state.contacted),
+	// 			contacted_on: this.state.contacted_on,
+	// 			contact_name: this.state.contact_name,
+	// 			contact_email: this.state.contact_email,
+	// 			contact_role: this.state.contact_role,
+	// 			contact_number: this.state.contact_number,
+	// 			applied: parseInt(this.state.applied),
+	// 			applied_on: this.state.applied_on,
+	// 			notes: this.state.notes,
+	// 			date_of_last_edit: new Date()
+	// 	}).then(response => {
+	// 		this.setState({
+	// 			isSubmitted: true
+	// 		})
+	// 	}).catch(err => {console.log('err', err)});
+	// }
+
+	onSubmit(event) {
+		event.preventDefault();
+
+		axios.post(`http://localhost:8080/gitHired/find/${this.state.jobData.id}/edit`, {
+				// user_id: this.props.user.id,
+				searched_on: this.state.searched_on,
+				job_id: this.state.job_id,
+				created_at: this.state.created_at,
+				title: this.state.title,
+				location: this.state.location,
+				type: this.state.type,
+				description: this.state.description,
+				how_to_apply: this.state.how_to_apply,
+				company: this.state.company,
+				company_url: this.state.company_url,
+				company_logo: this.state.company_logo,
+				url: this.state.url,
+				contacted: parseInt(this.state.contacted),
+				contacted_on: this.state.contacted_on,
+				contact_name: this.state.contact_name,
+				contact_email: this.state.contact_email,
+				contact_role: this.state.contact_role,
+				contact_number: this.state.contact_number,
+				applied: parseInt(this.state.applied),
+				applied_on: this.state.applied_on,
+				notes: this.state.notes,
+				date_of_last_edit: new Date()
+		}).then(response => {
+			this.setState({
+				isSubmitted: true
+			})
+		}).catch(err => {console.log('err', err)});
 	}
 
 	onChange(e) {
@@ -78,6 +117,11 @@ class ViewOne extends Component {
 		  return(
 				<div className="oneJobView">
 
+
+				{this.state.isSubmitted === true &&
+					<Redirect to="/" />
+				}
+
 					{this.state.mode === 'view' &&
 						<div className="ViewOne">
 							<div>{this.state.jobData.searched_on}</div>
@@ -86,7 +130,7 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.title}</div>
 							<div>{this.state.jobData.location}</div>
 							<div>{this.state.jobData.type}</div>
-								{this.state.jobData.description}
+							<div>{this.state.jobData.description}</div>
 							<div>{this.state.jobData.how_to_apply}</div>
 							<div>{this.state.jobData.company}</div>
 							<div>{this.state.jobData.company_url}</div>
@@ -110,7 +154,7 @@ class ViewOne extends Component {
 
 					{this.state.mode === 'edit' &&
 						<div className="EditOne">
-
+						<form className="createForm" onSubmit={this.onSubmit}>
 							<div>
 							<h2>Job Information</h2>
 
@@ -125,7 +169,7 @@ class ViewOne extends Component {
 
 							<div>
 								<label htmlFor="titleidedit">Job ID: </label>
-								<input id= "titleidedit" name='job_id' onChange={this.onChange} value={this.state.jobData.location} type='text' />
+								<input id= "titleidedit" name='job_id' onChange={this.onChange} value={this.state.jobData.job_id} type='text' />
 							</div>
 
 							<div>
@@ -239,10 +283,11 @@ class ViewOne extends Component {
 								<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes} cols="40" rows="8" /> <br/>
 							</div>
 
+							<div>
+								<input className="form-button" type="submit" value="Submit"/>
+							</div>
 
-
-							<Link to="/">Your Saved Jobs</Link>
-							<button onClick={this.onClickSave}>Save Changes</button>
+							</form>
 						</div>
 					}
 
