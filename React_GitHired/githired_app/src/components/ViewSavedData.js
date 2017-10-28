@@ -13,13 +13,9 @@ class ViewSavedData extends Component {
       data: [],
       mode: ''
     }
-<<<<<<< HEAD
 
     this.onClickDelete = this.onClickDelete.bind(this);
-=======
-    this.onClickDelete = this.onClickDelete.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
->>>>>>> bf00f4b9024becf6f91adea0bef8bbe622e9b4ee
   }
 
   componentDidMount() {
@@ -90,6 +86,7 @@ class ViewSavedData extends Component {
           <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
           <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
+      		<td className="delete" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
     })
@@ -99,7 +96,7 @@ class ViewSavedData extends Component {
   render() {
 
     return(
-        <div className="ViewSavedData">
+        <div className="viewSavedData">
 
           {this.state.data.length > 0 &&
             <table id='myTable' className="tableSavedData">
