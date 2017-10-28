@@ -14,11 +14,9 @@ class ViewSavedData extends Component {
       mode: ''
     }
 
-
   
     this.onClickDelete = this.onClickDelete.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
-
   }
 
   componentDidMount() {
@@ -89,6 +87,7 @@ class ViewSavedData extends Component {
           <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
           <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
+      		<td className="delete" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
     })
@@ -98,7 +97,7 @@ class ViewSavedData extends Component {
   render() {
 
     return(
-        <div className="ViewSavedData">
+        <div className="viewSavedData">
 
           {this.state.data.length > 0 &&
             <table id='myTable' className="tableSavedData">
@@ -112,7 +111,7 @@ class ViewSavedData extends Component {
           {this.state.data.length === 0 &&
             <div className="noDataMessage">
               Your saved jobs
-            </div>
+            </div> 
           }
 
           <Route exact path="/ViewOne/:id"
