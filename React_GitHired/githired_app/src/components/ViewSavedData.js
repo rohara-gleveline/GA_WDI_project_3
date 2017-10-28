@@ -13,8 +13,13 @@ class ViewSavedData extends Component {
       data: [],
       mode: ''
     }
+<<<<<<< HEAD
+
+    this.onClickDelete = this.onClickDelete.bind(this);
+=======
     this.onClickDelete = this.onClickDelete.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
+>>>>>>> bf00f4b9024becf6f91adea0bef8bbe622e9b4ee
   }
 
   componentDidMount() {
@@ -61,8 +66,17 @@ class ViewSavedData extends Component {
 
   // <img className='companyLogo' href={e.company_logo}/
 
+  onClickDelete(id) {
+      console.log('clicked');
+      axios.delete(`http://localhost:8080/gitHired/${id}`)
+        .then(res => {
+          this.setState({ mode: 'somethingDeleted' })
+        })
+    }
+
+
   renderData() {
-    
+
     const renderTable = [];
     this.state.data.map( e => {
       renderTable.push(
