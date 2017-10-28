@@ -19,7 +19,7 @@ class ViewOne extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(`http://localhost:8080/gitHired/${this.props.match.params.id}`)
+		axios.get(`http://localhost:8080/gitHired/${this.props.id}`)
 		.then(response => {
 			console.log(response.data.oneJobData);
 			this.setState({jobData: response.data.oneJobData})
@@ -45,7 +45,7 @@ class ViewOne extends Component {
 
 		
 		const {company, title, location, type, linkToJobs} = this.state;
-		axios.post(`http://localhost:8080/gitHired/${this.props.match.params.id}/edit`, {
+		axios.post(`http://localhost:8080/gitHired/${this.props.id}/edit`, {
 			user_id: this.props.user.id,
 			searched_on: this.state.searched_on,
 			job_id: this.state.job_id,
