@@ -86,7 +86,7 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.title}</div>
 							<div>{this.state.jobData.location}</div>
 							<div>{this.state.jobData.type}</div>
-							<div>{this.state.jobData.description}</div>
+								{this.state.jobData.description}
 							<div>{this.state.jobData.how_to_apply}</div>
 							<div>{this.state.jobData.company}</div>
 							<div>{this.state.jobData.company_url}</div>

@@ -24,7 +24,7 @@ router.post('/search',
     });
 
 // route for show one job
-router.get('/find/:jobId',
+router.get('/find/:id',
     Jobs.findById,
     (req, res) => {
         const { oneJobData } = res.locals

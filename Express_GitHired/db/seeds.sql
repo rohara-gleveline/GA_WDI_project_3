@@ -13,17 +13,17 @@ CREATE TABLE users (
 CREATE TABLE jobs_data (
   id SERIAL PRIMARY KEY,
   user_id integer REFERENCES users(id),
-  searched_on VARCHAR(255), 
-  job_id VARCHAR(255), 
-  created_at VARCHAR(255), 
-  title VARCHAR(255), 
-  location VARCHAR(255), 
+  searched_on VARCHAR(255),
+  job_id VARCHAR(255),
+  created_at VARCHAR(255),
+  title VARCHAR(255),
+  location VARCHAR(255),
   type VARCHAR(255),
-  description VARCHAR, 
-  how_to_apply VARCHAR(255), 
-  company VARCHAR(255), 
-  company_url VARCHAR, 
-  company_logo VARCHAR, 
+  description VARCHAR,
+  how_to_apply VARCHAR(255),
+  company VARCHAR(255),
+  company_url VARCHAR,
+  company_logo VARCHAR,
   url VARCHAR,
   contacted BIT,
   contacted_on VARCHAR,
@@ -36,3 +36,12 @@ CREATE TABLE jobs_data (
   notes VARCHAR,
   date_of_last_edit VARCHAR
 );
+
+
+-- inputs to be added? 
+-- using moment to save last time user changed job info
+-- contact name
+-- contact email
+-- contact phone number
+-- date of last communication
+-- notes
