@@ -6,10 +6,10 @@ class Header extends Component {
     return (
       <div className = "header">
       <div className="logo">
-        <h2>GitIt</h2>
-        <div className="username">{this.props.user.first_name} {this.props.user.last_name}</div>
+        <h1 className="appName">GitHired</h1>
+        <div className="username"><em>{this.props.user.first_name} {this.props.user.last_name}</em></div>
         </div>
-        <div><button  className="form-button" onClick={this.props.logout}>Log out</button></div>
+        <div className="logout-button" onClick={this.props.logout}>Log out </div>
       </div>
     )
   }

@@ -38,31 +38,38 @@ class SearchForm extends Component {
 
 	render() {
 		return (
-			<div className='findjob'>
 
-					<form onSubmit={this.onSubmit}>
+			<div className ='searchView'> 
 
-						<div>
+			<div className='searchForm'>
+
+					<form className='searchInputs' onSubmit={this.onSubmit}>
+
+							<div>
+							<h1>Search:</h1>
+							</div>
+
+							<div>
 							<label htmlFor='titlesearch'>Job Title:</label>
-							<input id='titlesearch' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
-						</div>
+							<input className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
+							</div>
 
-						<div>
+							<div>
+							<label htmlFor='locationsearch'>City:</label>
+							<input className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
+							</div>
+
+							<div>
 							<label htmlFor='typesearch'>Type:</label>
-							<select id='typesearch' name='full_time' value={this.state.full_time} onChange={this.onChange}>
+							<select className='select-values' name='full_time' value={this.state.full_time} onChange={this.onChange}>
 								<option defaultValue='true'>Full Time</option>
 								<option value='false'>Full Time and Part Time</option>
 							</select>
-						</div>
+							</div>
 
-						<div>
-							<label htmlFor='locationsearch'>City:</label>
-							<input id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
-						</div>
-
-						<div>
+							<div>
 							<label htmlFor='countrysearch'>Country:</label>
-							<select id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
+							<select className='select-values' id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
 								<option defaultValue='us'>United States</option>
 								<option value='gb'>United Kingdom</option>
 								<option value='au'>Australia</option>
@@ -80,19 +87,20 @@ class SearchForm extends Component {
 								<option value='sg'>Singapore</option>
 								<option value='za'>South Africa</option>
 							</select>
-						</div>
+							</div>
 
-						<div>
-							<input type='submit' value='Submit' />
-						</div>
+							<div>
+							<input className="submitButton" type='submit' value='Submit' />
+							</div>	
 
 					</form>
 
 			</div>
 
-			)
-	}
+			</div>
 
-}
+			)
+		}
+	}
 
 export default SearchForm;
