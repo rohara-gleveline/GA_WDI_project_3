@@ -79,6 +79,7 @@ class ViewSavedData extends Component {
 
     const renderTable = [];
     this.state.data.map( e => {
+      console.log('e',e);
       renderTable.push(
         <tr className={e.id}>
       		<td>{e.company}</td>
@@ -116,7 +117,10 @@ class ViewSavedData extends Component {
           }
 
           <Route exact path="/ViewOne/:id"
-                 component={ViewOne} />
+                 render= { () =>
+                 <ViewOne user={this.props.user} />
+                }
+               />
 
         </div>
     )
