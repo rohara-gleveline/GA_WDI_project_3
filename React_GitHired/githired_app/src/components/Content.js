@@ -1,29 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import SearchForm from './SearchForm';
 import ViewSavedData from './ViewSavedData';
 import ViewResults from './ViewResults';
 
-const Content = (props) => {
-  return(
-      <div className="content">
-        <SearchForm />
+class Content extends Component {
+  constructor(props){
+    super(props);
 
-        <Route exact path="/"
-                render= { () =>
-                  <ViewSavedData user={props.user}/> }
-                  />
+    this.state = {
+      mode: 'savedData',
+      submitResults: {}
+    }
 
-        <Route exact path="/search"
-                component= {ViewResults} />
+    this.getResults = this.getResults.bind(this);
+    this.goBackToSavedData = this.goBackToSavedData.bind(this);
+  }
 
-        <Link to="/create">Create New Job</Link>
+  getResults(results){
+    this.setState({
+      submitResults: results,
+      mode: 'viewResults'
+    })
+  }
 
-    </div>
 
-  )
+  goBackToSavedData() {
+    this.setState({
+      mode: 'savedData'
+    })
+  }
 
+  render() {
+    return(
+        <div className="content">
+
+          <SearchForm
+            results={this.getResults} />
+
+          {this.state.mode === 'savedData' &&
+              <ViewSavedData
+                user={this.props.user} />
+          }
+
+          {this.state.mode === 'viewResults' &&
+              <ViewResults
+                user={this.props.user}
+                submitResults={this.state.submitResults}
+                goBack={this.goBackToSavedData} />
+          }
+
+          <Link to="/create">Create New Job</Link>
+
+      </div>
+    )
+  }
 }
 
 export default Content;

@@ -13,6 +13,42 @@ background-position:center;
 background-size: cover;
 }
 
+img {
+  width: 1em;
+  height: 1em;
+}
+
+.viewAll {}
+
+.ViewSavedData {
+  height: 100px;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-top: 1%;
+}
+
+.jobInformation {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactInformation {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+}
+.makejob {
+  background: #EAEFF6;
+}
+
+.makejob label {
+  font-size: 1em;
+}
+
 .username {
   font-size: 24px;
   justify-content: center;
@@ -42,6 +78,7 @@ h2 {
   text-shadow: 2px 2px #777C7D;
 }
 
+
 .header {
   display: flex;
   justify-content: center;
@@ -51,7 +88,7 @@ h2 {
   width: 100vw;
   flex: .2;
   background: #457B9D;
-
+  padding-bottom: 5%;
 }
 
 .tableView {
@@ -65,7 +102,7 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 70vw;
   flex: 2;
   margin-top: 5%;
@@ -108,7 +145,7 @@ tr, th, td {
 
 form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -123,6 +160,7 @@ input[name="submit"]{
 
 select {
   margin: 1em;
+  width: 100vw;
 }
 
 .form-button {
@@ -143,7 +181,7 @@ label {
 }
 
 input {
-  width: 15vw;
+  width: 100%;
   height: 3vh;
   margin: 1em;
   border: none;
@@ -152,7 +190,7 @@ input {
 }
 
 select {
-  width: 15vw;
+  width: 100%;
   height: 3vh;
 }
 
