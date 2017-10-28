@@ -56,6 +56,7 @@ router.post('/create',
     res.json({ newJob: newJob });
 	});
 
+
 // route to delete job
 router.delete('/:jobId',
     Jobs.destroy,
@@ -63,4 +64,6 @@ router.delete('/:jobId',
         res.send('job deleted from jobs_data');
     });
 
+
 module.exports = router;
+
