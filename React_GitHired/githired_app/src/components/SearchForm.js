@@ -11,9 +11,8 @@ class SearchForm extends Component {
       jobDescription: '',
       full_time: 'true',
       jobLocation: '',
-      country: 'us',
-			isSubmitted: 'false'
-    }
+      country: 'us'
+  }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,10 +32,7 @@ class SearchForm extends Component {
       jobLocation: this.state.jobLocation,
       country: this.state.country
 		}).then(response => {
-			console.log(response);
-			this.setState({
-				isSubmitted: 'true'
-			})
+			this.props.results(response);
 		});
 	}
 
@@ -44,11 +40,6 @@ class SearchForm extends Component {
 		return (
 			<div className='findjob'>
 
-				{this.state.isSubmitted === 'true' &&
-					<Redirect to="/search" />
-				}
-
-				{this.state.isSubmitted === 'false' &&
 					<form onSubmit={this.onSubmit}>
 
 						<div>
@@ -96,7 +87,6 @@ class SearchForm extends Component {
 						</div>
 
 					</form>
-				}
 
 			</div>
 

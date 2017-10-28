@@ -75,9 +75,7 @@ class App extends Component {
     } else if(this.state.mode === 'content') {
       return (
         <Content
-          user={this.state.user}
-          isSearch={false}
-        />
+          user={this.state.user} />
       )
     }
   }
@@ -90,26 +88,23 @@ class App extends Component {
 
          {this.state.mode === 'content' &&
             <Header user={this.state.user}
-                  logout={this.logout}/>
+                  logout={this.logout}
+                  />
          }
 
          <Route exact path="/"
-                 render= {this.renderView} />
-
-         <Route exact path="/search"
-                render= {() =>
-                  <Content isSearch={true} />
-         } />
+                 render= {this.renderView}
+                 />
 
          <Route exact path="/ViewOne/:id"
-                component= {ViewOne} />
+                component= {ViewOne}
+                />
 
          <Route exact path="/create"
-               render= { () =>
+                render= { () =>
                  <CreateJob user={this.state.user} />
-               } />
-
-
+                }
+               />
 
        </div>
 
