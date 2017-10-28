@@ -91,7 +91,7 @@ class SearchForm extends Component {
 
 							<div>
 							<input className="submitButton" type='submit' value='Submit' />
-							</div>
+							</div>	
 
 					</form>
 

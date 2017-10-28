@@ -84,7 +84,7 @@ class ViewSavedData extends Component {
   render() {
 
     return(
-        <div className="ViewSavedData">
+        <div className="viewSavedData">
 
           {this.state.data.length > 0 &&
             <table id='myTable' className="tableSavedData">
