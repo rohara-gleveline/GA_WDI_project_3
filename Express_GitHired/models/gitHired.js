@@ -1,9 +1,8 @@
 const bcrypt = require('bcryptjs'),
-    db = require('../db/config'),
-    axios = require('axios')
+      db = require('../db/config'),
+      axios = require('axios');
 
 const Jobs = {};
-// models go here
 
 Jobs.search = (req, res, next) => {
         // desc/loc can be any string
@@ -50,21 +49,27 @@ Jobs.search = (req, res, next) => {
     Jobs.salary = (req, res, next) => {
 
         const { jobDescription, jobLocation, country } = req.body;
+        // console.log("jobDescription",jobDescription);
+        // console.log("jobLocation",jobLocation);
+        // console.log("country",country);
         // country being determined by drop down in search field on front-end
         axios.get(`https://api.adzuna.com:443/v1/api/jobs/${country}/history?app_id=${process.env.ADZUNA_AP_ID}&app_key=${process.env.ADZUNA_API_KEY}&what=${jobDescription}&where=${jobLocation}&months=12`)
             .then(salaryData => {
-                // console.log('salaryData is ', salaryData.data.month);
+                console.log('salaryData is ', salaryData.data.month);
                 const emptyObject = [];
                 for (let i in salaryData.data.month) {
                     emptyObject.push(i)
                 }
                 if (emptyObject.length === 0) {
-                    res.locals.salaryData = { salaryData: 'No average salary information available.' }
+                    res.locals.salaryData = { salaryData: [] }
                 } else {
-                    res.locals.salaryData = salaryData.data.month;
+                    res.locals.salaryData = { salaryData: salaryData.data.month };
                 }
                 next();
-            }).catch(err => { console.log('error in jobs.salary', err) })
+            }).catch(err => {
+              console.log('error in jobs.salary', err),
+              console.log(`https://api.adzuna.com:443/v1/api/jobs/${country}/history?app_id=${process.env.ADZUNA_AP_ID}&app_key=${process.env.ADZUNA_API_KEY}&what=${jobDescription}&where=${jobLocation}&months=12`)
+              })
 
     },
 
@@ -180,8 +185,7 @@ Jobs.search = (req, res, next) => {
         // save the data in state on front end
         // send saved data back to back-end as req.body
         // jobs_data[0] will be replaced by req.body
-        const user_id = req.user.id;
-        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
+        const { user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
         db.one(
             `INSERT INTO jobs_data (user_id,
 																	  searched_on,
@@ -196,7 +200,8 @@ Jobs.search = (req, res, next) => {
 																	  company_url,
 																	  company_logo,
 																	  url)
-							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`, [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
+							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`,
+              [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
         )
         next();
 
@@ -261,7 +266,20 @@ Jobs.search = (req, res, next) => {
             next();
         });
 
-    }
+    }, 
+
+    Jobs.destroy = (req, res, next) => {
+
+    const id = req.params.jobId;
+    db.none(
+        'DELETE FROM jobs_data WHERE id = $1', [id]
+    ).then(() => {
+        next();
+    }).catch(err => {
+        console.log(`ERROR AT DESTROY MODEL: ${err}`);
+    })
+
+} // end of destroy
 
 
 module.exports = Jobs;

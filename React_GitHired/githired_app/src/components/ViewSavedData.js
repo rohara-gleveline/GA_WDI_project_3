@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-
 import axios from 'axios';
-
 import ViewOne from './ViewOne';
+import tablesort from 'tablesort';
+// import $ from "jquery";
 
 class ViewSavedData extends Component {
   constructor(props) {
@@ -15,12 +15,12 @@ class ViewSavedData extends Component {
   }
 
   componentDidMount() {
-    console.log('props in componentDidMount of viewSavedData are', this.props.user)
     axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
       .then(res => {
-        console.log('response from viewSavedData is ', res.data.allJobsData);
         this.setState({
           data: res.data.allJobsData
+        }, () => {
+            tablesort(document.getElementById('myTable'));
         })
       })
   }
@@ -33,7 +33,8 @@ class ViewSavedData extends Component {
           <th>Title</th>
           <th>Location</th>
           <th>Type</th>
-          <th>Link</th>
+          <th>Apply</th>
+          <th>View Job Posting</th>
           <th>View More</th>
           <th>Delete</th>
         </tr>
@@ -41,17 +42,21 @@ class ViewSavedData extends Component {
     )
   }
 
+  // <img className='companyLogo' href={e.company_logo}/
+
   renderData() {
+    
     const renderTable = [];
     this.state.data.map( e => {
       renderTable.push(
         <tr className={e.id}>
-      		<td>{e.company}<img className='companyLogo' href={e.company_logo}/></td>
+      		<td>{e.company}</td>
       		<td>{e.title}</td>
       		<td>{e.location}</td>
       		<td>{e.type}</td>
-      		<td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
-      		<td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
+      		<td><a href={e.url} target='_blank'>Job Link</a></td>
+          <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
+          <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
       		<td className="deleteButton">Delete</td>
         </tr>
       )
@@ -60,11 +65,12 @@ class ViewSavedData extends Component {
   }
 
   render() {
+
     return(
         <div className="ViewSavedData">
 
           {this.state.data.length > 0 &&
-            <table className="tableSavedData">
+            <table id='myTable' className="tableSavedData">
               {this.renderHeader()}
               <tbody>
                 {this.renderData()}
