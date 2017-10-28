@@ -19,9 +19,8 @@ class ViewOne extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
+		axios.get(`http://localhost:8080/gitHired/find/${this.props.match.params.id}`)
 		.then(response => {
-			console.log(response.data.oneJobData);
 			this.setState({jobData: response.data.oneJobData})
 		})
 	}
@@ -37,38 +36,33 @@ class ViewOne extends Component {
 	onClickDelete(e) {
 		e.preventDefault();
 
-
 	}
 
 	onClickSave(e){
 		e.preventDefault();
-
-		
-		const {searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url, contacted, contacted_on, 
-			contact_name, contact_email, contact_role, contact_number, applied, applied_on, notes, date_of_last_edit} = this.state;
-		axios.post(`http://localhost:8080/gitHired/${this.props.user.id}/edit`, {
+		axios.post(`http://localhost:8080/gitHired/${this.state.job_id}/edit`, {
 			user_id: this.props.user.id,
-			searched_on: this.state.searched_on,
-			job_id: this.state.job_id,
-			created_at: this.state.created_at,
-			title: this.state.title,
-			location: this.state.location,
-			type: this.state.type,
-			description: this.state.description,
-			how_to_apply: this.state.how_to_apply,
-			company: this.state.company,
-			company_url: this.state.company_url,
-			company_logo: this.state.company_logo,
-			url: this.state.url,
-			contacted: parseInt(this.state.contacted),
-			contacted_on: this.state.contacted_on,
-			contact_name: this.state.contact_name,
-			contact_email: this.state.contact_email,
-			contact_role: this.state.contact_role,
-			contact_number: this.state.contact_number,
-			applied: parseInt(this.state.applied),
-			applied_on: this.state.applied_on,
-			notes: this.state.notes,
+			searched_on: this.state.jobData.searched_on,
+			job_id: this.state.jobData.job_id,
+			created_at: this.state.jobData.created_at,
+			title: this.state.jobData.title,
+			location: this.state.jobData.location,
+			type: this.state.jobData.type,
+			description: this.state.jobData.description,
+			how_to_apply: this.state.jobData.how_to_apply,
+			company: this.state.jobData.company,
+			company_url: this.state.jobData.company_url,
+			company_logo: this.state.jobData.company_logo,
+			url: this.state.jobData.url,
+			contacted: parseInt(this.state.jobData.contacted),
+			contacted_on: this.state.jobData.contacted_on,
+			contact_name: this.state.jobData.contact_name,
+			contact_email: this.state.jobData.contact_email,
+			contact_role: this.state.jobData.contact_role,
+			contact_number: this.state.jobData.contact_number,
+			applied: parseInt(this.state.jobData.applied),
+			applied_on: this.state.jobData.applied_on,
+			notes: this.state.jobData.notes,
 			date_of_last_edit: new Date()
 		})
 	}
@@ -77,10 +71,10 @@ class ViewOne extends Component {
 		this.setState({
 			jobData: {...this.state.jobData, [e.target.name]: e.target.value}
 		})
-
 	}
 
 	render() {
+			console.log(this.state.jobData);
 		  return(
 				<div className="oneJobView">
 
@@ -107,7 +101,6 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.applied}</div>
 							<div>{this.state.jobData.applied_on}</div>
 							<div>{this.state.jobData.notes}</div>
-
 
 							<Link to="/">Your Saved Jobs</Link>
 							<button onClick={this.onClickEdit}>Edit Job</button>
