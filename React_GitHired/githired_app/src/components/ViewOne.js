@@ -78,7 +78,6 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.company_url}</div>
 							<div>{this.state.jobData.company_logo}</div>
 							<div>{this.state.jobData.github_jobs_url}</div>
-
 							<Link to="/">Your Saved Jobs</Link>
 							<button onClick={this.onClickEdit}>Edit Job</button>
 							<button onClick={this.onClickDelete}>Delete Job</button>
