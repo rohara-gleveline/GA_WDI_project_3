@@ -1,9 +1,8 @@
 const bcrypt = require('bcryptjs'),
-    db = require('../db/config'),
-    axios = require('axios')
+      db = require('../db/config'),
+      axios = require('axios');
 
 const Jobs = {};
-// models go here
 
 Jobs.search = (req, res, next) => {
         // desc/loc can be any string
@@ -62,12 +61,15 @@ Jobs.search = (req, res, next) => {
                     emptyObject.push(i)
                 }
                 if (emptyObject.length === 0) {
-                    res.locals.salaryData = { salaryData: 'No average salary information available.' }
+                    res.locals.salaryData = { salaryData: [] }
                 } else {
                     res.locals.salaryData = { salaryData: salaryData.data.month };
                 }
                 next();
-            }).catch(err => { console.log('error in jobs.salary', err) })
+            }).catch(err => {
+              console.log('error in jobs.salary', err),
+              console.log(`https://api.adzuna.com:443/v1/api/jobs/${country}/history?app_id=${process.env.ADZUNA_AP_ID}&app_key=${process.env.ADZUNA_API_KEY}&what=${jobDescription}&where=${jobLocation}&months=12`)
+              })
 
     },
 
@@ -183,8 +185,7 @@ Jobs.search = (req, res, next) => {
         // save the data in state on front end
         // send saved data back to back-end as req.body
         // jobs_data[0] will be replaced by req.body
-        const user_id = req.user.id;
-        const { searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
+        const { user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url } = req.body;
         db.one(
             `INSERT INTO jobs_data (user_id,
 																	  searched_on,
@@ -199,7 +200,8 @@ Jobs.search = (req, res, next) => {
 																	  company_url,
 																	  company_logo,
 																	  url)
-							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`, [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
+							VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *`,
+              [user_id, searched_on, job_id, created_at, title, location, type, description, how_to_apply, company, company_url, company_logo, url]
         )
         next();
 
