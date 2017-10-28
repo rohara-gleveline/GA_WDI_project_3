@@ -74,7 +74,7 @@ class ViewSavedData extends Component {
       		<td><a href={e.url} target='_blank'>Job Link</a></td>
           <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
           <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
-      		<td className="deleteButton" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
+      		<td className="delete" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
     })

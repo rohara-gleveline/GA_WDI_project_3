@@ -9,7 +9,7 @@ class Header extends Component {
         <h2>GitIt</h2>
         <div className="username">{this.props.user.first_name} {this.props.user.last_name}</div>
         </div>
-        <div><button  className="form-button" onClick={this.props.logout}>Log out</button></div>
+        <div><button  className="logout-button" onClick={this.props.logout}>Log out</button></div>
       </div>
     )
   }
