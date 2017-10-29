@@ -237,7 +237,14 @@ Jobs.search = (req, res, next) => {
         } = req.body;
 
         db.one(
-            'UPDATE jobs_data SET searched_on = $1, job_id = $2, created_at = $3, title = $4, location = $5, type = $6, description = $7, how_to_apply = $8, company = $9, company_url = $10, company_logo = $11, url = $12, contacted = $13, contacted_on = $14, contact_name = $15, contact_email = $16, contact_role = $17, contact_number = $18, applied = $19, applied_on = $20, notes = $21, date_of_last_edit = $22 WHERE id = $23 returning *', [
+            `UPDATE jobs_data
+              SET searched_on = $1, job_id = $2, created_at = $3, title = $4, location = $5,
+              type = $6, description = $7, how_to_apply = $8, company = $9, company_url = $10,
+              company_logo = $11, url = $12, contacted = $13, contacted_on = $14, contact_name = $15,
+              contact_email = $16, contact_role = $17, contact_number = $18, applied = $19, applied_on = $20,
+              notes = $21, date_of_last_edit = $22
+              WHERE id = $23 returning *`,
+              [
                 searched_on,
                 job_id,
                 created_at,
@@ -266,7 +273,7 @@ Jobs.search = (req, res, next) => {
             next();
         });
 
-    }, 
+    },
 
     Jobs.destroy = (req, res, next) => {
 
