@@ -42,8 +42,9 @@ class SignUp extends Component {
     return(
       <section>
       <div className="auth-form">
-        <h2>Sign Up</h2>
-        <form onSubmit={this.signUp.bind(this)}>
+        <div className='loginHead'><h1>GitHired</h1></div>
+
+        <form className='signUpForm' onSubmit={this.signUp.bind(this)}>
 
           <label htmlFor='email'>First Name</label>
           <input value={this.state.inputs.first_name}
@@ -76,9 +77,9 @@ class SignUp extends Component {
             onChange={e => this.changeInput(e, 'password_confirmation')}
           />
 
-          <div className="form-buttons">
+          <div className="signUp-form-buttons">
             <button type="submit" className="form-button">Sign Up</button>
-            <button onClick={this.props.toggleMode} className="form-button">Log In</button>
+            <button onClick={this.props.toggleMode} className="form-button">Back to Log In</button>
           </div>
 
         </form>
