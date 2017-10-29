@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
+import $ from "jquery";
+
 var ReactDOMServer = require('react-dom/server');
 var HtmlToReactParser = require('html-to-react').Parser;
 
@@ -18,6 +20,7 @@ class ViewResults extends Component {
     this.renderAverageSalary = this.renderAverageSalary.bind(this);
     this.haveLink = this.haveLink.bind(this);
     this.haveDescription = this.haveDescription.bind(this);
+    // this.altImage = this.altImage.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +28,11 @@ class ViewResults extends Component {
       results: this.props.submitResults.data
     })
   }
+
+  // altImage () {
+  //   ('#logo').src = 'https://www.google.com/images/srpr/logo11w.png'
+  // onerror={this.altImage()
+  // }
 
   saveJob(e) {
     function linkHowToApply(e) {
@@ -50,7 +58,7 @@ class ViewResults extends Component {
         url: e.url
       }).then(res => {
         console.log(res);
-        alert('This job has been added to your list.')
+        this.props.goBack();
       })
   }
 
@@ -82,7 +90,7 @@ class ViewResults extends Component {
       var cutEndIndex = startCut.indexOf('"');
       var endCut = startCut.substring(0, cutEndIndex);
       return(
-        <div><a href={endCut} target='_blank'>Apply</a></div>
+        <div><a href={endCut} target='_blank'><img src="./images/seemore.png"/></a></div>
       );
   }
 
@@ -105,18 +113,40 @@ class ViewResults extends Component {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
           <div className='resultBox' key={e.job_id}>
-            <div>Job title: {e.title}</div>
-            <div>Type of contract: {e.type}</div>
-            <div>{e.company}</div>
-            <div><img href={e.company_logo} alt="No Logo" /></div>
-            <div><a src={e.company_url}>Website</a></div>
-            {this.haveDescription(e.description)}
-            <div>Job posted on {e.created_at}</div>
-            {this.haveLink(e.how_to_apply)}
-            <div>Location: {e.location}</div>
-            <div><a src={e.url}>See more</a></div>
-            <div>Job id: {e.job_id}</div>
-            <div onClick={() => {this.saveJob(e)}}>Save this job</div>
+
+          {/*<div><img href={e.company_logo} alt="No Logo" id='logo'/></div>*/}
+
+            <div className='resultsHead'>
+              <div>{e.title}, {e.company}, {e.type}</div>
+            </div>
+            
+            <div class='resultsTable'>
+               <thead>
+                  <tr>  
+                    <th>Location</th>
+                    <th>Posted On</th>
+                    <th>Company Site</th>
+                    <th>Job Posting</th>
+                    <th>Apply</th>
+                    <th>Save</th>
+                  </tr>
+              </thead>
+              <tr>
+                <td>{e.location}</td>
+                <td>{e.created_at}</td>
+                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td><a href={e.url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td>{this.haveLink(e.how_to_apply)}</td>
+                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
+              </tr>
+            </div>
+
+            {/*<div>Job id: {e.job_id}</div>*/}
+            <div className='jobDesc'>
+              <div className='jobDescHead'>Job description:</div>
+               {this.haveDescription(e.description)}
+            </div>
+      
           </div>
         )
       })
@@ -127,7 +157,7 @@ class ViewResults extends Component {
   render() {
     console.log(this.state.results);
     return (
-      <div className="ViewResults">
+      <div className="viewResults">
         <div onClick={this.props.goBack}>Go back on saved data</div>
         {this.renderResults()}
         {this.renderAverageSalary()}
