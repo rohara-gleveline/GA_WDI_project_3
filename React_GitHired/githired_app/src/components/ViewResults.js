@@ -20,7 +20,7 @@ class ViewResults extends Component {
     this.renderResults = this.renderResults.bind(this);
     this.renderAverageSalary = this.renderAverageSalary.bind(this);
     this.haveLink = this.haveLink.bind(this);
-    this.toogleDesc = this.toogleDesc.bind(this);
+    this.toggleDesc = this.toggleDesc.bind(this);
   }
 
   componentDidMount() {
@@ -89,7 +89,7 @@ class ViewResults extends Component {
       );
   }
 
-  toogleDesc() {
+  toggleDesc() {
     if (this.state.mode === 'shortDesc') {
       this.setState({
         mode: 'longDesc'
@@ -131,15 +131,23 @@ class ViewResults extends Component {
                 <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
               </tr>
 
+            </div>  
+
+            <div className='resultDescription'>
             {this.state.mode === "shortDesc" &&
-              <div onClick={this.toogleDesc} className='shortDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+              <div>
+                <div className='shortDescription' dangerouslySetInnerHTML={{ __html: `Description: ${e.description}` }} />
+                <div className='seeDesc' onClick={this.toggleDesc}>...</div>
+              </div>
             }
             {this.state.mode === "longDesc" &&
-              <div onClick={this.toogleDesc} className='longDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+              <div>
+                <div className='longDescription' dangerouslySetInnerHTML={{ __html: `Description: ${e.description}` }} />
+                <div className='seeDesc' onClick={this.toggleDesc}>^</div>
+              </div>
             }
 
           </div>
-
           </div>
         )
       })
