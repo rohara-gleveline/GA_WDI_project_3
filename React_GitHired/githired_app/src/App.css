@@ -223,12 +223,19 @@ section {
 .submitButton {
   width: 90%;
   height: 35%;
+  margin-top: 20px;
   font-size: 100%;
   border-radius: 3px;
   background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
   border: solid 1px #979797;
 }
+
+.divSearchBar {
+  display: flex;
+  flex-direction: column;
+}
+
 
 /********************************************** Saved Data Table *************************************/
 
@@ -426,12 +433,6 @@ td {
 
 }
 
-
-<<<<<<< HEAD
-=======
-}
-
->>>>>>> 05871bfb05d3dcd4962a929abbefa5ee10517aae
 /********************************************** Create Page *************************************/
 
 .createForm {
@@ -494,10 +495,10 @@ h3 {
   height: 3vh;
   margin-top: 2%;
   margin-left: 5%;
-} 
+}
 
 .submitButtonCreate {
-  margin-left: 5%; 
+  margin-left: 5%;
   width: 100%;
   height: 35%;
   font-size: 100%;
@@ -557,6 +558,7 @@ h3 {
 
 .resultsData {
   margin-left: 2%;
+  width: 90%;
 }
 
 .link {
@@ -576,15 +578,28 @@ h3 {
   overflow: scroll;
 }
 
+.viewOneButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
 
 .submitButtonEdit{
-  width: 20%;
+  width: 40px;
   height: 35%;
   font-size: 100%;
   border-radius: 3px;
   background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
   border: solid 1px #979797;
+}
+
+.lastEdited {
+  font-size: 14px;
+  color: grey;
+  text-align: right;
+  font-style: italic;
 }
 
 

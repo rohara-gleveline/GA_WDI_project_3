@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 
 // BrowserRouter, Route, Link, Switch
@@ -22,13 +22,13 @@ class CreateJob extends Component {
 				company_url: '',
 				company_logo: '',
 				url: '',
-				contacted: '',
+				contacted: 'No',
 				contacted_on: '',
 				contact_name: '',
 				contact_email: '',
 				contact_role: '',
 				contact_number: '',
-				applied: '',
+				applied: 'No',
 				applied_on: '',
 				notes: '',
 				date_of_last_edit: '',
@@ -63,13 +63,13 @@ class CreateJob extends Component {
 				company_url: this.state.company_url,
 				company_logo: this.state.company_logo,
 				url: this.state.url,
-				contacted: parseInt(this.state.contacted, 10),
+				contacted: this.state.contacted,
 				contacted_on: this.state.contacted_on,
 				contact_name: this.state.contact_name,
 				contact_email: this.state.contact_email,
 				contact_role: this.state.contact_role,
 				contact_number: this.state.contact_number,
-				applied: parseInt(this.state.applied, 10),
+				applied: this.state.applied,
 				applied_on: this.state.applied_on,
 				notes: this.state.notes,
 				date_of_last_edit: new Date()
@@ -166,15 +166,15 @@ class CreateJob extends Component {
 						<div>
 
 							<label htmlFor="appliedonnew">Applied On:</label>
-							<input className="createInput" id="appliedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
+							<input className="createInput" id="appliedonnew" type="date" name="applied_on" value={this.state.applied_on} onChange={this.onChange}/>
 
 						</div>
 
 						<div>
 							<label htmlFor="appliednew">Applied:</label>
-							<select className="createSelect" id='appliednew' name='applied' value={this.state.applied} onChange={this.onChangeContacted}>
-								<option defaultValue='0'>No</option>
-								<option value='1'>Yes</option>
+							<select id='appliednew' name='applied' value={this.state.applied} onChange={this.onChange}>
+								<option defaultValue='No'>No</option>
+								<option value='Yes'>Yes</option>
 							</select>
 						</div>
 						</div>
@@ -207,9 +207,9 @@ class CreateJob extends Component {
 
 						<div>
 							<label htmlFor="contactednew">Contacted:</label>
-								<select className="createSelect" id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChangeContacted}>
-									<option defaultValue='0'>No</option>
-									<option value='1'>Yes</option>
+								<select id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChange}>
+									<option defaultValue='No'>No</option>
+									<option value='Yes'>Yes</option>
 								</select>
 						</div>
 
@@ -226,6 +226,11 @@ class CreateJob extends Component {
 						<div>
 							<input className="submitButtonCreate" type="submit" value="Submit"/>
 						</div>
+
+						<div>
+							<Link to="/">Go back to your saved jobs</Link>
+						</div>
+
 						</div>
 					</form>
 				}

@@ -38,7 +38,7 @@ class SearchForm extends Component {
 	render() {
 		return (
 
-			<div className ='searchView'> 
+			<div className ='searchView'>
 
 			<div className='searchForm'>
 
@@ -46,18 +46,18 @@ class SearchForm extends Component {
 
 							<div className="searchTitle">Search:</div>
 
-							<div>
-							<label htmlFor='titlesearch'>Job Title:</label>
-							<input placeholder="Title" className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
+							<div className='divSearchBar'>
+							<div><label htmlFor='titlesearch'>Job Title:</label></div>
+						<div><input placeholder="Title" className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/></div>
 							</div>
 
-							<div>
-							<label htmlFor='locationsearch'>City:</label>
-							<input placeholder="Location" className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
+							<div className='divSearchBar'>
+							<div><label htmlFor='locationsearch'>City:</label></div>
+						<div><input placeholder="Location" className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/></div>
 							</div>
 
-							<div>
-							<label htmlFor='typesearch'>Type:</label>
+							<div className='divSearchBar'>
+							<div><label htmlFor='typesearch'>Type:</label></div>
 							<select className='select-values' name='full_time' value={this.state.full_time} onChange={this.onChange}>
 								<option defaultValue='true'>Full Time</option>
 								<option value='false'>Full Time and Part Time</option>
@@ -85,9 +85,9 @@ class SearchForm extends Component {
 								<option value='za'>South Africa</option>
 							</select>
 							</div>*/}
-							<div>
-							<input className="submitButton" type='submit' value='Submit' />
-							</div>	
+							<div className='divSearchBar'>
+								<div><input className="submitButton" type='submit' value='Submit' /></div>
+							</div>
 
 					</form>
 

@@ -100,7 +100,7 @@ class ViewSavedData extends Component {
 
           {this.state.data.length === 0 &&
             <div className="noDataMessage">
-              No saved jobs
+              Start a research and save the Jobs you are interested in.
             </div>
           }
 
