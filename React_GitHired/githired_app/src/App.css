@@ -303,7 +303,11 @@ td {
   cursor: pointer;
 }
 
-/********************************************** Kiara's CSS *************************************/
+
+.linkResults {
+  margin-left: 7%;
+  text-decoration: none;
+}
 
 
 /********************************************** Create Page *************************************/
@@ -340,9 +344,84 @@ h3 {
 }
 
 
+/********************************************** View One Page *************************************/
+
+
+.oneJobView {
+  margin-top: 2%;
+  margin-bottom: 2%; 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ViewOne {
+  padding: 1%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  border-bottom: 10%;
+  width: 55%;
+  height: 20%;
+  margin-bottom: 2%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+}
+
+.ViewOne div {
+  padding: .5%;
+}
+
+.ViewOne button {
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.viewOneButtons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+}
+
+.resultsData {
+  margin-left: 2%;
+}
+
+.link {
+  margin-left: 2%;
+  text-decoration: none;
+}
+
+
+.ViewOne input {
+  width: 100%;
+}
+
+
+.notes {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.submitButtonEdit{
+  width: 20%;
+  height: 35%;
+  font-size: 100%;
+  border-radius: 3px;
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+}
+/********************************************** Edit Job Page *************************************/
+
+
+
 /********************************************** Create Page *************************************/
 
-
+/*
 .resultBox {
   width: 75%;
   display: flex;
@@ -353,7 +432,7 @@ h3 {
 
 .results {
   flex-direction: column;
-}
+}*/
 /*.username {
   font-size: 24px;
   justify-content: center;
