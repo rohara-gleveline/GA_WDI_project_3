@@ -63,7 +63,6 @@ class ViewSavedData extends Component {
   // <img className='companyLogo' href={e.company_logo}/
 
   onClickDelete(id) {
-    console.log('clicked');
     axios.delete(`http://localhost:8080/gitHired/${id}`)
       .then(res => {
         this.getSavedData();
@@ -76,7 +75,6 @@ class ViewSavedData extends Component {
 
     const renderTable = [];
     this.state.data.map( e => {
-      console.log('e',e);
       renderTable.push(
         <tr className={e.id}>
       		<td>{e.company}</td>
@@ -115,8 +113,9 @@ class ViewSavedData extends Component {
 
           <Route exact path="/ViewOne/:id"
                  render= { () =>
-                 <ViewOne user={this.props.user} />
-                }
+                 <ViewOne
+                   user={this.props.user} />
+               }
                />
 
         </div>

@@ -98,9 +98,6 @@ class App extends Component {
                  render= {this.renderView}
                  />
 
-
-                
-
          <Route exact path="/ViewOne/:id"
                 component= {ViewOne}
                 />
