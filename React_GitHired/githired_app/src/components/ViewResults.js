@@ -158,7 +158,6 @@ class ViewResults extends Component {
   render() {
     return (
       <div className="viewResults">
-        <div onClick={this.props.goBack}>Go back on saved data</div>
         {this.renderResults()}
         {this.renderAverageSalary()}
       </div>

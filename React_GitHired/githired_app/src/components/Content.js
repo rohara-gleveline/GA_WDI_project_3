@@ -50,9 +50,7 @@ class Content extends Component {
                 submitResults={this.state.submitResults}
                 goBack={this.goBackToSavedData} />
           }
-
-          <Link to="/create" className="linkResults">Create New Job</Link>
-
+          
       </div>
     )
   }

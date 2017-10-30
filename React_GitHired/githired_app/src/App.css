@@ -125,33 +125,43 @@ section {
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   color: white;
   background: #3F667F;
-  padding-left: 2%;
-  padding-bottom: 1%;
+  /*position: fixed;*/
 }
 
 .appName {
   font-size: 36px;
   font-family: 'Inconsolata', monospace;
+  padding-left: 2%;
 }
 
 .username {
   font-size: 28px;
+  padding-left: 2%;
+  padding-bottom: 2%;
   /*border-bottom: 2px solid white;*/
 }
 
-/*not working*/
-.logout-button {
-  position: absolute;
-  top: 0;
-  right: 0;
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 2px solid white;
   padding-top: 1%;
-  padding-right: 1%;
+  padding-bottom: 1%;
+  background: #617B7F;
 }
 
-.logout-button:hover {
+.navLink {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.navLink:hover {
   cursor: pointer;
 }
 
@@ -235,8 +245,8 @@ section {
 
 
 img {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 table {
@@ -249,7 +259,10 @@ table {
 
 tr, th, td {
     text-align: center;
-    border-bottom: 3px solid white;
+}
+
+.saveRow {
+  border-bottom: 4px solid white;
 }
 
 .delete:hover {
@@ -261,13 +274,14 @@ tr, th, td {
 
 th[role=columnheader]:not(.no-sort) {
   cursor: pointer;
+  border-bottom: 4px solid white;
 }
 
 th[role=columnheader]:not(.no-sort):after {
   content: '';
   margin-top: .8em;
   float: right;
-  border-width: 0 .1em .1em;
+  border-width: 0 .5em .5em;
   border-style: solid;
   border-color: #404040 transparent;
   visibility: hidden;
@@ -280,7 +294,7 @@ th[role=columnheader]:not(.no-sort):after {
 
 th[aria-sort=ascending]:not(.no-sort):after {
   border-bottom: none;
-  border-width: .1em .1em 0;
+  border-width: .5em .5em 0;
 }
 
 th[aria-sort]:not(.no-sort):after {
@@ -294,7 +308,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 th {
-  background: #D7DDE5;
+  background: #3F667F;
+  color: white;
   font-size: 1em;
   padding: .8em;
 }
