@@ -51,7 +51,7 @@ class Content extends Component {
                 goBack={this.goBackToSavedData} />
           }
 
-          <Link to="/create">Create New Job</Link>
+          <Link to="/create" className="linkResults">Create New Job</Link>
 
       </div>
     )

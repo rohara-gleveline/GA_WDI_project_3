@@ -83,7 +83,8 @@ class ViewOne extends Component {
 
 					{this.state.mode === 'view' &&
 						<div className="ViewOne">
-							<div>{this.state.jobData.searched_on}</div>
+							<div className="resultsHead">{this.state.jobData.searched_on}</div>
+							<div className="resultsData">
 							<div>{this.state.jobData.job_id}</div>
 							<div>{this.state.jobData.created_at}</div>
 							<div>{this.state.jobData.title}</div>
@@ -104,15 +105,18 @@ class ViewOne extends Component {
 							<div>{this.state.jobData.applied}</div>
 							<div>{this.state.jobData.applied_on}</div>
 							<div>{this.state.jobData.notes}</div>
+							</div>
 
-							<Link to="/">Your Saved Jobs</Link>
-							<button onClick={this.onClickEdit}>Edit Job</button>
-							<button onClick={this.onClickDelete}>Delete Job</button>
+							<Link to="/" className="link">Your Saved Jobs</Link>
+							<div className="viewOneButtons">
+							<button className="submitButton" onClick={this.onClickEdit}>Edit Job</button>
+							<button className="submitButton" onClick={this.onClickDelete}>Delete Job</button>
+							</div>
 						</div>
 					}
 
 					{this.state.mode === 'edit' &&
-						<div className="EditOne">
+						<div className="ViewOne">
 
 							<div>
 							<h2>Job Information</h2>
@@ -237,15 +241,15 @@ class ViewOne extends Component {
 
 
 							<br/>
-							<div>
+							<div className="notes">
 								<label htmlFor ="notesedit">Notes:</label>
 								<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes||''} cols="40" rows="8" /> <br/>
 							</div>
 
 
 
-							<Link to="/">Your Saved Jobs</Link>
-							<button onClick={this.onClickSave}>Save Changes</button>
+							<Link to="/" className="link">Your Saved Jobs</Link>
+							<button className="submitButtonEdit" onClick={this.onClickSave}>Save Changes</button>
 						</div>
 					}
 
