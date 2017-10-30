@@ -91,32 +91,33 @@ class CreateJob extends Component {
 				{this.state.isSubmitted === false &&
 
 					<form className="createForm" onSubmit={this.onSubmit}>
+
 					<div className="jobInformation">
 						<h3>Job Information</h3>
 
 						<div className="jobinfo">
 							<label htmlFor="companynew">Company:</label>
-							<input id="companynew" type="text" name="company" value={this.state.company} onChange={this.onChange}/>
+							<input className="createInput" id="companynew" type="text" name="company" value={this.state.company} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="titlenew">Job Title:</label>
-							<input id="titlenew" type="text" name="title" value={this.state.title} onChange={this.onChange}/>
+							<input className="createInput" id="titlenew" type="text" name="title" value={this.state.title} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="titleidnew">Job ID:</label>
-							<input id="titleidnew" type="text" name="job_id" value={this.state.job_id} onChange={this.onChange}/>
+							<input className="createInput" id="titleidnew" type="text" name="job_id" value={this.state.job_id} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="locationnew">Location:</label>
-							<input id="locationnew" type="text" name="location" value={this.state.location} onChange={this.onChange}/>
+							<input className="createInput" id="locationnew" type="text" name="location" value={this.state.location} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="typenew">Type of contract:</label>
-								<select id='typesearch' name='type' value={this.state.type} onChange={this.onChange}>
+								<select className="createSelect" id='typesearch' name='type' value={this.state.type} onChange={this.onChange}>
 									<option defaultValue='true'>Full Time</option>
 									<option value='false'>Full Time and Part Time</option>
 								</select>
@@ -124,85 +125,89 @@ class CreateJob extends Component {
 
 						<div>
 							<label htmlFor="descriptionnew">Description:</label>
-							<input id="descriptionnew" type="text" name="description" value={this.state.description} onChange={this.onChange}/>
+							<input className="createInput" id="descriptionnew" type="text" name="description" value={this.state.description} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="linkjobnew">Link to Jobs Posting:</label>
-							<input id="linkjobnew" type="text" name="url" value={this.state.url} onChange={this.onChange}/>
+							<input className="createInput" id="linkjobnew" type="text" name="url" value={this.state.url} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="datepostnew">Date of job posting:</label>
-							<input id="datepostnew" type="date" name="created_at" value={this.state.created_at} onChange={this.onChange}/>
+							<input className="createInput" id="datepostnew" type="date" name="created_at" value={this.state.created_at} onChange={this.onChange}/>
+						</div>
 						</div>
 
-						<div>
+						<div className="jobsContinued">
+						<div >
 							<label htmlFor="howtoapplynew">Link to Application:</label>
-							<input id="howtoapplynew" type="text" name="how_to_apply" value={this.state.how_to_apply} onChange={this.onChange}/>
+							<input className="createInput" id="howtoapplynew" type="text" name="how_to_apply" value={this.state.how_to_apply} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="companyurlnew">Company URL:</label>
-							<input id="companyurlnew" type="text" name="company_url" value={this.state.company_url} onChange={this.onChange}/>
+							<input className="createInput" id="companyurlnew" type="text" name="company_url" value={this.state.company_url} onChange={this.onChange}/>
 						</div>
 
 						<div>
 
 
 							<label htmlFor="companylogonew">Company Logo:</label>
-							<input id="companylogonew" type="text" name="company_logo" value={this.state.company_logo} onChange={this.onChange}/>
+							<input className="createInput" id="companylogonew" type="text" name="company_logo" value={this.state.company_logo} onChange={this.onChange}/>
 
 						</div>
 
 						<div>
 							<label htmlFor="searchedonnew">Searched On:</label>
-							<input id="searchedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
+							<input className="createInput" id="searchedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
 						</div>
 
 						<div>
 
 							<label htmlFor="appliedonnew">Applied On:</label>
-							<input id="appliedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
+							<input className="createInput" id="appliedonnew" type="date" name="searched_on" value={this.state.searched_on} onChange={this.onChange}/>
 
 						</div>
 
 						<div>
 							<label htmlFor="appliednew">Applied:</label>
-							<select id='appliednew' name='applied' value={this.state.applied} onChange={this.onChangeContacted}>
+							<select className="createSelect" id='appliednew' name='applied' value={this.state.applied} onChange={this.onChangeContacted}>
 								<option defaultValue='0'>No</option>
 								<option value='1'>Yes</option>
 							</select>
 						</div>
 						</div>
+
+
 						<div className="contactInformation">
 						<h3>Contact Information</h3>
 
 						<div className = "contact">
 							<label htmlFor="namenew">Contact Name:</label>
-							<input id="namenew" type="text" name="contact_name" value={this.state.contact_name} onChange={this.onChange}/>
+							<input className="createInput" id="namenew" type="text" name="contact_name" value={this.state.contact_name} onChange={this.onChange}/>
 						</div>
 
 						<div>
 
 							<label htmlFor="phonenumbernew">Contact Phone Number:</label>
-							<input id="phonenumbernew" type="text" name="contact_number" value={this.state.contact_number} onChange={this.onChange}/>
+							<input className="createInput" id="phonenumbernew" type="text" name="contact_number" value={this.state.contact_number} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="emailnew">Contact Email:</label>
-							<input id="emailnew" type="text" name="contact_email" value={this.state.contact_email} onChange={this.onChange}/>
+							<input className="createInput" id="emailnew" type="text" name="contact_email" value={this.state.contact_email} onChange={this.onChange}/>
 
 						</div>
 
 						<div>
 							<label htmlFor="rolecontactnew">Contact Role:</label>
-							<input id="rolecontactnew" type="text" name="contact_role" value={this.state.contact_role} onChange={this.onChange}/>
+							<input className="createInput" id="rolecontactnew" type="text" name="contact_role" value={this.state.contact_role} onChange={this.onChange}/>
 						</div>
 
 						<div>
 							<label htmlFor="contactednew">Contacted:</label>
-								<select id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChangeContacted}>
+								<select className="createSelect" id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChangeContacted}>
 									<option defaultValue='0'>No</option>
 									<option value='1'>Yes</option>
 								</select>
@@ -210,16 +215,16 @@ class CreateJob extends Component {
 
 						<div>
 							<label htmlFor="contactedonnew">Contacted On:</label>
-							<input id="contactedonnew" type="date" name="contacted_on" value={this.state.contacted_on} onChange={this.onChange}/>
+							<input className="createInput" id="contactedonnew" type="date" name="contacted_on" value={this.state.contacted_on} onChange={this.onChange}/>
 						</div>
 
-						<div>
+						<div className="notesCreate">
 							<label htmlFor="notesnew">Notes:</label>
-							<input id="notesnew" type="text" name="notes" value={this.state.notes} onChange={this.onChange}/>
+							<textarea id="notesnew" type="text" name="notes" value={this.state.notes} onChange={this.onChange} cols="40" rows="8" />
 						</div>
 
 						<div>
-							<input className="form-button" type="submit" value="Submit"/>
+							<input className="submitButtonCreate" type="submit" value="Submit"/>
 						</div>
 						</div>
 					</form>

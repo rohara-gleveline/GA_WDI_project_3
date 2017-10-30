@@ -48,12 +48,12 @@ class SearchForm extends Component {
 
 							<div>
 							<label htmlFor='titlesearch'>Job Title:</label>
-							<input className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
+							<input placeholder="Title" className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
 							</div>
 
 							<div>
 							<label htmlFor='locationsearch'>City:</label>
-							<input className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
+							<input placeholder="Location" className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
 							</div>
 
 							<div>
