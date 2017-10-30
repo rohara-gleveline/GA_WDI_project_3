@@ -37,6 +37,9 @@ class Login extends Component {
 
   render(){
     return(
+      <div>
+      <div className='loginBackground'>
+      </div>
       <section>
       <div className="auth-form">
         <div className='loginHead'><h1>GitHired</h1></div>
@@ -55,12 +58,13 @@ class Login extends Component {
           />
 
           <div className="form-buttons">
-            <button type="submit" className="form-button">Log In</button>
-            <button onClick={this.props.toggleMode} className="form-button">Sign Up</button>
+            <button type="submit" className="login-form-button">Log In</button>
+            <button onClick={this.props.toggleMode} className="login-form-button">Sign Up</button>
           </div>
         </form>
       </div>
       </section>
+      </div>
     )
   }
 }
