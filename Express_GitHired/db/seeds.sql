@@ -38,7 +38,7 @@ CREATE TABLE jobs_data (
 );
 
 
--- inputs to be added? 
+-- inputs to be added?
 -- using moment to save last time user changed job info
 -- contact name
 -- contact email

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 
 // BrowserRouter, Route, Link, Switch
@@ -169,7 +169,7 @@ class CreateJob extends Component {
 
 						<div>
 							<label htmlFor="appliednew">Applied:</label>
-							<select id='appliednew' name='applied' value={this.state.applied} onChange={this.onChangeContacted}>
+							<select id='appliednew' name='applied' value={this.state.applied} onChange={this.onChange}>
 								<option defaultValue='0'>No</option>
 								<option value='1'>Yes</option>
 							</select>
@@ -202,7 +202,7 @@ class CreateJob extends Component {
 
 						<div>
 							<label htmlFor="contactednew">Contacted:</label>
-								<select id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChangeContacted}>
+								<select id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChange}>
 									<option defaultValue='0'>No</option>
 									<option value='1'>Yes</option>
 								</select>
@@ -221,6 +221,11 @@ class CreateJob extends Component {
 						<div>
 							<input className="form-button" type="submit" value="Submit"/>
 						</div>
+
+						<div>
+							<Link to="/">Go back to your saved jobs</Link>
+						</div>
+
 						</div>
 					</form>
 				}

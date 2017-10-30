@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 
-// BrowserRouter, Route,  Redirect - removed - react warnings 
+// BrowserRouter, Route,  Redirect - removed - react warnings
 
 import axios from 'axios';
 
@@ -19,7 +19,6 @@ class ViewOne extends Component {
 			this.onClickDelete = this.onClickDelete.bind(this);
 			this.onClickSave = this.onClickSave.bind(this);
 			this.onChange = this.onChange.bind(this);
-			this.redirectToViewAll = this.redirectToViewAll.bind(this);
 	}
 
 	componentDidMount() {
@@ -44,10 +43,6 @@ class ViewOne extends Component {
 					redirect: true
 				})
       })
-	}
-
-	redirectToViewAll() {
-
 	}
 
 	onClickSave(e){
@@ -263,10 +258,12 @@ class ViewOne extends Component {
 									<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes||''} cols="40" rows="8" /> <br/>
 								</div>
 
-
-
-								<Link to="/" className="link">Your Saved Jobs</Link>
 								<button className="submitButtonEdit" onClick={this.onClickSave}>Save Changes</button>
+
+								<div>
+									<Link to="/">Go back to your saved jobs</Link>
+								</div>
+
 							</div>
 						}
 
