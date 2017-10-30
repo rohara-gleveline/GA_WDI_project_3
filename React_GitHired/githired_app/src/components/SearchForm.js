@@ -10,9 +10,8 @@ class SearchForm extends Component {
     this.state = {
       jobDescription: '',
       full_time: 'true',
-      jobLocation: '',
-      country: 'us'
-  }
+      jobLocation: ''
+      }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -45,9 +44,7 @@ class SearchForm extends Component {
 
 					<form className='searchInputs' onSubmit={this.onSubmit}>
 
-							<div>
-							<h1>Search:</h1>
-							</div>
+							<div className="searchTitle">Search:</div>
 
 							<div>
 							<label htmlFor='titlesearch'>Job Title:</label>
@@ -88,7 +85,6 @@ class SearchForm extends Component {
 								<option value='za'>South Africa</option>
 							</select>
 							</div>*/}
-
 							<div>
 							<input className="submitButton" type='submit' value='Submit' />
 							</div>	
