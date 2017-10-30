@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+// import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
-import $ from "jquery";
+// import $ from "jquery";
 
 var ReactDOMServer = require('react-dom/server');
 var HtmlToReactParser = require('html-to-react').Parser;
@@ -85,7 +85,7 @@ class ViewResults extends Component {
       var cutEndIndex = startCut.indexOf('"');
       var endCut = startCut.substring(0, cutEndIndex);
       return(
-        <div><a href={endCut} target='_blank'><img src="./images/seemore.png"/></a></div>
+        <div><a href={endCut} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></div>
       );
   }
 
@@ -106,24 +106,40 @@ class ViewResults extends Component {
     if (this.state.results.JobsData !==  undefined) {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
+         
           <div className='resultBox' key={e.job_id}>
-            <div>Job title: {e.title}</div>
-            <div>Type of contract: {e.type}</div>
-            <div>{e.company}</div>
-            <div><img href={e.company_logo} alt="No Logo" /></div>
-            <div><a src={e.company_url}>Website</a></div>
+            <div className='resultsHead'>
+              <div>{e.title}, {e.company}, {e.type}</div>
+            </div>
+            <div class='resultsTable'>
+               <thead>
+                  <tr>  
+                    <th>Location</th>
+                    <th>Posted On</th>
+                    <th>Company Site</th>
+                    <th>Job Posting</th>
+                    <th>Apply</th>
+                    <th>Save</th>
+                  </tr>
+              </thead>
+               <tr>
+                <td>{e.location}</td>
+                <td>{e.created_at}</td>
+                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td><a href={e.url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td>{this.haveLink(e.how_to_apply)}</td>
+                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
+              </tr>
+
             {this.state.mode === "shortDesc" &&
               <div onClick={this.toogleDesc} className='shortDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
             }
             {this.state.mode === "longDesc" &&
               <div onClick={this.toogleDesc} className='longDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
             }
-            <div>Job posted on {e.created_at}</div>
-            {this.haveLink(e.how_to_apply)}
-            <div>Location: {e.location}</div>
-            <div><a src={e.url}>See more</a></div>
-            <div>Job id: {e.job_id}</div>
-            <div onClick={() => {this.saveJob(e)}}>Save this job</div>
+
+          </div>
+
           </div>
         )
       })
