@@ -189,6 +189,11 @@ class ViewOne extends Component {
 								</div>
 
 
+							<div className="notes">
+								<label htmlFor="descriptionedit">Description: </label>
+								<textarea id="descriptionedit" name='description' onChange={this.onChange} value={this.state.jobData.description||''} cols="40" rows="4" />
+							</div>
+
 								<div>
 									<label htmlFor="companyurledit">Company URL:</label>
 									<input id="companyurledit" name='company_url' onChange={this.onChange} value={this.state.jobData.company_url||''} type='text' />
