@@ -426,11 +426,12 @@ td {
 
 }
 
-@media screen (min-width: 350px){
 
-
+<<<<<<< HEAD
+=======
 }
 
+>>>>>>> 05871bfb05d3dcd4962a929abbefa5ee10517aae
 /********************************************** Create Page *************************************/
 
 .createForm {
@@ -439,6 +440,12 @@ td {
   justify-content: center;
   align-items: flex-start;
   padding-top: 3%;
+  background: #EAEFF6;
+
+}
+
+.createForm div {
+  padding: 2%;
 }
 
 .jobInformation {
@@ -450,13 +457,22 @@ td {
   display: flex;
   flex-direction: column;
   padding-left: 50px;
+  height: 100%;
 }
+
+.jobsContinued {
+  margin-top:  7%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  height: 100%;
+}
+
 .makejob {
-  background: #EAEFF6;
   height: 100vh;
 }
 
-.makejob label {
+label {
   font-size: 1em;
 }
 
@@ -464,6 +480,39 @@ h3 {
   font-size: 2em;
 }
 
+.createInput {
+  width: 100%;
+  height: 2vh;
+  margin: 1em;
+  border: none;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.createSelect {
+  width: 100%;
+  height: 3vh;
+  margin-top: 2%;
+  margin-left: 5%;
+} 
+
+.submitButtonCreate {
+  margin-left: 5%; 
+  width: 100%;
+  height: 35%;
+  font-size: 100%;
+  border-radius: 3px;
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+}
+
+.notesCreate {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-left: 5%;
+}
 
 /********************************************** View One Page *************************************/
 
@@ -537,6 +586,8 @@ h3 {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
   border: solid 1px #979797;
 }
+
+
 /********************************************** Edit Job Page *************************************/
 
 
