@@ -75,7 +75,6 @@ class ViewSavedData extends Component {
 
     const renderTable = [];
     this.state.data.map( e => {
-      console.log('e',e);
       renderTable.push(
         <tr className={e.id}>
       		<td>{e.company}</td>

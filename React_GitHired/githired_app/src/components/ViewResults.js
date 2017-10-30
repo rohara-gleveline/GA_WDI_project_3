@@ -11,13 +11,15 @@ class ViewResults extends Component {
 
     this.state = {
       results: {},
-      jobId: ''
+      jobId: '',
+      mode: 'shortDesc'
     }
 
     this.renderResults = this.renderResults.bind(this);
     this.renderAverageSalary = this.renderAverageSalary.bind(this);
     this.haveLink = this.haveLink.bind(this);
     this.haveDescription = this.haveDescription.bind(this);
+    this.toogleDesc = this.toogleDesc.bind(this);
   }
 
   componentDidMount() {
@@ -99,6 +101,18 @@ class ViewResults extends Component {
     return newDesc;
   }
 
+  toogleDesc() {
+    if (this.state.mode === 'shortDesc') {
+      this.setState({
+        mode: 'longDesc'
+      })
+    } else {
+      this.setState({
+        mode: 'shortDesc'
+      })
+    }
+  }
+
   renderResults() {
     const arrayResults = [];
     if (this.state.results.JobsData !==  undefined) {
@@ -110,7 +124,19 @@ class ViewResults extends Component {
             <div>{e.company}</div>
             <div><img href={e.company_logo} alt="No Logo" /></div>
             <div><a src={e.company_url}>Website</a></div>
-            {this.haveDescription(e.description)}
+            {this.state.mode === "shortDesc" &&
+              <div onClick={this.toogleDesc} className='shortDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+            }
+            {this.state.mode === "longDesc" &&
+              <div onClick={this.toogleDesc} className='longDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+            }
+
+            {this.state.mode === "shortDesc" &&
+              <div onClick={this.toogleDesc} className='shortDescription'>{this.haveDescription(e.description)}</div>
+            }
+            {this.state.mode === "longDesc" &&
+              <div onClick={this.toogleDesc} className='longDescription'>{this.haveDescription(e.description)}</div>
+            }
             <div>Job posted on {e.created_at}</div>
             {this.haveLink(e.how_to_apply)}
             <div>Location: {e.location}</div>
@@ -123,6 +149,8 @@ class ViewResults extends Component {
     }
     return arrayResults;
   }
+
+
 
   render() {
     console.log(this.state.results);
