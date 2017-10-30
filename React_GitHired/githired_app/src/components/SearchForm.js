@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
+// import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom'; -- react warnings
 import axios from 'axios';
 
 class SearchForm extends Component {

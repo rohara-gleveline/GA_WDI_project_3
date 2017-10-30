@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
+
+// BrowserRouter, Route, Link, Switch
 
 class CreateJob extends Component {
 
@@ -61,13 +63,13 @@ class CreateJob extends Component {
 				company_url: this.state.company_url,
 				company_logo: this.state.company_logo,
 				url: this.state.url,
-				contacted: parseInt(this.state.contacted),
+				contacted: parseInt(this.state.contacted, 10),
 				contacted_on: this.state.contacted_on,
 				contact_name: this.state.contact_name,
 				contact_email: this.state.contact_email,
 				contact_role: this.state.contact_role,
 				contact_number: this.state.contact_number,
-				applied: parseInt(this.state.applied),
+				applied: parseInt(this.state.applied, 10),
 				applied_on: this.state.applied_on,
 				notes: this.state.notes,
 				date_of_last_edit: new Date()
