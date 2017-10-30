@@ -125,33 +125,43 @@ section {
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   color: white;
   background: #3F667F;
-  padding-left: 2%;
-  padding-bottom: 1%;
+  /*position: fixed;*/
 }
 
 .appName {
   font-size: 36px;
   font-family: 'Inconsolata', monospace;
+  padding-left: 2%;
 }
 
 .username {
   font-size: 28px;
+  padding-left: 2%;
+  padding-bottom: 2%;
   /*border-bottom: 2px solid white;*/
 }
 
-/*not working*/
-.logout-button {
-  position: absolute;
-  top: 0;
-  right: 0;
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 2px solid white;
   padding-top: 1%;
-  padding-right: 1%;
+  padding-bottom: 1%;
+  background: #617B7F;
 }
 
-.logout-button:hover {
+.navLink {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.navLink:hover {
   cursor: pointer;
 }
 
@@ -175,10 +185,21 @@ section {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+}
+
+.searchInputs>div {
+  width: 20%;
+  padding: 1%;
+}
+
+.searchTitle {
+  font-size: 2.5vw;
+  flex: 1;
 }
 
 .searchBar {
+  flex: 2;
   height: 35%;
   width: 100%;
   font-size: 100%;
@@ -189,6 +210,7 @@ section {
 }
 
 .select-values {
+  flex: 1;
   font-size: 100%;
   width: 100%;
   height: 35%;
@@ -199,7 +221,7 @@ section {
 }
 
 .submitButton {
-  width: 100%;
+  width: 90%;
   height: 35%;
   font-size: 100%;
   border-radius: 3px;
@@ -214,6 +236,7 @@ section {
   display: flex;
   justify-content: center;
   margin-bottom: 2%;
+  width: 100%;
 }
 
 #myTable {
@@ -222,8 +245,8 @@ section {
 
 
 img {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 table {
@@ -236,7 +259,10 @@ table {
 
 tr, th, td {
     text-align: center;
-    border-bottom: 3px solid white;
+}
+
+.saveRow {
+  border-bottom: 4px solid white;
 }
 
 .delete:hover {
@@ -248,13 +274,14 @@ tr, th, td {
 
 th[role=columnheader]:not(.no-sort) {
   cursor: pointer;
+  border-bottom: 4px solid white;
 }
 
 th[role=columnheader]:not(.no-sort):after {
   content: '';
-  margin-top: 7px;
+  margin-top: .8em;
   float: right;
-  border-width: 0 4px 4px;
+  border-width: 0 .5em .5em;
   border-style: solid;
   border-color: #404040 transparent;
   visibility: hidden;
@@ -267,7 +294,7 @@ th[role=columnheader]:not(.no-sort):after {
 
 th[aria-sort=ascending]:not(.no-sort):after {
   border-bottom: none;
-  border-width: 4px 4px 0;
+  border-width: .5em .5em 0;
 }
 
 th[aria-sort]:not(.no-sort):after {
@@ -281,14 +308,15 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 th {
-  background: #D7DDE5;
+  background: #3F667F;
+  color: white;
   font-size: 1em;
-  padding: 10px;
+  padding: .8em;
 }
 
 td {
   background: #EAEFF6;
-  padding: 5px;
+  padding: .5em;
 
 }
 
@@ -387,11 +415,20 @@ td {
 .shortDescription {
   max-height: 140px;
   overflow: hidden;
+  cursor: pointer;
+  text-overflow: ellipsis;
 }
 
 .longDescription {
   height: 100%;
   overflow: auto;
+  cursor: pointer;
+
+}
+
+@media screen (min-width: 350px){
+
+
 }
 
 /********************************************** Create Page *************************************/
@@ -487,6 +524,7 @@ h3 {
 .notes {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 

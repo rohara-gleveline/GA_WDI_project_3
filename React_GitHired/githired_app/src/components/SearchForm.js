@@ -67,7 +67,7 @@ class SearchForm extends Component {
 							</select>
 							</div>
 
-							<div>
+							{/*<div>
 							<label htmlFor='countrysearch'>Country:</label>
 							<select className='select-values' id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
 								<option defaultValue='us'>United States</option>
@@ -87,7 +87,7 @@ class SearchForm extends Component {
 								<option value='sg'>Singapore</option>
 								<option value='za'>South Africa</option>
 							</select>
-							</div>
+							</div>*/}
 
 							<div>
 							<input className="submitButton" type='submit' value='Submit' />
