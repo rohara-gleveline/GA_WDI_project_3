@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
+import $ from "jquery";
+
 var ReactDOMServer = require('react-dom/server');
 var HtmlToReactParser = require('html-to-react').Parser;
 
@@ -18,7 +20,6 @@ class ViewResults extends Component {
     this.renderResults = this.renderResults.bind(this);
     this.renderAverageSalary = this.renderAverageSalary.bind(this);
     this.haveLink = this.haveLink.bind(this);
-    this.haveDescription = this.haveDescription.bind(this);
     this.toogleDesc = this.toogleDesc.bind(this);
   }
 
@@ -44,7 +45,7 @@ class ViewResults extends Component {
         title: e.title,
         location: e.location,
         type: e.type,
-        description: linkHowToApply(e.description),
+        description: e.description,
         how_to_apply: linkHowToApply(e.how_to_apply),
         company: e.company,
         company_url: e.company_url,
@@ -52,7 +53,7 @@ class ViewResults extends Component {
         url: e.url
       }).then(res => {
         console.log(res);
-        alert('This job has been added to your list.')
+        this.props.goBack();
       })
   }
 
@@ -84,21 +85,8 @@ class ViewResults extends Component {
       var cutEndIndex = startCut.indexOf('"');
       var endCut = startCut.substring(0, cutEndIndex);
       return(
-        <div><a href={endCut} target='_blank'>Apply</a></div>
+        <div><a href={endCut} target='_blank'><img src="./images/seemore.png"/></a></div>
       );
-  }
-
-  haveDescription(string) {
-    const newDesc = []
-    const htmlToReactParser = new HtmlToReactParser();
-    const reactElement = htmlToReactParser.parse(string);
-    const reactHtml = ReactDOMServer.renderToStaticMarkup(reactElement);
-    reactElement.map(e => {
-      if (e.props !== undefined) {
-        newDesc.push(e.props.children)
-      }
-    })
-    return newDesc;
   }
 
   toogleDesc() {
@@ -130,13 +118,6 @@ class ViewResults extends Component {
             {this.state.mode === "longDesc" &&
               <div onClick={this.toogleDesc} className='longDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
             }
-
-            {this.state.mode === "shortDesc" &&
-              <div onClick={this.toogleDesc} className='shortDescription'>{this.haveDescription(e.description)}</div>
-            }
-            {this.state.mode === "longDesc" &&
-              <div onClick={this.toogleDesc} className='longDescription'>{this.haveDescription(e.description)}</div>
-            }
             <div>Job posted on {e.created_at}</div>
             {this.haveLink(e.how_to_apply)}
             <div>Location: {e.location}</div>
@@ -150,12 +131,9 @@ class ViewResults extends Component {
     return arrayResults;
   }
 
-
-
   render() {
-    console.log(this.state.results);
     return (
-      <div className="ViewResults">
+      <div className="viewResults">
         <div onClick={this.props.goBack}>Go back on saved data</div>
         {this.renderResults()}
         {this.renderAverageSalary()}

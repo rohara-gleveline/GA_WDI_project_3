@@ -3,14 +3,71 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/********************************************** Login Page *************************************/
+/********************************************** Login/SignUp Page *************************************/
 
 section {
   background: url('./hallway.jpg');
   height: 100vh;
-  background-repeat:no-repeat; 
-  background-position:center; 
+  background-repeat:no-repeat;
+  background-position:center;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*filter: blur(3px);*/
+}
+
+.auth-form {
+  filter: none;
+  padding-top: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40%;
+  width: 25%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+  /*-webkit-filter: blur(0px);
+  filter: blur(0px);*/
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 15%;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  justify-content: space-around;
+}
+
+.signUp-form-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-button {
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+}
+
+.loginHead {
+  font-family: 'Inconsolata', monospace;
 }
 
 /********************************************** Header *************************************/
@@ -51,7 +108,7 @@ section {
 
 .searchView{
   margin-top: 2%;
-  margin-bottom: 2%; 
+  margin-bottom: 2%;
   display: flex;
   justify-content: center;
 }
@@ -184,13 +241,91 @@ td {
 
 }
 
-/********************************************** Kiara's CSS *************************************/
+/********************************************** Search Results *************************************/
 
-/*.createForm {
+.viewResults {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resultBox {
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 10%;
+  width: 55%;
+  height: 20%;
+  margin-bottom: 2%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+}
+
+.jobDesc {
+  display: none;
+}
+
+.jobDescHead {
+  padding-bottom: 2%;
+}
+
+/*.jobDesc {
+  height: 20%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}*/
+
+.resultsHead {
+  padding-bottom: 1%;
+  box-shadow: inset 0 0px 0 white, inset 0 -5px 0 black;
+  display: flex;
+  justify-content: space-around;
+  margin: 2%;
+  font-size: 22px;
+}
+
+.resultsTable {
+  padding-bottom: 2%;
+}
+
+.resultsTable>img {
+  height: 4em;
+  width: 4em;
+}
+
+.saveJob:hover {
+  cursor: pointer;
+}
+
+
+.linkResults {
+  margin-left: 7%;
+  text-decoration: none;
+}
+
+.shortDescription {
+  max-height: 30px;
+  overflow: hidden;
+}
+
+.longDescription {
+  height: 100%;
+  overflow: auto;
+}
+/********************************************** Create Page *************************************/
+
+.createForm {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
-  padding-top: 1%;
+  padding-top: 3%;
 }
 
 .jobInformation {
@@ -205,20 +340,115 @@ td {
 }
 .makejob {
   background: #EAEFF6;
+  height: 100vh;
 }
 
 .makejob label {
   font-size: 1em;
 }
 
-.username {
+h3 {
+  font-size: 2em;
+}
+
+
+/********************************************** View One Page *************************************/
+
+
+.oneJobView {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ViewOne {
+  padding: 1%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  border-bottom: 10%;
+  width: 55%;
+  height: 20%;
+  margin-bottom: 2%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+}
+
+.ViewOne div {
+  padding: .5%;
+}
+
+.ViewOne button {
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.viewOneButtons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+}
+
+.resultsData {
+  margin-left: 2%;
+}
+
+.link {
+  margin-left: 2%;
+  text-decoration: none;
+}
+
+
+.ViewOne input {
+  width: 100%;
+}
+
+
+.notes {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.submitButtonEdit{
+  width: 20%;
+  height: 35%;
+  font-size: 100%;
+  border-radius: 3px;
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+}
+/********************************************** Edit Job Page *************************************/
+
+
+
+/********************************************** Create Page *************************************/
+
+/*
+.resultBox {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.results {
+  flex-direction: column;
+}*/
+/*.username {
   font-size: 24px;
   justify-content: center;
 }
 
 .viewAll {
   background: #457B9D;
-  margin: 0; 
+  margin: 0;
   height: 100vh;
 }
 
@@ -226,7 +456,7 @@ h1 {
   font-size: 10em;
   display: inline-block;
   margin-top: .1em;
-  margin-bottom: .2em; 
+  margin-bottom: .2em;
   color: #1C2427;
   text-shadow: 2px 2px #777C7D;
 }
@@ -234,7 +464,7 @@ h1 {
 h2 {
   font-size: 5em;
   display: inline-block;
- margin-bottom: .2em; 
+ margin-bottom: .2em;
  margin-left: 2%;
   color: #1C2427;
   text-shadow: 2px 2px #777C7D;
@@ -260,12 +490,12 @@ h2 {
 .searchBar {
   width: 100%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 
 }
 
 .auth-form {
-  padding-top: 3em;  
+  padding-top: 3em;
   flex-direction: column;
   display: flex;
   justify-content: center;
