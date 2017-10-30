@@ -403,6 +403,7 @@ h3 {
 .notes {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 
