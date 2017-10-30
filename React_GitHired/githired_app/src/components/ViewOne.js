@@ -60,13 +60,13 @@ class ViewOne extends Component {
 			company_url: this.state.jobData.company_url,
 			company_logo: this.state.jobData.company_logo,
 			url: this.state.jobData.url,
-			contacted: parseInt(this.state.jobData.contacted, 10),
+			contacted: this.state.jobData.contacted,
 			contacted_on: this.state.jobData.contacted_on,
 			contact_name: this.state.jobData.contact_name,
 			contact_email: this.state.jobData.contact_email,
 			contact_role: this.state.jobData.contact_role,
 			contact_number: this.state.jobData.contact_number,
-			applied: parseInt(this.state.jobData.applied, 10),
+			applied: this.state.jobData.applied,
 			applied_on: this.state.jobData.applied_on,
 			notes: this.state.jobData.notes,
 			date_of_last_edit: new Date()
@@ -106,7 +106,6 @@ class ViewOne extends Component {
 									<div>How to apply: {this.state.jobData.how_to_apply}</div>
 									<div>Company: {this.state.jobData.company}</div>
 									<div><a href={this.state.jobData.company_url}>Company Website</a></div>
-									<div><img src={this.state.jobData.company_logo}/></div>
 									<div><a href={this.state.jobData.url}>Job posting</a></div>
 									<div>Contacted Y/N: {this.state.jobData.contacted}</div>
 									<div>Date of last contact: {this.state.jobData.contacted_on}</div>
@@ -119,11 +118,12 @@ class ViewOne extends Component {
 									<div>Notes: {this.state.jobData.notes}</div>
 								</div>
 
-								<Link to="/" className="link">Your Saved Jobs</Link>
 								<div className="viewOneButtons">
 								<button className="submitButton" onClick={this.onClickEdit}>Edit Job</button>
 								<button className="submitButton" onClick={() => {this.onClickDelete(this.state.jobData.id)}}>Delete Job</button>
 								</div>
+
+								<div className='lastEdited'>Last edited on {this.state.jobData.date_of_last_edit}</div>
 							</div>
 						}
 
@@ -184,16 +184,15 @@ class ViewOne extends Component {
 								</div>
 
 
+							<div className="notes">
+								<label htmlFor="descriptionedit">Description: </label>
+								<textarea id="descriptionedit" name='description' onChange={this.onChange} value={this.state.jobData.description||''} cols="40" rows="4" />
+							</div>
+
 								<div>
 									<label htmlFor="companyurledit">Company URL:</label>
 									<input id="companyurledit" name='company_url' onChange={this.onChange} value={this.state.jobData.company_url||''} type='text' />
 								</div>
-
-								<div>
-									<label htmlFor= "companylogoedit">Company Logo:</label>
-									<input id="companylogoedit" name='company_logo' onChange={this.onChange} value={this.state.jobData.company_logo||''} type='text' />
-								</div>
-
 
 								<div>
 									<label htmlFor="searchedonedit">Searched On:</label>

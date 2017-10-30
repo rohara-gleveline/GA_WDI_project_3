@@ -10,9 +10,8 @@ class SearchForm extends Component {
     this.state = {
       jobDescription: '',
       full_time: 'true',
-      jobLocation: '',
-      country: 'us'
-  }
+      jobLocation: ''
+      }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -39,35 +38,33 @@ class SearchForm extends Component {
 	render() {
 		return (
 
-			<div className ='searchView'> 
+			<div className ='searchView'>
 
 			<div className='searchForm'>
 
 					<form className='searchInputs' onSubmit={this.onSubmit}>
 
-							<div>
-							<h1>Search:</h1>
+							<div className="searchTitle">Search:</div>
+
+							<div className='divSearchBar'>
+							<div><label htmlFor='titlesearch'>Job Title:</label></div>
+						<div><input placeholder="Title" className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/></div>
 							</div>
 
-							<div>
-							<label htmlFor='titlesearch'>Job Title:</label>
-							<input className='searchBar' type='text' name='jobDescription' value={this.state.jobDescription} onChange={this.onChange}/>
+							<div className='divSearchBar'>
+							<div><label htmlFor='locationsearch'>City:</label></div>
+						<div><input placeholder="Location" className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/></div>
 							</div>
 
-							<div>
-							<label htmlFor='locationsearch'>City:</label>
-							<input className='searchBar' id='locationsearch' type='text' name='jobLocation' value={this.state.jobLocation} onChange={this.onChange}/>
-							</div>
-
-							<div>
-							<label htmlFor='typesearch'>Type:</label>
+							<div className='divSearchBar'>
+							<div><label htmlFor='typesearch'>Type:</label></div>
 							<select className='select-values' name='full_time' value={this.state.full_time} onChange={this.onChange}>
 								<option defaultValue='true'>Full Time</option>
 								<option value='false'>Full Time and Part Time</option>
 							</select>
 							</div>
 
-							<div>
+							{/*<div>
 							<label htmlFor='countrysearch'>Country:</label>
 							<select className='select-values' id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
 								<option defaultValue='us'>United States</option>
@@ -87,11 +84,10 @@ class SearchForm extends Component {
 								<option value='sg'>Singapore</option>
 								<option value='za'>South Africa</option>
 							</select>
+							</div>*/}
+							<div className='divSearchBar'>
+								<div><input className="submitButton" type='submit' value='Submit' /></div>
 							</div>
-
-							<div>
-							<input className="submitButton" type='submit' value='Submit' />
-							</div>	
 
 					</form>
 
