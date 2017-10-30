@@ -26,7 +26,6 @@ class Content extends Component {
     })
   }
 
-
   goBackToSavedData() {
     this.setState({
       mode: 'savedData'

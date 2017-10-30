@@ -13,14 +13,14 @@ class ViewResults extends Component {
 
     this.state = {
       results: {},
-      jobId: ''
+      jobId: '',
+      mode: 'shortDesc'
     }
 
     this.renderResults = this.renderResults.bind(this);
     this.renderAverageSalary = this.renderAverageSalary.bind(this);
     this.haveLink = this.haveLink.bind(this);
-    this.haveDescription = this.haveDescription.bind(this);
-    // this.altImage = this.altImage.bind(this);
+    this.toogleDesc = this.toogleDesc.bind(this);
   }
 
   componentDidMount() {
@@ -28,11 +28,6 @@ class ViewResults extends Component {
       results: this.props.submitResults.data
     })
   }
-
-  // altImage () {
-  //   ('#logo').src = 'https://www.google.com/images/srpr/logo11w.png'
-  // onerror={this.altImage()
-  // }
 
   saveJob(e) {
     function linkHowToApply(e) {
@@ -50,7 +45,7 @@ class ViewResults extends Component {
         title: e.title,
         location: e.location,
         type: e.type,
-        description: linkHowToApply(e.description),
+        description: e.description,
         how_to_apply: linkHowToApply(e.how_to_apply),
         company: e.company,
         company_url: e.company_url,
@@ -94,17 +89,16 @@ class ViewResults extends Component {
       );
   }
 
-  haveDescription(string) {
-    const newDesc = []
-    const htmlToReactParser = new HtmlToReactParser();
-    const reactElement = htmlToReactParser.parse(string);
-    const reactHtml = ReactDOMServer.renderToStaticMarkup(reactElement);
-    reactElement.map(e => {
-      if (e.props !== undefined) {
-        newDesc.push(e.props.children)
-      }
-    })
-    return newDesc;
+  toogleDesc() {
+    if (this.state.mode === 'shortDesc') {
+      this.setState({
+        mode: 'longDesc'
+      })
+    } else {
+      this.setState({
+        mode: 'shortDesc'
+      })
+    }
   }
 
   renderResults() {
@@ -112,14 +106,11 @@ class ViewResults extends Component {
     if (this.state.results.JobsData !==  undefined) {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
-          <div className='resultBox' key={e.id}>
-
-          {/*<div><img href={e.company_logo} alt="No Logo" id='logo'/></div>*/}
-
+         
+          <div className='resultBox' key={e.job_id}>
             <div className='resultsHead'>
               <div>{e.title}, {e.company}, {e.type}</div>
             </div>
-            
             <div class='resultsTable'>
                <thead>
                   <tr>  
@@ -131,22 +122,24 @@ class ViewResults extends Component {
                     <th>Save</th>
                   </tr>
               </thead>
-              <tr>
+               <tr>
                 <td>{e.location}</td>
                 <td>{e.created_at}</td>
-                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></td>
-                <td><a href={e.url} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></td>
+                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td><a href={e.url} target='_blank'><img src="./images/seemore.png"/></a></td>
                 <td>{this.haveLink(e.how_to_apply)}</td>
-                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png" alt='save'/></td>
+                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
               </tr>
-            </div>
 
-            {/*<div>Job id: {e.job_id}</div>*/}
-            <div className='jobDesc' key={e.job_id}>
-              <div className='jobDescHead'>Job description:</div>
-               {this.haveDescription(e.description)}
-            </div>
-      
+            {this.state.mode === "shortDesc" &&
+              <div onClick={this.toogleDesc} className='shortDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+            }
+            {this.state.mode === "longDesc" &&
+              <div onClick={this.toogleDesc} className='longDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
+            }
+
+          </div>
+
           </div>
         )
       })
@@ -155,7 +148,6 @@ class ViewResults extends Component {
   }
 
   render() {
-    console.log(this.state.results);
     return (
       <div className="viewResults">
         <div onClick={this.props.goBack}>Go back on saved data</div>
