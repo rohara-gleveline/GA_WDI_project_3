@@ -52,8 +52,9 @@ class ViewSavedData extends Component {
           <th>Title</th>
           <th>Location</th>
           <th>Type</th>
+          <th>Company Site</th>
+          <th>Job Posting</th>
           <th>Apply</th>
-          <th>View Job Posting</th>
           <th>View More</th>
           <th>Delete</th>
         </tr>
@@ -67,14 +68,15 @@ class ViewSavedData extends Component {
     this.state.data.map( e => {
       renderTable.push(
         <tr className={e.id}>
-      		<td>{e.company}</td>
-      		<td>{e.title}</td>
-      		<td>{e.location}</td>
-      		<td>{e.type}</td>
-      		<td><a href={e.url} target='_blank'>Job Link</a></td>
-          <td><a href={e.github_jobs_url}><img src="./images/seepage.png" alt='see more'/></a></td>
-          <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png" alt='see more'/></Link></td>
-      		<td className="delete" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
+      		<td className='saveRow'>{e.company}</td>
+      		<td className='saveRow'>{e.title}</td>
+      		<td className='saveRow'>{e.location}</td>
+      		<td className='saveRow'>{e.type}</td>
+      		<td className='saveRow'><a href={e.company_url} target='_blank'><img src="./images/seemore.png"/></a></td>
+          <td className='saveRow'><a href={e.url} target='_blank'><img src="./images/seemore.png"/></a></td>
+          <td className='saveRow'><a href={e.how_to_apply} target='_blank'><img src="./images/seemore.png"/></a></td>
+          <td className='saveRow seeMoreButton'> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seepage.png" alt='see more'/></Link></td>
+      		<td className='saveRow delete' onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
       return renderTable; // added by gf - avoid React warnings - seems to function fine - 10.30
@@ -91,14 +93,14 @@ class ViewSavedData extends Component {
             <table id='myTable' className="tableSavedData">
               {this.renderHeader()}
               <tbody>
-                {this.renderData()}
+              {this.renderData()}
               </tbody>
             </table>
           }
 
           {this.state.data.length === 0 &&
             <div className="noDataMessage">
-              Your saved jobs
+              No saved jobs
             </div>
           }
 

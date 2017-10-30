@@ -64,6 +64,27 @@ class SearchForm extends Component {
 							</select>
 							</div>
 
+							{/*<div>
+							<label htmlFor='countrysearch'>Country:</label>
+							<select className='select-values' id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
+								<option defaultValue='us'>United States</option>
+								<option value='gb'>United Kingdom</option>
+								<option value='au'>Australia</option>
+								<option value='at'>Austria</option>
+								<option value='br'>Brazil</option>
+								<option value='ca'>Canada</option>
+								<option value='de'>Germany</option>
+								<option value='fr'>France</option>
+								<option value='in'>India</option>
+								<option value='it'>Italy</option>
+								<option value='nl'>Netherlands</option>
+								<option value='nz'>New Zealand</option>
+								<option value='pl'>Poland</option>
+								<option value='ru'>Russia</option>
+								<option value='sg'>Singapore</option>
+								<option value='za'>South Africa</option>
+							</select>
+							</div>*/}
 							<div>
 							<input className="submitButton" type='submit' value='Submit' />
 							</div>	

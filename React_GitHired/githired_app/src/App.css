@@ -6,22 +6,42 @@ body {
 /********************************************** Login/SignUp Page *************************************/
 
 section {
-  background: url('./hallway.jpeg');
+  filter: blur(0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginBackground {
+  background: url('./hallway.jpg');
   height: 100vh;
   background-repeat:no-repeat;
   background-position:center;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(3px);
 }
 
 .auth-form {
-  opacity: .95;
-  z-index: 2;
-  padding-top: 3em;
+  filter: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30%;
+  width: 25%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  opacity: 0.95;
+}
+
+.signUp-auth-form{
+  filter: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,15 +51,30 @@ section {
   border-radius: 8px;
   background-color: #eeede3;
   box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
-  border: solid 1px #000000;
+  opacity: 0.95;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  padding: 15%;
+  width: 90%;
+  padding-top: 2%;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.loginForm>.searchBar {
+  width: 60%;
+}
+
+.signUpForm>.searchBar {
+  width: 60%;
 }
 
 .signUpForm {
@@ -55,58 +90,78 @@ section {
   flex-direction: column;
 }
 
-
-.form-button:hover {
-  cursor: pointer;
-}
-
 .form-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.form-button {
+.login-form-button {
   background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
   border: solid 1px #979797;
-  padding-top: 5%;
+  margin-top: 20%;
+}
+
+.signup-form-button {
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+  margin-top: 10%;
+}
+
+.login-form-button, .signup-form-button:hover {
+  cursor: pointer;
 }
 
 .loginHead {
   font-family: 'Inconsolata', monospace;
 }
 
+.signUp-auth-form>.loginHead {
+  font-size: 12px;
+}
+
 /********************************************** Header *************************************/
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   color: white;
   background: #3F667F;
-  padding-left: 2%;
-  padding-bottom: 1%;
+  /*position: fixed;*/
 }
 
 .appName {
   font-size: 36px;
   font-family: 'Inconsolata', monospace;
+  padding-left: 2%;
 }
 
 .username {
   font-size: 28px;
+  padding-left: 2%;
+  padding-bottom: 2%;
   /*border-bottom: 2px solid white;*/
 }
 
-/*not working*/
-.logout-button {
-  position: absolute;
-  top: 0;
-  right: 0;
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 2px solid white;
   padding-top: 1%;
-  padding-right: 1%;
+  padding-bottom: 1%;
+  background: #617B7F;
 }
 
-.logout-button:hover {
+.navLink {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.navLink:hover {
   cursor: pointer;
 }
 
@@ -190,8 +245,8 @@ section {
 
 
 img {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 table {
@@ -204,7 +259,10 @@ table {
 
 tr, th, td {
     text-align: center;
-    border-bottom: 3px solid white;
+}
+
+.saveRow {
+  border-bottom: 4px solid white;
 }
 
 .delete:hover {
@@ -216,13 +274,14 @@ tr, th, td {
 
 th[role=columnheader]:not(.no-sort) {
   cursor: pointer;
+  border-bottom: 4px solid white;
 }
 
 th[role=columnheader]:not(.no-sort):after {
   content: '';
   margin-top: .8em;
   float: right;
-  border-width: 0 .1em .1em;
+  border-width: 0 .5em .5em;
   border-style: solid;
   border-color: #404040 transparent;
   visibility: hidden;
@@ -235,7 +294,7 @@ th[role=columnheader]:not(.no-sort):after {
 
 th[aria-sort=ascending]:not(.no-sort):after {
   border-bottom: none;
-  border-width: .1em .1em 0;
+  border-width: .5em .5em 0;
 }
 
 th[aria-sort]:not(.no-sort):after {
@@ -249,7 +308,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 th {
-  background: #D7DDE5;
+  background: #3F667F;
+  color: white;
   font-size: 1em;
   padding: .8em;
 }
@@ -271,10 +331,7 @@ td {
 }
 
 .resultBox {
-  padding: 1%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  padding: 12px;
   border-bottom: 10%;
   width: 55%;
   height: 20%;
@@ -283,6 +340,10 @@ td {
   background-color: #eeede3;
   box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
   border: solid 1px #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .jobDesc {
@@ -328,8 +389,31 @@ td {
   text-decoration: none;
 }
 
+.seeDesc{
+  text-decoration: none;
+  z-index: 2;
+  background: -webkit-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* Standard syntax */
+  position: absolute;
+  bottom: 10px;
+  width: 96%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.seeDesc:hover{
+  cursor: pointer;
+}
+
 .shortDescription {
-  max-height: 75px;
+  max-height: 140px;
   overflow: hidden;
   cursor: pointer;
   text-overflow: ellipsis;
@@ -343,6 +427,11 @@ td {
 }
 
 
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> 05871bfb05d3dcd4962a929abbefa5ee10517aae
 /********************************************** Create Page *************************************/
 
 .createForm {
