@@ -108,12 +108,6 @@ class ViewResults extends Component {
         arrayResults.push(
          
           <div className='resultBox' key={e.job_id}>
-<<<<<<< HEAD
-            <div>Type of contract: {e.type}</div>
-            <div>{e.company}</div>
-            <div><img href={e.company_logo} alt="No Logo" /></div>
-            <div><a src={e.company_url}>Website</a></div>
-=======
             <div className='resultsHead'>
               <div>{e.title}, {e.company}, {e.type}</div>
             </div>
@@ -137,7 +131,6 @@ class ViewResults extends Component {
                 <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
               </tr>
 
->>>>>>> be4f85117b0658a07e9d185faaef42b8368ff2e2
             {this.state.mode === "shortDesc" &&
               <div onClick={this.toogleDesc} className='shortDescription' dangerouslySetInnerHTML={{ __html: e.description }} />
             }

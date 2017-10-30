@@ -6,7 +6,7 @@ body {
 /********************************************** Login/SignUp Page *************************************/
 
 section {
-  background: url('./hallway.jpg');
+  background: url('./hallway.jpeg');
   height: 100vh;
   background-repeat:no-repeat;
   background-position:center;
@@ -14,11 +14,13 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  /*filter: blur(3px);*/
+  flex-direction: column;
+
 }
 
 .auth-form {
-  filter: none;
+  opacity: .95;
+  z-index: 2;
   padding-top: 3em;
   display: flex;
   flex-direction: column;
@@ -30,8 +32,6 @@ section {
   background-color: #eeede3;
   box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
   border: solid 1px #000000;
-  /*-webkit-filter: blur(0px);
-  filter: blur(0px);*/
 }
 
 .loginForm {
@@ -55,6 +55,11 @@ section {
   flex-direction: column;
 }
 
+
+.form-button:hover {
+  cursor: pointer;
+}
+
 .form-buttons {
   display: flex;
   flex-direction: row;
@@ -64,6 +69,7 @@ section {
   background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
   border: solid 1px #979797;
+  padding-top: 5%;
 }
 
 .loginHead {
@@ -124,10 +130,21 @@ section {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+}
+
+.searchInputs>div {
+  width: 20%;
+  padding: 1%;
+}
+
+.searchTitle {
+  font-size: 2.5vw;
+  flex: 1;
 }
 
 .searchBar {
+  flex: 2;
   height: 35%;
   width: 100%;
   font-size: 100%;
@@ -138,6 +155,7 @@ section {
 }
 
 .select-values {
+  flex: 1;
   font-size: 100%;
   width: 100%;
   height: 35%;
@@ -148,7 +166,7 @@ section {
 }
 
 .submitButton {
-  width: 100%;
+  width: 90%;
   height: 35%;
   font-size: 100%;
   border-radius: 3px;
@@ -163,6 +181,7 @@ section {
   display: flex;
   justify-content: center;
   margin-bottom: 2%;
+  width: 100%;
 }
 
 #myTable {
@@ -201,9 +220,9 @@ th[role=columnheader]:not(.no-sort) {
 
 th[role=columnheader]:not(.no-sort):after {
   content: '';
-  margin-top: 7px;
+  margin-top: .8em;
   float: right;
-  border-width: 0 4px 4px;
+  border-width: 0 .1em .1em;
   border-style: solid;
   border-color: #404040 transparent;
   visibility: hidden;
@@ -216,7 +235,7 @@ th[role=columnheader]:not(.no-sort):after {
 
 th[aria-sort=ascending]:not(.no-sort):after {
   border-bottom: none;
-  border-width: 4px 4px 0;
+  border-width: .1em .1em 0;
 }
 
 th[aria-sort]:not(.no-sort):after {
@@ -232,12 +251,12 @@ th[role=columnheader]:not(.no-sort):hover:after {
 th {
   background: #D7DDE5;
   font-size: 1em;
-  padding: 10px;
+  padding: .8em;
 }
 
 td {
   background: #EAEFF6;
-  padding: 5px;
+  padding: .5em;
 
 }
 
@@ -310,13 +329,22 @@ td {
 }
 
 .shortDescription {
-  max-height: 50px;
-  overflow: scroll;
+  max-height: 75px;
+  overflow: hidden;
+  cursor: pointer;
+  text-overflow: ellipsis;
 }
 
 .longDescription {
   height: 100%;
   overflow: auto;
+  cursor: pointer;
+
+}
+
+@media screen (min-width: 350px){
+
+
 }
 /********************************************** Create Page *************************************/
 

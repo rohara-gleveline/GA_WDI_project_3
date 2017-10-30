@@ -10,9 +10,8 @@ class SearchForm extends Component {
     this.state = {
       jobDescription: '',
       full_time: 'true',
-      jobLocation: '',
-      country: 'us'
-  }
+      jobLocation: ''
+      }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -45,9 +44,7 @@ class SearchForm extends Component {
 
 					<form className='searchInputs' onSubmit={this.onSubmit}>
 
-							<div>
-							<h1>Search:</h1>
-							</div>
+							<div className="searchTitle">Search:</div>
 
 							<div>
 							<label htmlFor='titlesearch'>Job Title:</label>
@@ -64,28 +61,6 @@ class SearchForm extends Component {
 							<select className='select-values' name='full_time' value={this.state.full_time} onChange={this.onChange}>
 								<option defaultValue='true'>Full Time</option>
 								<option value='false'>Full Time and Part Time</option>
-							</select>
-							</div>
-
-							<div>
-							<label htmlFor='countrysearch'>Country:</label>
-							<select className='select-values' id='countrysearch' name='country' value={this.state.country} onChange={this.onChange}>
-								<option defaultValue='us'>United States</option>
-								<option value='gb'>United Kingdom</option>
-								<option value='au'>Australia</option>
-								<option value='at'>Austria</option>
-								<option value='br'>Brazil</option>
-								<option value='ca'>Canada</option>
-								<option value='de'>Germany</option>
-								<option value='fr'>France</option>
-								<option value='in'>India</option>
-								<option value='it'>Italy</option>
-								<option value='nl'>Netherlands</option>
-								<option value='nz'>New Zealand</option>
-								<option value='pl'>Poland</option>
-								<option value='ru'>Russia</option>
-								<option value='sg'>Singapore</option>
-								<option value='za'>South Africa</option>
 							</select>
 							</div>
 
