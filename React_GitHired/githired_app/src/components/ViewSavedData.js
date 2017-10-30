@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
+// BrowserRouter, , Redirect -- react warnings
 import axios from 'axios';
 import ViewOne from './ViewOne';
 import tablesort from 'tablesort';
@@ -60,18 +61,6 @@ class ViewSavedData extends Component {
     )
   }
 
-  // <img className='companyLogo' href={e.company_logo}/
-
-  onClickDelete(id) {
-    console.log('clicked');
-    axios.delete(`http://localhost:8080/gitHired/${id}`)
-      .then(res => {
-        this.getSavedData();
-      })
-  }
-
-
-
   renderData() {
 
     const renderTable = [];
@@ -84,11 +73,12 @@ class ViewSavedData extends Component {
       		<td>{e.location}</td>
       		<td>{e.type}</td>
       		<td><a href={e.url} target='_blank'>Job Link</a></td>
-          <td><a href={e.github_jobs_url}><img src="./images/seepage.png"/></a></td>
-          <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png"/></Link></td>
+          <td><a href={e.github_jobs_url}><img src="./images/seepage.png" alt='see more'/></a></td>
+          <td className="seeMoreButton"> <Link className="linkToViewOne" to={`/ViewOne/${e.id}`}><img src="./images/seemore.png" alt='see more'/></Link></td>
       		<td className="delete" onClick={() => {this.onClickDelete(e.id)}}>Delete</td>
         </tr>
       )
+      return renderTable; // added by gf - avoid React warnings - seems to function fine - 10.30
     })
     return renderTable;
   }

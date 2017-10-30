@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+// BrowserRouter, Route,  Redirect - removed - react warnings 
 
 import axios from 'axios';
 
@@ -54,13 +56,13 @@ class ViewOne extends Component {
 			company_url: this.state.jobData.company_url,
 			company_logo: this.state.jobData.company_logo,
 			url: this.state.jobData.url,
-			contacted: parseInt(this.state.jobData.contacted),
+			contacted: parseInt(this.state.jobData.contacted, 10),
 			contacted_on: this.state.jobData.contacted_on,
 			contact_name: this.state.jobData.contact_name,
 			contact_email: this.state.jobData.contact_email,
 			contact_role: this.state.jobData.contact_role,
 			contact_number: this.state.jobData.contact_number,
-			applied: parseInt(this.state.jobData.applied),
+			applied: parseInt(this.state.jobData.applied, 10),
 			applied_on: this.state.jobData.applied_on,
 			notes: this.state.jobData.notes,
 			date_of_last_edit: new Date()

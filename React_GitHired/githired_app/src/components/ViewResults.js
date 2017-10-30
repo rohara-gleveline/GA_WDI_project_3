@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+// import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
-import $ from "jquery";
+// import $ from "jquery";
 
 var ReactDOMServer = require('react-dom/server');
 var HtmlToReactParser = require('html-to-react').Parser;
@@ -90,7 +90,7 @@ class ViewResults extends Component {
       var cutEndIndex = startCut.indexOf('"');
       var endCut = startCut.substring(0, cutEndIndex);
       return(
-        <div><a href={endCut} target='_blank'><img src="./images/seemore.png"/></a></div>
+        <div><a href={endCut} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></div>
       );
   }
 
@@ -112,7 +112,7 @@ class ViewResults extends Component {
     if (this.state.results.JobsData !==  undefined) {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
-          <div className='resultBox' key={e.job_id}>
+          <div className='resultBox' key={e.id}>
 
           {/*<div><img href={e.company_logo} alt="No Logo" id='logo'/></div>*/}
 
@@ -134,15 +134,15 @@ class ViewResults extends Component {
               <tr>
                 <td>{e.location}</td>
                 <td>{e.created_at}</td>
-                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png"/></a></td>
-                <td><a href={e.url} target='_blank'><img src="./images/seemore.png"/></a></td>
+                <td><a href={e.company_url} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></td>
+                <td><a href={e.url} target='_blank'><img src="./images/seemore.png" alt='see more'/></a></td>
                 <td>{this.haveLink(e.how_to_apply)}</td>
-                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
+                <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png" alt='save'/></td>
               </tr>
             </div>
 
             {/*<div>Job id: {e.job_id}</div>*/}
-            <div className='jobDesc'>
+            <div className='jobDesc' key={e.job_id}>
               <div className='jobDescHead'>Job description:</div>
                {this.haveDescription(e.description)}
             </div>

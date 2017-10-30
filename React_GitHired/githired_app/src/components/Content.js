@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+// remved BrowserRouter, Route, -- react warning no unused vars
 
 import SearchForm from './SearchForm';
 import ViewSavedData from './ViewSavedData';
@@ -34,7 +35,7 @@ class Content extends Component {
 
   render() {
     return(
-        <div className="content">
+        <div className="content" key={Math.random()*5}>
 
           <SearchForm
             results={this.getResults} />

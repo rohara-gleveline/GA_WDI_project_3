@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+
+// Link, Redirect - pulled out link and redirect - React warning about unused vars
 
 import '../App.css';
 import axios from 'axios';
@@ -11,7 +13,7 @@ import Header from './Header';
 import ViewOne from './ViewOne';
 import CreateJob from './CreateJob';
 
-import ViewResults from './ViewResults';
+// import ViewResults from './ViewResults';
 
 
 class App extends Component {
