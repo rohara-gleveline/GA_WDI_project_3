@@ -3,7 +3,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/********************************************** Login Page *************************************/
+/********************************************** Login/SignUp Page *************************************/
 
 section {
   background: url('./hallway.jpg');
@@ -11,6 +11,63 @@ section {
   background-repeat:no-repeat; 
   background-position:center; 
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*filter: blur(3px);*/
+}
+
+.auth-form {
+  filter: none;
+  padding-top: 3em;  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40%;
+  width: 25%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+  /*-webkit-filter: blur(0px);
+  filter: blur(0px);*/
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 15%;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  justify-content: space-around;
+}
+
+.signUp-form-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-button {
+  background-image: linear-gradient(to bottom, #f2f2f2, #d4d4d4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+  border: solid 1px #979797;
+}
+
+.loginHead {
+  font-family: 'Inconsolata', monospace;
 }
 
 /********************************************** Header *************************************/
@@ -182,6 +239,68 @@ td {
   background: #EAEFF6;
   padding: 5px;
 
+}
+
+/********************************************** Search Results *************************************/
+
+.viewResults {
+  margin-top: 2%;
+  margin-bottom: 2%; 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resultBox {
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 10%;
+  width: 55%;
+  height: 20%;
+  margin-bottom: 2%;
+  border-radius: 8px;
+  background-color: #eeede3;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #000000;
+}
+
+.jobDesc {
+  display: none;
+}
+
+.jobDescHead {
+  padding-bottom: 2%;
+}
+
+/*.jobDesc {
+  height: 20%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}*/
+
+.resultsHead {
+  padding-bottom: 1%;
+  box-shadow: inset 0 0px 0 white, inset 0 -5px 0 black;
+  display: flex;
+  justify-content: space-around; 
+  margin: 2%;
+  font-size: 22px;
+}
+
+.resultsTable {
+  padding-bottom: 2%;
+}
+
+.resultsTable>img {
+  height: 4em;
+  width: 4em;
+}
+
+.saveJob:hover {
+  cursor: pointer;
 }
 
 /********************************************** Kiara's CSS *************************************/

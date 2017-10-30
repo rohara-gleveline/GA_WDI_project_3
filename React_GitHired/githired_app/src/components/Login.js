@@ -39,26 +39,25 @@ class Login extends Component {
     return(
       <section>
       <div className="auth-form">
-        <h1>GitHired</h1>
-        <form onSubmit={this.login.bind(this)}>
-
-          <label htmlFor='email'>Email</label>
-          <input value={this.state.inputs.email}
+        <div className='loginHead'><h1>GitHired</h1></div>
+        
+        <form className='loginForm' onSubmit={this.login.bind(this)}>
+          <label htmlFor='email'>Email:</label>
+          <input className='searchBar' value={this.state.inputs.email}
             id='email' name='email' type='email'
             onChange={e => this.changeInput(e, 'email')}
           />
 
-          <label htmlFor='password'>Password</label>
-          <input value={this.state.inputs.password}
+          <label htmlFor='password'>Password:</label>
+          <input className='searchBar' value={this.state.inputs.password}
             id='password' name='password' type='password'
             onChange={e => this.changeInput(e, 'password')}
           />
 
           <div className="form-buttons">
-            <button type="submit" className="form-button">Login</button>
+            <button type="submit" className="form-button">Log In</button>
             <button onClick={this.props.toggleMode} className="form-button">Sign Up</button>
           </div>
-
         </form>
       </div>
       </section>

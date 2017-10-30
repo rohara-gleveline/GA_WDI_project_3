@@ -15,7 +15,7 @@ router.get('/:id',
 // search gitHub jobs & adzuna jobs
 router.post('/search',
     Jobs.search,
-    Jobs.salary,
+    // Jobs.salary,
     (req, res) => {
         // adzunaJobResults
         // adzunaJobs: adzunaJobResults

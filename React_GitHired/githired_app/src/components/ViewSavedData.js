@@ -63,12 +63,13 @@ class ViewSavedData extends Component {
   // <img className='companyLogo' href={e.company_logo}/
 
   onClickDelete(id) {
-      console.log('clicked');
-      axios.delete(`http://localhost:8080/gitHired/${id}`)
-        .then(res => {
-          this.setState({ mode: 'somethingDeleted' })
-        })
-    }
+    console.log('clicked');
+    axios.delete(`http://localhost:8080/gitHired/${id}`)
+      .then(res => {
+        this.getSavedData();
+      })
+  }
+
 
 
   renderData() {
