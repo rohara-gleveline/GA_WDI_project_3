@@ -107,7 +107,6 @@ class ViewResults extends Component {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
           <div className='resultBox' key={e.job_id}>
-            <div>Job title: {e.title}</div>
             <div>Type of contract: {e.type}</div>
             <div>{e.company}</div>
             <div><img href={e.company_logo} alt="No Logo" /></div>

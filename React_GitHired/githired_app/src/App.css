@@ -310,8 +310,8 @@ td {
 }
 
 .shortDescription {
-  max-height: 30px;
-  overflow: hidden;
+  max-height: 50px;
+  overflow: scroll;
 }
 
 .longDescription {
