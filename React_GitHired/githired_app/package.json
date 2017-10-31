@@ -14,8 +14,11 @@
     "tablesort": "^5.0.1",
     "tablesorter": "^2.29.0"
   },
+  "engines": {
+    "node": "6.11.2"
+  },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

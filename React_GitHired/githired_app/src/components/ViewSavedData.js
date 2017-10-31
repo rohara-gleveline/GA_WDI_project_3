@@ -24,7 +24,7 @@ class ViewSavedData extends Component {
   }
 
   getSavedData() {
-    axios.get(`http://localhost:8080/gitHired/${this.props.user.id}`)
+    axios.get(`https://githiredpotoo.herokuapp.com/gitHired/${this.props.user.id}`)
       .then(res => {
         this.setState({
           data: res.data.allJobsData
@@ -38,7 +38,7 @@ class ViewSavedData extends Component {
 
   onClickDelete(id) {
     console.log('clicked');
-    axios.delete(`http://localhost:8080/gitHired/${id}`)
+    axios.delete(`https://githiredpotoo.herokuapp.com/gitHired/${id}`)
       .then(res => {
         this.getSavedData();
       })
@@ -100,7 +100,7 @@ class ViewSavedData extends Component {
 
           {this.state.data.length === 0 &&
             <div className="noDataMessage">
-              Start a research and save the Jobs you are interested in.
+              Start a search and save the jobs postings you are interested in.
             </div>
           }
 

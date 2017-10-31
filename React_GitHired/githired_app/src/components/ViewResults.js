@@ -37,7 +37,7 @@ class ViewResults extends Component {
       var endCut = startCut.substring(0, cutEndIndex);
       return endCut;
     }
-    axios.post('http://localhost:8080/gitHired/save', {
+    axios.post('https://githiredpotoo.herokuapp.com/gitHired/save', {
         user_id: this.props.user.id,
         searched_on: e.searched_on,
         job_id: e.job_id,
@@ -106,14 +106,14 @@ class ViewResults extends Component {
     if (this.state.results.JobsData !==  undefined) {
       this.state.results.JobsData.map(e => {
         arrayResults.push(
-         
+
           <div className='resultBox' key={e.job_id}>
             <div className='resultsHead'>
               <div>{e.title}, {e.company}, {e.type}</div>
             </div>
             <div class='resultsTable'>
                <thead>
-                  <tr>  
+                  <tr>
                     <th>Location</th>
                     <th>Posted On</th>
                     <th>Company Site</th>
@@ -131,7 +131,7 @@ class ViewResults extends Component {
                 <td className='saveJob' onClick={() => {this.saveJob(e)}}><img id='save' src="./images/save.png"/></td>
               </tr>
 
-            </div>  
+            </div>
 
             <div className='resultDescription'>
             {this.state.mode === "shortDesc" &&
