@@ -49,7 +49,7 @@ class CreateJob extends Component {
 	onSubmit(event) {
 		event.preventDefault();
 
-		axios.post("http://localhost:8080/gitHired/create", {
+		axios.post("https://githiredpotoo.herokuapp.com/gitHired/create", {
 				user_id: this.props.user.id,
 				searched_on: this.state.searched_on,
 				job_id: this.state.job_id,
@@ -164,24 +164,23 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-
-							<label htmlFor="appliedonnew">Applied On:</label>
-							<input className="createInput" id="appliedonnew" type="date" name="applied_on" value={this.state.applied_on} onChange={this.onChange}/>
-
-						</div>
-
-						<div>
-							<label htmlFor="appliednew">Applied:</label>
+							<label htmlFor="appliednew">Applied: </label>
 							<select id='appliednew' name='applied' value={this.state.applied} onChange={this.onChange}>
 								<option defaultValue='No'>No</option>
 								<option value='Yes'>Yes</option>
 							</select>
 						</div>
+
+						<div>
+							<label htmlFor="appliedonnew">Applied On:</label>
+							<input className="createInput" id="appliedonnew" type="date" name="applied_on" value={this.state.applied_on} onChange={this.onChange}/>
 						</div>
 
+					</div>
+					
 
 						<div className="contactInformation">
-						<h3>Contact Information</h3>
+							<h3>Contact Information</h3>
 
 						<div className = "contact">
 							<label htmlFor="namenew">Contact Name:</label>
@@ -206,7 +205,7 @@ class CreateJob extends Component {
 						</div>
 
 						<div>
-							<label htmlFor="contactednew">Contacted:</label>
+							<label htmlFor="contactednew">Contacted: </label>
 								<select id='contactednew' name='contacted' value={this.state.contacted} onChange={this.onChange}>
 									<option defaultValue='No'>No</option>
 									<option value='Yes'>Yes</option>
@@ -223,12 +222,8 @@ class CreateJob extends Component {
 							<textarea id="notesnew" type="text" name="notes" value={this.state.notes} onChange={this.onChange} cols="40" rows="8" />
 						</div>
 
-						<div>
+						<div className="divSubmitButton">
 							<input className="submitButtonCreate" type="submit" value="Submit"/>
-						</div>
-
-						<div>
-							<Link to="/">Go back to your saved jobs</Link>
 						</div>
 
 						</div>

@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       user: false,
       mode: 'loading',
-      url: 'http://localhost:8080',
+      url: 'https://githiredpotoo.herokuapp.com',
       logout: 'yes'
     }
     this.setUser = this.setUser.bind(this);
@@ -109,6 +109,7 @@ class App extends Component {
                   <Route exact path="/ViewOne/:id"
                          component= {ViewOne}
                          />
+
                   <Route exact path="/create"
                          render= { () =>
                           <CreateJob user={this.state.user} />

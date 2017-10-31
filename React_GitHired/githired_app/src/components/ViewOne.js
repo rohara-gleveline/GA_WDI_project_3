@@ -22,7 +22,7 @@ class ViewOne extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(`http://localhost:8080/gitHired/find/${this.props.match.params.id}`)
+		axios.get(`https://githiredpotoo.herokuapp.com/gitHired/find/${this.props.match.params.id}`)
 		.then(response => {
 			this.setState({jobData: response.data.oneJobData})
 		})
@@ -37,7 +37,7 @@ class ViewOne extends Component {
 	}
 
 	onClickDelete(id) {
-		axios.delete(`http://localhost:8080/gitHired/${id}`)
+		axios.delete(`https://githiredpotoo.herokuapp.com/gitHired/${id}`)
       .then(res => {
         this.setState({
 					redirect: true
@@ -47,7 +47,7 @@ class ViewOne extends Component {
 
 	onClickSave(e){
 		e.preventDefault();
-		axios.post(`http://localhost:8080/gitHired/find/${this.state.jobData.id}/edit`, {
+		axios.post(`https://githiredpotoo.herokuapp.com/gitHired/find/${this.state.jobData.id}/edit`, {
 			searched_on: this.state.jobData.searched_on,
 			job_id: this.state.jobData.job_id,
 			created_at: this.state.jobData.created_at,
@@ -85,197 +85,183 @@ class ViewOne extends Component {
 
 	render() {
 		  return(
+
 				<div>
-				{ this.state.redirect &&
-					<Redirect to='/' />
-				}
+					{ this.state.redirect &&
+						<Redirect to='/' />
+					}
 
-				{ !this.state.redirect &&
-					<div className="oneJobView">
+					{ !this.state.redirect &&
+						<div className="oneJobView">
 
-						{this.state.mode === 'view' &&
-							<div className="ViewOne">
-									<div className="resultsHead">{this.state.jobData.searched_on}</div>
-									<div className="resultsData">
-									<div>Id: {this.state.jobData.job_id}</div>
-									<div>Created at: {this.state.jobData.created_at}</div>
-									<div>Title Job: {this.state.jobData.title}</div>
-									<div>Location: {this.state.jobData.location}</div>
-									<div>Type of contract: {this.state.jobData.type}</div>
-									<div dangerouslySetInnerHTML={{ __html: this.state.jobData.description }} />
-									<div>How to apply: {this.state.jobData.how_to_apply}</div>
-									<div>Company: {this.state.jobData.company}</div>
-									<div><a href={this.state.jobData.company_url}>Company Website</a></div>
-									<div><a href={this.state.jobData.url}>Job posting</a></div>
-									<div>Contacted Y/N: {this.state.jobData.contacted}</div>
-									<div>Date of last contact: {this.state.jobData.contacted_on}</div>
-									<div>Contact name: {this.state.jobData.contact_name}</div>
-									<div>Contact email: {this.state.jobData.contact_email}</div>
-									<div>Contact position: {this.state.jobData.contact_role}</div>
-									<div>Contact number: {this.state.jobData.contact_number}</div>
-									<div>Applied Y/N: {this.state.jobData.applied}</div>
-									<div>Date of application: {this.state.jobData.applied_on}</div>
-									<div>Notes: {this.state.jobData.notes}</div>
+							{ this.state.mode === 'view' &&
+								<div className="ViewOne">
+										<div className="resultsHead">{this.state.jobData.searched_on}</div>
+										<div className="resultsData">
+										<div>Id: {this.state.jobData.job_id}</div>
+										<div>Created at: {this.state.jobData.created_at}</div>
+										<div>Title Job: {this.state.jobData.title}</div>
+										<div>Location: {this.state.jobData.location}</div>
+										<div>Type of contract: {this.state.jobData.type}</div>
+										<div dangerouslySetInnerHTML={{ __html: this.state.jobData.description }}></div>
+										<div>How to apply: {this.state.jobData.how_to_apply}</div>
+										<div>Company: {this.state.jobData.company}</div>
+										<div><a href={this.state.jobData.company_url}>Company Website</a></div>
+										<div><a href={this.state.jobData.url}>Job posting</a></div>
+										<div>Contacted Y/N: {this.state.jobData.contacted}</div>
+										<div>Date of last contact: {this.state.jobData.contacted_on}</div>
+										<div>Contact name: {this.state.jobData.contact_name}</div>
+										<div>Contact email: {this.state.jobData.contact_email}</div>
+										<div>Contact position: {this.state.jobData.contact_role}</div>
+										<div>Contact number: {this.state.jobData.contact_number}</div>
+										<div>Applied Y/N: {this.state.jobData.applied}</div>
+										<div>Date of application: {this.state.jobData.applied_on}</div>
+										<div>Notes: {this.state.jobData.notes}</div>
+									</div>
+
+									<div className="viewOneButtons">
+									<button className="submitButtonEdit" onClick={this.onClickEdit}>Edit Job</button>
+									<button className="submitButtonEdit" onClick={() => {this.onClickDelete(this.state.jobData.id)}}>Delete Job</button>
+									</div>
+
+									{this.state.jobData.date_of_last_edit !== '' &&
+										<div className='lastEdited'>Last edited on {this.state.jobData.date_of_last_edit}</div>
+									}
+
 								</div>
+							}
 
-								<div className="viewOneButtons">
-								<button className="submitButton" onClick={this.onClickEdit}>Edit Job</button>
-								<button className="submitButton" onClick={() => {this.onClickDelete(this.state.jobData.id)}}>Delete Job</button>
+							{ this.state.mode === 'edit' &&
+
+								<div className="ViewOne">
+
+									<div className='bigContainerJobInfo'>
+
+									<h2>Job Information</h2>
+
+									<div className='boxViewOne'>
+										<label htmlFor="companyedit">Company:</label>
+										<input id="companyedit" name='company' onChange={this.onChange} value={this.state.jobData.company||''} type='text' />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="titleedit"> Job Title: </label>
+										<input id="titleedit" name='title' onChange={this.onChange} value={this.state.jobData.title||''} type='text' />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="titleidedit">Job ID: </label>
+										<input id= "titleidedit" name='job_id' onChange={this.onChange} value={this.state.jobData.job_id||''} type='text' />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="locationedit">Location: </label>
+										<input id="locationedit" name='location' onChange={this.onChange} value={this.state.jobData.location||''} type='text' />
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="typeedit">Type of contract:</label>
+										<select id='typesearch' name='type' value={this.state.jobData.type||''} onChange={this.onChange}>
+											<option defaultValue='true'>Full Time</option>
+											<option value='false'>Full Time and Part Time</option>
+										</select>
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="linkjobedit">Link to Jobs Posting:</label>
+										<input id="linkjobedit" name='url' onChange={this.onChange} value={this.state.jobData.url||''} type='text' />
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="datepostedit">Date of job posting:</label>
+										<input id="datepostedit" type="date" name="created_at" value={this.state.jobData.created_at||''} onChange={this.onChange}/>
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="howtoapplyedit">Link to Application:</label>
+										<input id="howtoapplyedit" type="text" name="how_to_apply" value={this.state.jobData.how_to_apply||''} onChange={this.onChange}/>
+									</div>
+
+
+									<div className='note'>
+										<label htmlFor="descriptionedit">Description: </label>
+										<textarea id="descriptionedit" name='description' onChange={this.onChange} value={this.state.jobData.description||''} cols="40" rows="8" />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor="companyurledit">Company URL:</label>
+										<input id="companyurledit" name='company_url' onChange={this.onChange} value={this.state.jobData.company_url||''} type='text' />
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="searchedonedit">Searched On:</label>
+										<input id="searchedonedit" type="date" name="searched_on" value={this.state.jobData.searched_on||''} onChange={this.onChange}/>
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="appliedonedit">Applied On:</label>
+										<input id="appliedonedit" type="date" name="applied_on" value={this.state.jobData.applied_on||''} onChange={this.onChange}/>
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="appliededit">Applied:</label>
+										<select id='appliededit' name='applied' value={this.state.jobData.applied||''} onChange={this.onChange}>
+											<option value='0'>No</option>
+											<option value='1'>Yes</option>
+										</select>
+									</div>
+
+									<h2>Contact Information</h2>
+
+									<div className='boxViewOne'>
+										<label htmlFor= "nameedit">Contact Name:</label>
+										<input id="nameedit" name='contact_name' onChange={this.onChange} value={this.state.jobData.contact_name||''} type='text' />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor= "phonenumberedit">Contact Phone Number:</label>
+										<input id= "phonenumberedit" name='contact_number' onChange={this.onChange} value={this.state.jobData.contact_number||''} type='text' />
+									</div>
+
+									<div className='boxViewOne'>
+										<label htmlFor= "emailedit">Contact Email:</label>
+										<input id="emailedit" name='contact_email' onChange={this.onChange} value={this.state.jobData.contact_email||''} type='text' />
+									</div>
+
+
+									<div className='boxViewOne'>
+										<label htmlFor="rolecontactedit">Contact Role:</label>
+										<input id="rolecontactedit" type="text" name="contact_role" value={this.state.jobData.contact_role||''} onChange={this.onChange}/>
+									</div>
+
+									<div className='boxInlineViewOne'>
+										<label htmlFor="contactedonedit">Contacted On:</label>
+										<input id="contactedonedit" type="date" name="contacted_on" value={this.state.jobData.contacted_on||''} onChange={this.onChange}/>
+									</div>
+
+									<div className='boxInlineViewOne'>
+									<label htmlFor="contactededit">Contacted:</label>
+										<select id='contactededit' name='contacted' value={this.state.jobData.contacted||''} onChange={this.onChange}>
+											<option value='0'>No</option>
+											<option value='1'>Yes</option>
+										</select>
+									</div>
+
+									<div className="note">
+										<label htmlFor ="notesedit">Notes:</label>
+										<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes||''} cols="40" rows="6" /> <br/>
+									</div>
+
+									<div className="divSubmitButtonSave"><button className="submitButtonSave" onClick={this.onClickSave}>Save Changes</button></div>
 								</div>
-
-								<div className='lastEdited'>Last edited on {this.state.jobData.date_of_last_edit}</div>
 							</div>
-						}
+							}
 
-						{this.state.mode === 'edit' &&
-							<div className="ViewOne">
-
-								<div>
-								<h2>Job Information</h2>
-
-								<div>
-									<label htmlFor="companyedit">Company:</label>
-									<input id="companyedit" name='company' onChange={this.onChange} value={this.state.jobData.company||''} type='text' />
-								</div>
-
-									<label htmlFor="titleedit"> Job Title: </label>
-									<input id="titleedit" name='title' onChange={this.onChange} value={this.state.jobData.title||''} type='text' />
-								</div>
-
-								<div>
-									<label htmlFor="titleidedit">Job ID: </label>
-									<input id= "titleidedit" name='job_id' onChange={this.onChange} value={this.state.jobData.job_id||''} type='text' />
-								</div>
-
-								<div>
-									<label htmlFor="locationedit">Location: </label>
-									<input id="locationedit" name='location' onChange={this.onChange} value={this.state.jobData.location||''} type='text' />
-								</div>
-
-								<div>
-								<label htmlFor="typeedit">Type of contract:</label>
-									<select id='typesearch' name='type' value={this.state.jobData.type||''} onChange={this.onChange}>
-										<option defaultValue='true'>Full Time</option>
-										<option value='false'>Full Time and Part Time</option>
-									</select>
-							</div>
-
-
-								<div>
-									<label htmlFor="descriptionedit">Description: </label>
-									<input id="descriptionedit" name='description' onChange={this.onChange} value={this.state.jobData.description||''} type='text' />
-								</div>
-
-
-								<div>
-									<label htmlFor="linkjobedit">Link to Jobs Posting:</label>
-									<input id="linkjobedit" name='url' onChange={this.onChange} value={this.state.jobData.url||''} type='text' />
-								</div>
-
-
-								<div>
-									<label htmlFor="datepostedit">Date of job posting:</label>
-									<input id="datepostedit" type="date" name="created_at" value={this.state.jobData.created_at||''} onChange={this.onChange}/>
-								</div>
-
-								<div>
-									<label htmlFor="howtoapplyedit">Link to Application:</label>
-									<input id="howtoapplyedit" type="text" name="how_to_apply" value={this.state.jobData.how_to_apply||''} onChange={this.onChange}/>
-								</div>
-
-
-							<div className="notes">
-								<label htmlFor="descriptionedit">Description: </label>
-								<textarea id="descriptionedit" name='description' onChange={this.onChange} value={this.state.jobData.description||''} cols="40" rows="4" />
-							</div>
-
-								<div>
-									<label htmlFor="companyurledit">Company URL:</label>
-									<input id="companyurledit" name='company_url' onChange={this.onChange} value={this.state.jobData.company_url||''} type='text' />
-								</div>
-
-								<div>
-									<label htmlFor="searchedonedit">Searched On:</label>
-									<input id="searchedonedit" type="date" name="searched_on" value={this.state.jobData.searched_on||''} onChange={this.onChange}/>
-								</div>
-
-								<div>
-
-								<label htmlFor="appliedonedit">Applied On:</label>
-								<input id="appliedonedit" type="date" name="applied_on" value={this.state.jobData.applied_on||''} onChange={this.onChange}/>
-
-								</div>
-
-								<div>
-								<label htmlFor="appliededit">Applied:</label>
-								<select id='appliededit' name='applied' value={this.state.jobData.applied||''} onChange={this.onChange}>
-									<option value='0'>No</option>
-									<option value='1'>Yes</option>
-								</select>
-								</div>
-
-								<div>
-								<h2>Contact Information</h2>
-									<label htmlFor= "nameedit">Contact Name:</label>
-									<input id="nameedit" name='contact_name' onChange={this.onChange} value={this.state.jobData.contact_name||''} type='text' />
-								</div>
-
-								<div>
-									<label htmlFor= "phonenumberedit">Contact Phone Number:</label>
-									<input id= "phonenumberedit" name='contact_number' onChange={this.onChange} value={this.state.jobData.contact_number||''} type='text' />
-								</div>
-
-								<div>
-									<label htmlFor= "emailedit">Contact Email:</label>
-									<input id="emailedit" name='contact_email' onChange={this.onChange} value={this.state.jobData.contact_email||''} type='text' />
-								</div>
-
-
-								<div>
-									<label htmlFor="rolecontactedit">Contact Role:</label>
-									<input id="rolecontactedit" type="text" name="contact_role" value={this.state.jobData.contact_role||''} onChange={this.onChange}/>
-								</div>
-
-
-								<div>
-								<label htmlFor="contactededit">Contacted:</label>
-									<select id='contactededit' name='contacted' value={this.state.jobData.contacted||''} onChange={this.onChange}>
-										<option value='0'>No</option>
-										<option value='1'>Yes</option>
-									</select>
-								</div>
-
-								<div>
-									<label htmlFor="contactedonedit">Contacted On:</label>
-									<input id="contactedonedit" type="date" name="contacted_on" value={this.state.jobData.contacted_on||''} onChange={this.onChange}/>
-								</div>
-
-
-								<br/>
-								<div className="notes">
-									<label htmlFor ="notesedit">Notes:</label>
-									<textarea name='notes' id='notesedit' onChange={this.onChange} value={this.state.jobData.notes||''} cols="40" rows="8" /> <br/>
-								</div>
-
-								<button className="submitButtonEdit" onClick={this.onClickSave}>Save Changes</button>
-
-								<div>
-									<Link to="/">Go back to your saved jobs</Link>
-								</div>
-
-							</div>
-						}
-
+						</div>
+					}
 					</div>
-				}
-				</div>
-
-
-		  )
-
+				)
+			}
 		}
-
-
-}
 
 export default ViewOne;

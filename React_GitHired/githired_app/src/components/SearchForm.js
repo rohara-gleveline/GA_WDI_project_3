@@ -25,7 +25,7 @@ class SearchForm extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		axios.post('http://localhost:8080/gitHired/search', {
+		axios.post('https://githiredpotoo.herokuapp.com/gitHired/search', {
 			jobDescription: this.state.jobDescription,
       full_time: this.state.full_time,
       jobLocation: this.state.jobLocation,
